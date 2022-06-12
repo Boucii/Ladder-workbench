@@ -37,6 +37,46 @@ static int cmd_q(char *args) {
   return -1;
 }
 
+static int cmd_si(char *args) {
+  return 0;
+}
+
+static int cmd_info(char *args) {
+
+/* extract the first argument */
+char *arg = strtok(NULL, " ");
+                                                                      
+  if (arg == NULL) {
+    /* no argument given */
+      printf("a arguement must be followed, see help for more info/n");
+    }else if(strcmp(arg,"r")==0){
+      isa_reg_display();
+    }else if(strcmp(arg,"w")==0){
+
+    }else{
+      printf("plase enter the correct argument, see help for more info/n");
+    }
+  return 0;
+}
+
+static int cmd_x(char *args) {
+  return -1;
+}
+
+static int cmd_p(char *args) {
+  return -1;
+}
+
+static int cmd_w(char *args) {
+  return -1;
+}
+
+static int cmd_d(char *args) {
+  return -1;
+}
+
+
+
 static int cmd_help(char *args);
 
 static struct {
@@ -47,6 +87,12 @@ static struct {
   { "help", "Display informations about all supported commands", cmd_help },
   { "c", "Continue the execution of the program", cmd_c },
   { "q", "Exit NEMU", cmd_q },
+  {"si","Execute a single instruction, format: si N",cmd_si},
+  {"info","Display registers's status with info r, watch point info with info w",cmd_info},
+  {"x","Display the value of EXPR, in the formation of N*4 bytes starting at expr's assress. Format: x N EXPR",cmd_x},
+  {"p","Print the value of EXPR, format: p EXPR",cmd_p},
+  {"w","Break on the changing of EXPR, format: w EXPR",cmd_w},
+  {"d","Delete watch point indexed N, format: d N",cmd_d},
 
   /* TODO: Add more commands */
 
