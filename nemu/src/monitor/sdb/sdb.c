@@ -48,13 +48,14 @@ char *arg = strtok(NULL, " ");
                                                                       
   if (arg == NULL) {
     /* no argument given */
-      printf("a arguement must be followed, see help for more info/n");
+      printf("a arguement must be followed, see help for more info\n");
     }else if(strcmp(arg,"r")==0){
+	printf("sss");	    
       isa_reg_display();
     }else if(strcmp(arg,"w")==0){
 
     }else{
-      printf("plase enter the correct argument, see help for more info/n");
+      printf("plase enter the correct argument, see help for more info\n");
     }
   return 0;
 }
