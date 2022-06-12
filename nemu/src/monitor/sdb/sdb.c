@@ -78,7 +78,7 @@ static int cmd_x(char *args) {
   paddr_t address;
   sscanf(arg,"%d",&len);
   arg = strtok(NULL, " ");
-  sscanf(arg,"%x",&address);
+  sscanf(arg+2,"%x",&address);
   
   printf("0x%x:",address);
   int i=0;
