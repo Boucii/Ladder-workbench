@@ -38,6 +38,19 @@ static int cmd_q(char *args) {
 }
 
 static int cmd_si(char *args) {
+  char *arg=strtok(NULL," ");
+  int step=0;
+  if(arg==NULL){
+    cpu_exec(1);  
+  }else{
+    sscanf(arg,"%d",&step);
+    if(step<1){
+      printf("please enter valid n\n");
+    }else{
+      cpu_exec(step);
+    }
+  }
+
   return 0;
 }
 
