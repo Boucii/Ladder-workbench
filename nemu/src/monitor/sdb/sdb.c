@@ -5,7 +5,7 @@
 #include "sdb.h"
 
 static int is_batch_mode = false;
-
+extern word_t paddr_read(paddr_t addr, int len);
 void init_regex();
 void init_wp_pool();
 
@@ -73,7 +73,21 @@ char *arg = strtok(NULL, " ");
 }
 
 static int cmd_x(char *args) {
-  return -1;
+  char *arg = strtok(NULL, " ");
+  int len;
+  paddr_t address;
+  sscanf(arg,"%d",&len);
+  arg = strtok(NULL, " ");
+  sscanf(arg,"%x",&address);
+  
+  printf("0x%x:",address);
+  int i=0;
+  for(;i<len;i++){
+    printf("%08lx ",paddr_read(address,(int)4));
+    address+=4;
+  }
+  printf("\n");
+  return 0;
 }
 
 static int cmd_p(char *args) {
