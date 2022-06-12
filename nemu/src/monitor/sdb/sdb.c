@@ -50,7 +50,6 @@ char *arg = strtok(NULL, " ");
     /* no argument given */
       printf("a arguement must be followed, see help for more info\n");
     }else if(strcmp(arg,"r")==0){
-	printf("sss");	    
       isa_reg_display();
     }else if(strcmp(arg,"w")==0){
 
