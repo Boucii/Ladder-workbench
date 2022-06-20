@@ -92,10 +92,10 @@ static int cmd_x(char *args) {
 }
 
 static int cmd_p(char *args) {
-  char expr[65536];
-  int i=scanf("%s",expr);
-  i++;
-  unsigned int res= eval(0,strlen(expr)-1);
+  //char expr[65536];
+  char *arg = strtok(NULL, "\0");
+  
+  unsigned int res= eval(0,strlen(arg)-1);
   printf("%u\n",res);
   return 0;
 }
