@@ -233,5 +233,5 @@ for (int i = 0; i < nr_token; i ++) {
         }
 }
 
-return eval(0, strlen(e));
+return eval(0, strlen(e)-1);
 }
