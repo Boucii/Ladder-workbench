@@ -108,9 +108,7 @@ static bool make_token(char *e) {
       return false;
       }
     }
-    //printf(":::");
   }
-  //printf("????");
   return true;
 }
 
