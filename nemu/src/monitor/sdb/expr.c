@@ -106,10 +106,10 @@ static bool make_token(char *e) {
     if (i == NR_REGEX) {
       printf("no match at position %d\n%s\n%*.s^\n", position, e, position, "");
       return false;
+      }
     }
-  }}
+  }
   return true;
-  
 }
 
 int find_dominant(int p,int q){
@@ -223,7 +223,7 @@ if (!make_token(e)) {
   *success = false;
   return 0;
 }
-
+  *success=true;
 /* TODO: Implement code to evaluate the expression. */
 
 for (int i = 0; i < nr_token; i ++) {
