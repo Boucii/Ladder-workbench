@@ -6,6 +6,7 @@
 
 static int is_batch_mode = false;
 extern word_t paddr_read(paddr_t addr, int len);
+extern uint32_t eval(int p,int q);
 void init_regex();
 void init_wp_pool();
 
@@ -91,7 +92,12 @@ static int cmd_x(char *args) {
 }
 
 static int cmd_p(char *args) {
-  return -1;
+  char expr[65536];
+  int i=scanf("%s",expr);
+  i++;
+  unsigned int res= eval(0,strlen(expr)-1);
+  printf("%u\n",res);
+  return 0;
 }
 
 static int cmd_w(char *args) {

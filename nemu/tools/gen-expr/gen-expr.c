@@ -15,9 +15,63 @@ static char *code_format =
 "  printf(\"%%u\", result); "
 "  return 0; "
 "}";
+static int i=0;//pointer of the buff
+static int last_is_div=0;
+uint32_t choose(uint32_t n){
+  return rand()%n;
+}
+
+void gen_num(){
+    int num_gen;
+  if(i>0 && last_is_div==1){
+    char temp_num[65536];
+    num_gen=choose(65534)+1;   
+    sprintf(temp_num,"%d",num_gen);
+    strcpy(&buf[i],temp_num); 
+    i+=strlen(temp_num);
+  }else{
+  switch(choose(2)){
+    case 0:{buf[i++]='0';num_gen=0; break;}
+    case 1:{
+     char temp_num[65536];
+     num_gen=choose(65534)+1;
+    sprintf(temp_num,"%d",num_gen);
+     strcpy(&buf[i],temp_num); 
+     i+=strlen(temp_num);
+     break;
+      }
+    }
+  }
+}
+void gen(char c){
+  buf[i++]=c;
+}
+void gen_rand_op(){
+  switch(choose(4)){
+    case 0: buf[i++]='+';last_is_div=0;break;
+    case 1: buf[i++]='-';last_is_div=0;break;
+    case 2:buf[i++]='*';last_is_div=0;break;
+    case 3:buf[i++]=('/');last_is_div=1;break;
+  }
+
+}
+static void gen_expr(){
+   if(i>=100){
+     gen_num();
+     return;
+   }
+   switch (choose(3)) {
+     case 0: gen_num(); break;
+     case 1: gen('('); gen_expr(); gen(')'); break;
+     default: gen_expr(); gen_rand_op(); gen_expr(); break;
+  }
+}
+
 
 static void gen_rand_expr() {
-  buf[0] = '\0';
+  i=0;
+  gen_expr();  
+  buf[i] = '\0';
 }
 
 int main(int argc, char *argv[]) {
@@ -45,7 +99,8 @@ int main(int argc, char *argv[]) {
     assert(fp != NULL);
 
     int result;
-    fscanf(fp, "%d", &result);
+    int foo=fscanf(fp, "%d", &result);
+    foo++;
     pclose(fp);
 
     printf("%u %s\n", result, buf);
