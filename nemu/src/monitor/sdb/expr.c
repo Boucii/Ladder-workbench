@@ -21,7 +21,9 @@ static struct rule {
    * Pay attention to the precedence level of different rules.
    */
 
+  {"0x[0-9,a-f]+",TK_HEX},
   {" +",TK_NOTYPE},    // spaces
+  {"\\$[0-9,a-f]+",TK_REG},  //not so accurate,modify later
   {"\\+", '+'},         // plus
   {"==", TK_EQ},        // equal
   {"\\-",'-'},
@@ -30,8 +32,6 @@ static struct rule {
   {"\\(",'('},
   {"\\)",')'},
   {"([1-9]+[0-9]*)|[0]",TK_DECIMAL},
-  {"0x[0-9,a-f]+",TK_HEX},
-  {"\\$[0-9,a-f]+",TK_REG},  //not so accurate,modify later
   {"!=",TK_NEQ},
   {"&&",TK_AND},
   {"||",TK_OR},
