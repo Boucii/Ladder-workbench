@@ -70,7 +70,6 @@ static int nr_token __attribute__((used))  = 0;
 static bool make_token(char *e) {
   int position = 0; //marks the pos in str e
   int i;
-  int tokens_index=0;//marks how many tokens have taken
   regmatch_t pmatch;
 
   nr_token = 0;
@@ -93,14 +92,14 @@ static bool make_token(char *e) {
         //assert(substr_len>32);
         switch (rules[i].token_type) {
           default: 
-		  tokens[tokens_index].type=rules[i].token_type;
-                  strncpy(tokens[tokens_index].str,substr_start,substr_len);
+		  tokens[nr_token].type=rules[i].token_type;
+                  strncpy(tokens[nr_token].str,substr_start,substr_len);
 		  break;
           case TK_NOTYPE:
-	          tokens_index--;
+	          nr_token--;
 		  break;                                                    	  
 	} 
-    tokens_index++;
+    nr_token++;
     break;
     }
     if (i == NR_REGEX) {
@@ -233,5 +232,5 @@ for (int i = 0; i < nr_token; i ++) {
         }
 }
 
-return eval(0, strlen(e)-1);
+return eval(0, nr_token-1);
 }
