@@ -95,8 +95,13 @@ static int cmd_p(char *args) {
   //char expr[65536];
   char *arg = strtok(NULL, "\0");
   
-  unsigned int res= eval(0,strlen(arg)-1);
-  printf("%u\n",res);
+  bool success;
+  unsigned int res= expr(arg,&success);
+  if(success){
+    printf("%u\n",res);
+  }else{
+    printf("invalid expression\n");
+  }
   return 0;
 }
 
