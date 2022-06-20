@@ -174,7 +174,7 @@ uint32_t eval(int p, int q) {
      * Return the value of the number.
      */
     if(tokens[p].type==TK_DECIMAL)
-      return atoi(tokens[p].str);
+      return (uint32_t)atoi(tokens[p].str);
     else if(tokens[p].type==TK_HEX){
       unsigned int val;
       sscanf(tokens[p].str+2,"%x",&val);
