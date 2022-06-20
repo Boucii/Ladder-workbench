@@ -68,9 +68,9 @@ static Token tokens[32] __attribute__((used)) = {};
 static int nr_token __attribute__((used))  = 0;
 
 static bool make_token(char *e) {
-  int position = 0;
+  int position = 0; //marks the pos in str e
   int i;
-  int tokens_index=0;
+  int tokens_index=0;//marks how many tokens have taken
   regmatch_t pmatch;
 
   nr_token = 0;
@@ -99,49 +99,14 @@ static bool make_token(char *e) {
           case TK_NOTYPE:
 	          tokens_index--;
 		  break;                                                    	  
-		  /*
-          case '+':
-		  tokens[tokens_index].type=rules[i].token_type;            	  
-                  strncpy(tokens[tokens_index].str,substr_start,substr_len);	  
-		  break;                                                    	  
-          case TK_EQ:
-		  tokens[tokens_index].type=rules[i].token_type;            	  
-                  strncpy(tokens[tokens_index].str,substr_start,substr_len);	  
-		  break;                                                    	  
-          case  '-':
-		  tokens[tokens_index].type=rules[i].token_type;            	  
-                  strncpy(tokens[tokens_index].str,substr_start,substr_len);	  
-		  break;                                                    	  
-          '*':
-		  tokens[tokens_index].type=rules[i].token_type;            	  
-                  strncpy(tokens[tokens_index].str,substr_start,substr_len);	  
-		  break;                                                    	  
-          '/':
-		  tokens[tokens_index].type=rules[i].token_type;            	  
-                  strncpy(tokens[tokens_index].str,substr_start,substr_len);	  
-		  break;                                                    	  
-          '(':
-		  tokens[tokens_index].type=rules[i].token_type;            	  
-                  strncpy(tokens[tokens_index].str,substr_start,substr_len);	  
-		  break;                                                    	  
-          ')':
-		  tokens[tokens_index].type=rules[i].token_type;            	  
-                  strncpy(tokens[tokens_index].str,substr_start,substr_len);	  
-		  break;                                                    	  
-          TK_DECIMAL:
-		  tokens[tokens_index].type=rules[i].token_type;            	  
-                  strncpy(tokens[tokens_index].str,substr_start,substr_len);	  
-		  break;
-*/		  
 	} 
-      }
     tokens_index++;
     }
     if (i == NR_REGEX) {
       printf("no match at position %d\n%s\n%*.s^\n", position, e, position, "");
       return false;
     }
-  }
+  }}
   return true;
   
 }
