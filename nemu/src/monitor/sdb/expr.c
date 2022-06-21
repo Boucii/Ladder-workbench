@@ -158,7 +158,7 @@ bool check_parentheses(int p, int q){
 	    pairs--;
    	    if(pairs==0) return false;
     }
-  
+  p++; 
   }
   return pairs==0;
 }
