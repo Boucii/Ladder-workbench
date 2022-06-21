@@ -127,8 +127,8 @@ int find_dominant(int p,int q){
        }
        continue;
      }
-     if(tokens[i].type!='+'||tokens[i].type!='-'||tokens[i].type!='*'||tokens[i].type!='/'\
-		     ||tokens[i].type!=TK_AND||tokens[i].type!=TK_EQ||tokens[i].type!=TK_NEQ){
+     if(tokens[i].type!='+'&&tokens[i].type!='-'&&tokens[i].type!='*'&&tokens[i].type!='/'\
+		     &&tokens[i].type!=TK_AND&&tokens[i].type!=TK_EQ&&tokens[i].type!=TK_NEQ){
        i++;
        continue;
      }else{
