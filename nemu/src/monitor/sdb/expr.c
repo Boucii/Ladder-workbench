@@ -142,6 +142,7 @@ int find_dominant(int p,int q){
     if(tokens[op_index[j]].type==TK_EQ||tokens[op_index[j]].type==TK_NEQ){return op_index[j];}
     if(tokens[op_index[j]].type=='+'||tokens[op_index[j]].type=='-'){return op_index[j];}
     if(tokens[op_index[j]].type=='*'||tokens[op_index[j]].type=='/'){return op_index[j];}
+    if(tokens[op_index[j]].type==TK_DEREF){return op_index[j];}
   }
   assert(0);
   return -1;
