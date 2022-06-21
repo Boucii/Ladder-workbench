@@ -34,7 +34,7 @@ static struct rule {
   {"([1-9]+[0-9]*)|[0]",TK_DECIMAL},
   {"!=",TK_NEQ},
   {"&&",TK_AND},
-  {"\\|\\|",TK_OR}
+  {"\\|\\|",TK_OR},
 
 };
 
