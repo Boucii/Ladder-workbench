@@ -149,7 +149,7 @@ int find_dominant(int p,int q){
 bool check_parentheses(int p, int q){
   int pairs=0;
   if(tokens[p].type!='('&&tokens[q].type!=')') return false;
-  while(p<=q){
+  while(p<q){
     if(tokens[p].type=='(') {
 	    pairs++;
             if(pairs==0) return false;
@@ -160,6 +160,7 @@ bool check_parentheses(int p, int q){
     }
   p++; 
   }
+  pairs--;
   return pairs==0;
 }
 
