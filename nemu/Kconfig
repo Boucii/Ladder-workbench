@@ -26,6 +26,16 @@ config ISA64
   bool
   default y
 
+choice 
+  prompt "WatchPoint Enabled"
+  default WATCHPOINT_EN
+config WATCHPOINT_EN
+  bool "Watchpoint Enabled"
+config WATCHPOINT_DISEN
+  bool"watchpoint Disabled"   
+  
+endchoice
+
 
 choice
   prompt "NEMU execution engine"

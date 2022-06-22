@@ -7,6 +7,10 @@
 static int is_batch_mode = false;
 extern word_t paddr_read(paddr_t addr, int len);
 extern uint32_t eval(int p,int q);
+extern void print_wp();
+extern void new_wp(char *expr,int *status);
+extern int free_wp(int num);
+
 void init_regex();
 void init_wp_pool();
 
@@ -66,7 +70,7 @@ char *arg = strtok(NULL, " ");
     }else if(strcmp(arg,"r")==0){
       isa_reg_display();
     }else if(strcmp(arg,"w")==0){
-
+      print_wp();
     }else{
       printf("plase enter the correct argument, see help for more info\n");
     }
@@ -106,11 +110,30 @@ static int cmd_p(char *args) {
 }
 
 static int cmd_w(char *args) {
-  return -1;
+  char *arg = strtok(NULL, "\0");
+  
+  int status;
+  new_wp(arg,&status);
+  if(status==0){
+    printf("watchpoint added\n");
+  }else{
+    printf("watchpoint addition failed.\n");
+  }
+  return 0;
 }
 
 static int cmd_d(char *args) {
-  return -1;
+  char *arg = strtok(NULL, " ");
+  int num=0;
+  sscanf(arg,"%d",&num);
+  int res=free_wp(num); 
+  
+ if(res==1){
+   printf("no such watchpoint\n");
+ }else if(res==0){
+   printf("watchpoint removed\n");
+ }
+  return 0;
 }
 
 
