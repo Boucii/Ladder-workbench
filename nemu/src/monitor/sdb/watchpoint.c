@@ -92,7 +92,7 @@ int difftest(){
 void print_wp(){
   WP *cur=head; 
   if(cur==NULL){
-    printf("No Watchpoints");
+    printf("No Watchpoints\n");
     return;
   }
   while(cur!=NULL){
