@@ -26,7 +26,7 @@ config ISA64
   bool
   default y
 
-config WATCHPOINT_EN
+config CONFIG_WATCHPOINT
   bool "Enable WatchPoint"
   default y
   help
