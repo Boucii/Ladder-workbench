@@ -45,10 +45,10 @@ void new_wp(char *exp,int *status){
     }
     //update expr here
     strcpy(temp->expression,exp);
-    bool *success=false;
-    int res=expr(exp,success);
+    bool success=false;
+    int res=expr(exp,&success);
     temp->old_value=res;
-    *status=(*success==1?0:1);
+    *status=(success==1?0:1);
     return ;
   }
 }
