@@ -30,21 +30,25 @@ void init_wp_pool() {
 
 /* TODO: Implement the functionality of watchpoint */
 void new_wp(char *exp,int *status){
-  if(free_==NULL){
-    printf("no watchpoint available");
     *status=1;
+    if(free_==NULL){
+    printf("no watchpoint available");
     return ;
   }else{
     WP* temp=free_;
     free_=free_->next; 
-    temp->next=head->next;
-    head->next=temp;
-    *status=0;
+    if(head==NULL){
+      head=temp;
+    }else{
+      temp->next=head->next;
+      head->next=temp;
+    }
     //update expr here
     strcpy(temp->expression,exp);
     bool *success=false;
     int res=expr(exp,success);
     temp->old_value=res;
+    *status=(*success==1?0:1);
     return ;
   }
 }
