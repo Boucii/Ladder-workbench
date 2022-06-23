@@ -83,8 +83,8 @@ int difftest(){
   WP *cur=head;
   word_t new_value;
   while(cur!=NULL){
-    bool * success=false;
-    new_value=expr(cur->expression,success);
+    bool success=false;
+    new_value=expr(cur->expression,&success);
     if(new_value!=cur->old_value){
       cur->old_value=new_value;
       printf("changed");
