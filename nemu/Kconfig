@@ -26,16 +26,12 @@ config ISA64
   bool
   default y
 
-choice 
-  prompt "WatchPoint Enabled"
-  default WATCHPOINT_EN
 config WATCHPOINT_EN
-  bool "Watchpoint Enabled"
-config WATCHPOINT_DISEN
-  bool"watchpoint Disabled"   
-  
-endchoice
-
+  bool "Enable WatchPoint"
+  default y
+  help
+    Enable watchpoint inspection every CPU cycle.
+    Note that this will significantly reduce the performance of NEMU.
 
 choice
   prompt "NEMU execution engine"
