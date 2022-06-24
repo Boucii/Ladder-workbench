@@ -36,8 +36,8 @@ void new_wp(char *exp,int *status){
     return ;
   }else{
     WP* temp=free_;
-    temp->next=NULL;
     free_=free_->next; 
+    temp->next=NULL;
     if(head==NULL){
       head=temp;
     }else{
@@ -88,8 +88,13 @@ int difftest(){
     bool success=false;
     new_value=expr(cur->expression,&success);
     if(new_value!=cur->old_value){
-      printf("watchpoint %d changed %s:\nold val: %ld,new val:%ld \n"\
+      if(strcmp(cur->expression,"$pc")){
+        printf("watchpoint %d changed %s:\nold val: 0x%lx,new val:0x%lx \n"\
+                      ,cur->NO,cur->expression,cur->old_value,new_value);
+      }else{
+        printf("watchpoint %d changed %s:\nold val: %ld,new val:%ld \n"\
 		      ,cur->NO,cur->expression,cur->old_value,new_value);
+      }
       cur->old_value=new_value;
       changed=1;
     }
@@ -104,7 +109,12 @@ void print_wp(){
     return;
   }
   while(cur!=NULL){
-    printf("watchpoint %d : %s The value is:%ld\n",cur->NO,cur->expression,cur->old_value);
+    if(strcmp(cur->expression,"$pc")){
+      printf("watchpoint %d : %s The value is:%#lx \n"\
+                ,cur->NO,cur->expression,cur->old_value);
+    }else{
+      printf("watchpoint %d : %s The value is:%ld\n",cur->NO,cur->expression,cur->old_value);
+    }
     cur=cur->next;
   
   }
