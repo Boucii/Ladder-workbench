@@ -36,6 +36,7 @@ void new_wp(char *exp,int *status){
     return ;
   }else{
     WP* temp=free_;
+    temp->next=NULL;
     free_=free_->next; 
     if(head==NULL){
       head=temp;
