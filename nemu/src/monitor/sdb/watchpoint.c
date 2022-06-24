@@ -80,18 +80,21 @@ int free_wp(int num){
   }
 
 int difftest(){
+  int changed=0;
   WP *cur=head;
   word_t new_value;
   while(cur!=NULL){
     bool success=false;
     new_value=expr(cur->expression,&success);
     if(new_value!=cur->old_value){
+      printf("watchpoint %d changed %s:\nold val: %ld,new val:%ld \n"\
+		      ,cur->NO,cur->expression,cur->old_value,new_value);
       cur->old_value=new_value;
-      printf("changed");
-      return 1;//changed
+      changed=1;
     }
+    cur=cur->next;
   }
-  return 0;//not changed
+  return changed;
 }    
 void print_wp(){
   WP *cur=head; 
