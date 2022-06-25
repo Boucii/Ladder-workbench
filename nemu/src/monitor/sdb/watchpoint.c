@@ -80,6 +80,7 @@ int free_wp(int num){
   return 0;//found;
   }
 
+static int first_time=0;
 int difftest(){
   int changed=0;
   WP *cur=head;
@@ -89,10 +90,16 @@ int difftest(){
     new_value=expr(cur->expression,&success);
     if(new_value!=cur->old_value){
       if(strcmp(cur->expression,"$pc")==0){
+	if(first_time==0){
 	char oldvalstr[17];
 	sprintf(oldvalstr,"%lx",cur->old_value);
         printf("watchpoint %d changed %s:\nold val: 0x%8.8s,new val:0x%lx \n"\
-                      ,cur->NO,cur->expression,oldvalstr,new_value);
+                      ,cur->NO,cur->expression,oldvalstr+8,new_value);
+	first_time++;
+	}else{
+	printf("watchpoint %d changed %s:\nold val: 0x%lx,new val:0x%lx \n"\
+	              ,cur->NO,cur->expression,cur->old_value,new_value);
+	}
       }else{
         printf("watchpoint %d changed %s:\nold val: %ld,new val:%ld \n"\
 		      ,cur->NO,cur->expression,cur->old_value,new_value);
