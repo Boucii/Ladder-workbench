@@ -90,7 +90,7 @@ int difftest(){
     if(new_value!=cur->old_value){
       if(strcmp(cur->expression,"$pc")==0){
 	word_t old_pc=(word_t)cur->old_value;
-        printf("watchpoint %d changed %s:\nold val: 0x%lx,new val:0x%lx \n"\
+        printf("watchpoint %d changed %s:\nold val: 0x%8.8lx,new val:0x%lx \n"\
                       ,cur->NO,cur->expression,old_pc,new_value);
       }else{
         printf("watchpoint %d changed %s:\nold val: %ld,new val:%ld \n"\
