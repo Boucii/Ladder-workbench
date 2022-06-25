@@ -89,7 +89,7 @@ int difftest(){
     new_value=expr(cur->expression,&success);
     if(new_value!=cur->old_value){
       if(strcmp(cur->expression,"$pc")==0){
-	char oldvalstr[16];
+	char oldvalstr[17];
 	sprintf(oldvalstr,"%lx",cur->old_value);
         printf("watchpoint %d changed %s:\nold val: 0x%8.8s,new val:0x%lx \n"\
                       ,cur->NO,cur->expression,oldvalstr,new_value);
