@@ -23,7 +23,11 @@ enum {
 static word_t immI(uint32_t i) { return SEXT(BITS(i, 31, 20), 12); }
 static word_t immU(uint32_t i) { return SEXT(BITS(i, 31, 12), 20) << 12; }
 static word_t immS(uint32_t i) { return (SEXT(BITS(i, 31, 25), 7) << 5) | BITS(i, 11, 7); }
-static word_t immJ(uint32_t i) { return SEXT(BITS(i,31,31)|BITS(i,19,12)|BITS(i,20,20)|BITS(i,30,21),20); }
+static word_t immJ(uint32_t i) { //return SEXT(BITS(i,31,31)|BITS(i,19,12)|BITS(i,20,20)|BITS(i,30,21),20); }
+	word_t bit=BITS(i,31,31)|BITS(i,19,12)|BITS(i,20,20)|BITS(i,30,21);
+	word_t bite=SEXT(bit,20);
+	return bite;
+}
 
 static void decode_operand(Decode *s, word_t *dest, word_t *src1, word_t *src2, int type) {
   uint32_t i = s->isa.inst.val;
