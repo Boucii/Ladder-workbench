@@ -26,6 +26,7 @@ static word_t immS(uint32_t i) { return (SEXT(BITS(i, 31, 25), 7) << 5) | BITS(i
 static word_t immJ(uint32_t i) { //return SEXT(BITS(i,31,31)|BITS(i,19,12)|BITS(i,20,20)|BITS(i,30,21),20); }
 	word_t bit=BITS(i,31,31)|BITS(i,19,12)|BITS(i,20,20)|BITS(i,30,21);
 	word_t bite=SEXT(bit,20);
+	printf("\nsrc2 is %x\n",i);
 	return bite;
 }
 
