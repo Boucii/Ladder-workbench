@@ -27,6 +27,8 @@ static word_t immJ(uint32_t i) { //return SEXT(BITS(i,31,31)|BITS(i,19,12)|BITS(
 	word_t bit=BITS(i,31,31)|BITS(i,19,12)|BITS(i,20,20)|BITS(i,30,21);
 	word_t bite=SEXT(bit,20);
 	printf("\nsrc2 is %x\n",i);
+	printf("\nsrc2 is %lx\n",bit);
+	printf("\nsrc2 is %lx\n",bite);
 	return bite;
 }
 
