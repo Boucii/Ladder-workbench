@@ -102,10 +102,8 @@ static int cmd_p(char *args) {
   bool success;
   unsigned int res= expr(arg,&success);
   if(success){
-    if(args[0]=='$'){
      printf("0x%x\n",res); //is a register
-    }
-    printf("%u\n",res);
+     printf("%u\n",res);
   }else{
     printf("invalid expression\n");
   }
