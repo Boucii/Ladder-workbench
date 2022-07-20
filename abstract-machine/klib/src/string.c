@@ -19,6 +19,7 @@ char *strcpy(char *dst, const char *src) {
   char *tar=dst;
   while(*ptr!='\0'){
     *tar=*ptr;
+    tar++;
     ptr++;
   }
   *(++tar)='\0';
