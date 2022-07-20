@@ -98,7 +98,7 @@ void *memset(void *s, int c, size_t n) {
     if(s==NULL||n<0){
         return NULL;
     }
-    int *temp=(int*) s;
+    char *temp=(char*) s;
     for(int i=0;i<n;i++){
         temp[i]=c;   
     }
@@ -119,8 +119,8 @@ void *memmove(void *dst, const void *src, size_t n) {
 
 void *memcpy(void *out, const void *in, size_t n) {
     //assert(in+n<out)
-    int *a=(int*)out;
-    int *b=(int*)in;
+    char *a=(char*)out;
+    char *b=(char*)in;
     for(int i=0;i<n;i++){
         a[i]=b[i];
     }
@@ -128,8 +128,8 @@ void *memcpy(void *out, const void *in, size_t n) {
 }
 
 int memcmp(const void *s1, const void *s2, size_t n) {
-        int *a=(int*)s1;
-        int *b=(int*)s2;
+        char *a=(char*)s1;
+        char *b=(char*)s2;
 	while(*a==*b&&n-->0){
 		a++;b++;
 	}
