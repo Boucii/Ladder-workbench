@@ -90,6 +90,7 @@ extern "C" void disassemble(char *str, int size, uint64_t pc, uint8_t *code, int
   int skip = s.find_first_not_of('\t');
   const char *p = s.c_str() + skip;
   assert((int)s.length() - skip < size);
-  //std::cout<<"aaa"<<p<<s1.c_str()<<"bbb"<<std::endl;
+  std::cout<<"aaa"<<p<<s1.c_str()<<"bbb"<<std::endl;
+  std::cout<<"aaa"<<p<<s.c_str()<<"bbb"<<std::endl;
   strcpy(str, p);
 }
