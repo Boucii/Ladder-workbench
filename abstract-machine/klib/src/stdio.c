@@ -77,10 +77,8 @@ int sprintf(char *out, const char *fmt, ...) {
 			count+=strlen(s);
                         break;			 
 				 }
-		
-	    
 	        }
-	    
+	    *str = *fmt;
             str++;
         }
         fmt++;
