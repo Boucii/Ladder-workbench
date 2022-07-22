@@ -78,7 +78,7 @@ int sprintf(char *out, const char *fmt, ...) {
                         break;			 
 				 }
 	        }
-	    *str = *fmt;
+	   // *str = *fmt;
             str++;
         }
         fmt++;
