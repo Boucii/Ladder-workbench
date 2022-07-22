@@ -80,9 +80,7 @@ int sprintf(char *out, const char *fmt, ...) {
 		
 	    
 	        }
-	    } else
-        {
-            *str = *fmt;
+	    
             str++;
         }
         fmt++;
