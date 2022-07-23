@@ -113,6 +113,10 @@ static int cmd_p(char *args) {
 static int cmd_w(char *args) {
   char *arg = strtok(NULL, "\0");
   
+#ifndef CONFIG_WATCHPOINT
+    printf("Watch point not enabled\n");
+    return 0;
+#endif
   int status;
   new_wp(arg,&status);
   if(status==0){
