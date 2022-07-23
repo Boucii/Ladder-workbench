@@ -152,6 +152,12 @@ config ITRACE_COND
   string "Only trace instructions when the condition is true"
   default "true"
 
+config MTRACE
+  bool "Enable Memory Tracing"
+  default y
+  help
+    Enable memory read/write tracing when there is.
+    Note that this will significantly reduce the performance of NEMU.
 
 config DIFFTEST
   depends on TARGET_NATIVE_ELF
