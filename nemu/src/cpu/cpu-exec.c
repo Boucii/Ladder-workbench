@@ -112,7 +112,7 @@ void cpu_exec(uint64_t n) {
 
     case NEMU_END: case NEMU_ABORT:
       log_write("--------Abnormal End of Simulation---------\n");
-      if(nemu_state.state == NEMU_ABORT||nemu_state.halt_ret == 0){
+      if(nemu_state.halt_ret == 0){
 	      print_buf();
       }
       Log("nemu: %s at pc = " FMT_WORD,
