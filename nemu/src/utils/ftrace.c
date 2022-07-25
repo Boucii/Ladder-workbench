@@ -23,22 +23,22 @@ static unsigned ftrace_idx = 0;
 
 static void tableheader(const char *pbuff)
 {
-	Elf32_Ehdr* pfilehead = (Elf32_Ehdr*)pbuff;
-	Elf32_Half eshstrndx = pfilehead->e_shstrndx;  //str table index
-	Elf32_Shdr* psecheader = (Elf32_Shdr*)(pbuff + pfilehead->e_shoff);  //section header start
-	Elf32_Shdr* pshstr = (Elf32_Shdr*)(psecheader + eshstrndx);//section header str table
+	Elf64_Ehdr* pfilehead = (Elf64_Ehdr*)pbuff;
+	Elf64_Half eshstrndx = pfilehead->e_shstrndx;  //str table index
+	Elf64_Shdr* psecheader = (Elf64_Shdr*)(pbuff + pfilehead->e_shoff);  //section header start
+	Elf64_Shdr* pshstr = (Elf64_Shdr*)(psecheader + eshstrndx);//section header str table
 	char* pshstrbuff = (char *)(pbuff + pshstr->sh_offset);
 	for(int i = 0;i<pfilehead->e_shnum;++i)
 	{
 		if(!strcmp(psecheader[i].sh_name + pshstrbuff, ".dynsym") || !strcmp(psecheader[i].sh_name + pshstrbuff, ".symtab"))//find symtable
 		{
-			Elf32_Sym* psym = (Elf32_Sym*)(pbuff + psecheader[i].sh_offset);  //starting addr of symble table 
+			Elf64_Sym* psym = (Elf64_Sym*)(pbuff + psecheader[i].sh_offset);  //starting addr of symble table 
 			int ncount = psecheader[i].sh_size / psecheader[i].sh_entsize;//number of sym lines
 			char* pbuffstr = (char*)((psecheader + psecheader[i].sh_link)->sh_offset + pbuff);
 			/* printf("Symbol table '%s' contains %d entries:\r\n", psecheader[i].sh_name + pshstrbuff, ncount); */
 			for(int idx = 0; idx <ncount; idx++)
 			{
-				if(ELF32_ST_TYPE(psym->st_info)==STT_FUNC){
+				if(ELF64_ST_TYPE(psym->st_info)==STT_FUNC){
 					/* printf("%-8x\t %u\t %s\n",psym->st_value, psym->st_size,(psym->st_name+pbuffstr)); */
 					func_table[func_idx].begin_addr = psym->st_value;
 					func_table[func_idx].end_addr = psym->st_value+psym->st_size-4;
