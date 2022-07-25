@@ -14,6 +14,9 @@
 extern int difftest();
 extern int write_irbuf(Decode *d);
 extern void print_buf();
+extern void ftrace_write(paddr_t, paddr_t, bool);
+extern void ftrace_display();
+extern void func_display();
 
 CPU_state cpu = {};
 uint64_t g_nr_guest_inst = 0;
@@ -65,13 +68,14 @@ static void exec_once(Decode *s, vaddr_t pc) {
 #endif
 #ifdef CONFIG_FTRACE
     paddr_t cur=cpu.pc;
-    paddr_t dest=cpu.dnpc;
-    if((s->isa.instr.val&0x7f)==0x6f){   
-	ftrace_write(cur,dest,1);
+    paddr_t dst=s->dnpc;
+    if((s->isa.inst.val&0x7f)==0x6f){   //jal
+        dst=cpu.pc+s->dnpc;
+	ftrace_write(cur,dst,1);
         func_display();
     }
-    if((s->isa.instr.val&0x7f)==0x67){
- 	if (s->isa.instr.val==0x00008067){
+    if((s->isa.inst.val&0x7f)==0x67){   //jalr
+ 	if (s->isa.inst.val==0x00008067){
 		ftrace_write(cur, dst,0);
 	}
 	else{
