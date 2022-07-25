@@ -7,7 +7,7 @@ static struct func{
 	paddr_t begin_addr;
 	paddr_t end_addr;
 	uint32_t size;
-	char name[100];
+	char name[200];
 } func_table[1024];
 
 static short func_idx=0;
@@ -43,6 +43,7 @@ static void tableheader(const char *pbuff)
 					func_table[func_idx].begin_addr = psym->st_value;
 					func_table[func_idx].end_addr = psym->st_value+psym->st_size-4;
 					func_table[func_idx].size = psym->st_size;
+					
 					strcpy(func_table[func_idx].name, psym->st_name+pbuffstr);
 					func_idx++;
 				}	
