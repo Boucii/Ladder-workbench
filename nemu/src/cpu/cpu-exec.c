@@ -131,13 +131,13 @@ void cpu_exec(uint64_t n) {
     case NEMU_RUNNING: nemu_state.state = NEMU_STOP; break;
 
     case NEMU_END: case NEMU_ABORT:
-#ifdef CPNFIG_FTRACE
+#ifdef CONFIG_FTRACE
 	      ftrace_display();
 #endif
       if(nemu_state.state == NEMU_ABORT||nemu_state.halt_ret != 0){
       log_write("--------Abnormal End of Simulation---------\n");
 	      print_buf();
-#ifdef CPNFIG_FTRACE
+#ifdef CONFIG_FTRACE
 	      ftrace_display();
 #endif
       }
