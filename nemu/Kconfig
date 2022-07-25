@@ -159,6 +159,13 @@ config MTRACE
     Enable memory read/write tracing when there is.
     Note that this will significantly reduce the performance of NEMU.
 
+config FTRACE
+  bool "Enable Function Tracing"
+  default y
+  help
+    Enable function call stack tracing.
+    Note that this will significantly reduce the performance of NEMU.
+
 config DIFFTEST
   depends on TARGET_NATIVE_ELF
   bool "Enable differential testing"

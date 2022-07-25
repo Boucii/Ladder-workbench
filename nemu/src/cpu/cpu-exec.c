@@ -63,6 +63,22 @@ static void exec_once(Decode *s, vaddr_t pc) {
   disassemble(p, s->logbuf + sizeof(s->logbuf) - p,
       MUXDEF(CONFIG_ISA_x86, s->snpc, s->pc), (uint8_t *)&s->isa.inst.val, ilen);
 #endif
+#ifdef CONFIG_FTRACE
+    paddr_t cur=cpu.pc;
+    paddr_t dest=cpu.dnpc;
+    if((s->isa.instr.val&0x7f)==0x6f){   
+	ftrace_write(cur,dest,1);
+        func_display();
+    }
+    if((s->isa.instr.val&0x7f)==0x67){
+ 	if (s->isa.instr.val==0x00008067){
+		ftrace_write(cur, dst,0);
+	}
+	else{
+		ftrace_write(cur, dst,1);
+	}       
+    }
+#endif
 }
 
 static void execute(uint64_t n) {
@@ -114,6 +130,9 @@ void cpu_exec(uint64_t n) {
       log_write("--------Abnormal End of Simulation---------\n");
       if(nemu_state.state == NEMU_ABORT||nemu_state.halt_ret != 0){
 	      print_buf();
+#ifdef CPNFIG_FTRACE
+	      ftrace_display();
+#endif
       }
       Log("nemu: %s at pc = " FMT_WORD,
           (nemu_state.state == NEMU_ABORT ? ANSI_FMT("ABORT", ANSI_FG_RED) :
