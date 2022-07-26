@@ -126,8 +126,8 @@ void ftrace_write(paddr_t src, paddr_t dst, bool is_call){
 		}
 	}
 	else{
-
-		for (int k = 0; k < func_idx; k++){
+int k=0;
+		for (; k < func_idx; k++){
 			if (dst == func_table[k].begin_addr){
 				struct FtraceOneline *cur = &ftrace_res[ftrace_idx++];
 				/* if (strcmp(func_table[k].name, "putch") == 0){ */
@@ -143,6 +143,7 @@ void ftrace_write(paddr_t src, paddr_t dst, bool is_call){
 
 			}
 		}
+			if(k==func_idx) printf("aaaaa!!!!");
 	}
 
 	/* printf("%s\n", func_table[cur->name_idx].name); */
