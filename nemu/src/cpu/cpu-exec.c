@@ -67,7 +67,7 @@ static void exec_once(Decode *s, vaddr_t pc) {
       MUXDEF(CONFIG_ISA_x86, s->snpc, s->pc), (uint8_t *)&s->isa.inst.val, ilen);
 #endif
 #ifdef CONFIG_FTRACE
-    paddr_t cur=cpu.pc;
+    paddr_t cur=s->pc;
     paddr_t dst=s->dnpc;
     if((s->isa.inst.val&0x7f)==0x6f){   //jal
         dst=cpu.pc+s->dnpc;
