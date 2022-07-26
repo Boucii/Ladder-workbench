@@ -71,10 +71,9 @@ static void exec_once(Decode *s, vaddr_t pc) {
     paddr_t dst=s->dnpc;
     if((s->isa.inst.val&0x7f)==0x6f){   //jal
 	ftrace_write(cur,dst,1);
-        func_display();
     }
     if((s->isa.inst.val&0x7f)==0x67){   //jalr
- 	if (s->isa.inst.val==0x00008067){
+ 	if (s->isa.inst.val==0x00008067){  //ret
 		ftrace_write(cur, dst,0);
 	}
 	else{
@@ -136,9 +135,11 @@ void cpu_exec(uint64_t n) {
       if(nemu_state.state == NEMU_ABORT||nemu_state.halt_ret != 0){
       log_write("--------Abnormal End of Simulation---------\n");
 	      print_buf();
+/*
 #ifdef CONFIG_FTRACE
 	      ftrace_display();
 #endif
+*/
       }
       Log("nemu: %s at pc = " FMT_WORD,
           (nemu_state.state == NEMU_ABORT ? ANSI_FMT("ABORT", ANSI_FG_RED) :
