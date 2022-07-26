@@ -122,6 +122,7 @@ void ftrace_write(paddr_t src, paddr_t dst, bool is_call){
 				cur->pc = src;
 				cur->name_idx = k;
 				write_to_log(cur);
+				break;
 			}
 		}
 	}
@@ -140,6 +141,7 @@ int k=0;
 				cur->name_idx = k;
 				cur->dst = dst;
 				write_to_log(cur);
+				break;
 
 			}
 		}
