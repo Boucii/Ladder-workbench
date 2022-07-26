@@ -70,7 +70,6 @@ static void exec_once(Decode *s, vaddr_t pc) {
     paddr_t cur=s->pc;
     paddr_t dst=s->dnpc;
     if((s->isa.inst.val&0x7f)==0x6f){   //jal
-        dst=cpu.pc+s->dnpc;
 	ftrace_write(cur,dst,1);
         func_display();
     }
