@@ -20,13 +20,10 @@ word_t isa_reg_str2val(const char *s, bool *success) {
   if(strcmp(s,"$pc")==0){
     *success=true;
     return (word_t)cpu.pc;
-  }else if(strcmp(s,"$0")==0){
-    *success=true;
-    return cpu.gpr[0];
   }
   *success=false;
-  for(int i=1;i<32;i++){
-    if(strcmp(s+1,regs[i])==0){
+  for(int i=0;i<32;i++){
+    if(strcmp(s,regs[i])==0){
       *success=true;
       return cpu.gpr[i];
     }

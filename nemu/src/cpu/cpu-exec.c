@@ -2,7 +2,6 @@
 #include <cpu/decode.h>
 #include <cpu/difftest.h>
 #include <locale.h>
-#include <iringbuf/iringbuf.h>
 
 /* The assembly code of instructions executed is only output to the screen
  * when the number of instructions executed is less than this value.
@@ -12,11 +11,7 @@
 #define MAX_INST_TO_PRINT 10
 
 extern int difftest();
-extern int write_irbuf(Decode *d);
-extern void print_buf();
-extern void ftrace_write(paddr_t, paddr_t, bool);
-extern void ftrace_display();
-extern void func_display();
+
 
 CPU_state cpu = {};
 uint64_t g_nr_guest_inst = 0;
@@ -29,16 +24,15 @@ static void trace_and_difftest(Decode *_this, vaddr_t dnpc) {
 #ifdef CONFIG_ITRACE_COND
   if (ITRACE_COND) { log_write("%s\n", _this->logbuf); }
 #endif
-  write_irbuf(_this);
   if (g_print_step) { IFDEF(CONFIG_ITRACE, puts(_this->logbuf)); }
   IFDEF(CONFIG_DIFFTEST, difftest_step(_this->pc, dnpc));
-#ifdef CONFIG_WATCHPOINT
+if(CONFIG_WATCHPOINT){
   int res=difftest();
   if(res==1){
     nemu_state.state=NEMU_STOP;
   } 
   return;
-#endif
+}
 }
 
 static void exec_once(Decode *s, vaddr_t pc) {
@@ -65,21 +59,6 @@ static void exec_once(Decode *s, vaddr_t pc) {
   void disassemble(char *str, int size, uint64_t pc, uint8_t *code, int nbyte);
   disassemble(p, s->logbuf + sizeof(s->logbuf) - p,
       MUXDEF(CONFIG_ISA_x86, s->snpc, s->pc), (uint8_t *)&s->isa.inst.val, ilen);
-#endif
-#ifdef CONFIG_FTRACE
-    paddr_t cur=s->pc;
-    paddr_t dst=s->dnpc;
-    if((s->isa.inst.val&0x7f)==0x6f){   //jal
-	ftrace_write(cur,dst,1);
-    }
-    if((s->isa.inst.val&0x7f)==0x67){   //jalr
- 	if (s->isa.inst.val==0x00008067){  //ret
-		ftrace_write(cur, dst,0);
-	}
-	else{
-		ftrace_write(cur, dst,1);
-	}       
-    }
 #endif
 }
 
@@ -129,18 +108,6 @@ void cpu_exec(uint64_t n) {
     case NEMU_RUNNING: nemu_state.state = NEMU_STOP; break;
 
     case NEMU_END: case NEMU_ABORT:
-#ifdef CONFIG_FTRACE
-	      ftrace_display();
-#endif
-      if(nemu_state.state == NEMU_ABORT||nemu_state.halt_ret != 0){
-      log_write("--------Abnormal End of Simulation---------\n");
-	      print_buf();
-/*
-#ifdef CONFIG_FTRACE
-	      ftrace_display();
-#endif
-*/
-      }
       Log("nemu: %s at pc = " FMT_WORD,
           (nemu_state.state == NEMU_ABORT ? ANSI_FMT("ABORT", ANSI_FG_RED) :
            (nemu_state.halt_ret == 0 ? ANSI_FMT("HIT GOOD TRAP", ANSI_FG_GREEN) :
