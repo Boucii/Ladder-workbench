@@ -102,7 +102,8 @@ static int cmd_p(char *args) {
   bool success;
   unsigned int res= expr(arg,&success);
   if(success){
-    printf("%u\n",res);
+     printf("0x%x\n",res); //is a register
+     printf("%u\n",res);
   }else{
     printf("invalid expression\n");
   }
@@ -112,6 +113,10 @@ static int cmd_p(char *args) {
 static int cmd_w(char *args) {
   char *arg = strtok(NULL, "\0");
   
+#ifndef CONFIG_WATCHPOINT
+    printf("Watch point not enabled\n");
+    return 0;
+#endif
   int status;
   new_wp(arg,&status);
   if(status==0){
