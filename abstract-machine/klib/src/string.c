@@ -133,6 +133,9 @@ int memcmp(const void *s1, const void *s2, size_t n) {
 	while(*a==*b&&n-->0){
 		a++;b++;
 	}
+	if(n==0){
+          return 0;
+        }
         if(*a>*b){
 	  return 1;
 	}else if(*a==*b){
