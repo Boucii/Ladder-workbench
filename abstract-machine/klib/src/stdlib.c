@@ -1,7 +1,6 @@
 #include <am.h>
 #include <klib.h>
 #include <klib-macros.h>
-
 #if !defined(__ISA_NATIVE__) || defined(__NATIVE_USE_KLIB__)
 static unsigned long int next = 1;
 
@@ -30,6 +29,10 @@ int atoi(const char* nptr) {
 }
 
 void *malloc(size_t size) {
+    static uint64_t ptr=0;
+    void *ret=ptr+heap.start;
+    ptr+=size;
+    return ret;
   // On native, malloc() will be called during initializaion of C runtime.
   // Therefore do not call panic() here, else it will yield a dead recursion:
   //   panic() -> putchar() -> (glibc) -> malloc() -> panic()
