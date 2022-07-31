@@ -216,7 +216,7 @@ int vsprintf(char *out, const char *fmt, va_list ap) {
 }
 
 int printf(const char *fmt, ...) {
-  char buf1[65536];
+  char buf1[1024];
   memset(buf1,0,sizeof(buf1));
   va_list ap;
   va_start(ap,fmt);
@@ -229,13 +229,10 @@ int printf(const char *fmt, ...) {
 }
 
 int sprintf(char *out, const char *fmt, ...) {
-  char buf2[655];
-  memset(buf2,0,sizeof(buf2));
      va_list ap;
      va_start(ap, fmt);
      int res=vsprintf(out,fmt,ap);
      va_end(ap);
-     free(buf2);
      return res;
 }
 
