@@ -3,7 +3,7 @@
 #include<cpu/decode.h>
 extern uint64_t g_nr_guest_inst;
 FILE *log_fp = NULL;
-
+#ifdef CONFIG_TRACE
 char iringbuf[20][128];
 
 uint32_t ibufptr=0;
@@ -30,6 +30,7 @@ void print_buf(){
   }
   log_write("---->%s\n",iringbuf[i]);
 }
+#endif
 
 void init_log(const char *log_file) {
   log_fp = stdout;
