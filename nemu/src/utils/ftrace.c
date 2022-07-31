@@ -17,7 +17,7 @@ static struct FtraceOneline{
 	paddr_t pc;
 	unsigned name_idx;
 	paddr_t dst;
-} ftrace_res[65535];
+} ftrace_res[65536];
 
 static unsigned ftrace_idx = 0;
 static bool loop=false;
@@ -114,6 +114,7 @@ void ftrace_write(paddr_t src, paddr_t dst, bool is_call){
 	// ret 
 	if (!is_call){
 		struct FtraceOneline *cur = &ftrace_res[ftrace_idx];
+		ftrace_idx++;
 		if(ftrace_idx>65535){
 		    ftrace_idx=0;
 		    loop=true;
@@ -136,10 +137,10 @@ void ftrace_write(paddr_t src, paddr_t dst, bool is_call){
 		}
 	}
 	else{
-int k=0;
-		for (; k < func_idx; k++){
+		for (int k=0; k < func_idx; k++){
 			if (dst == func_table[k].begin_addr){
-				struct FtraceOneline *cur = &ftrace_res[ftrace_idx++];
+				struct FtraceOneline *cur = &ftrace_res[ftrace_idx];
+				ftrace_idx++;
 	                 	if(ftrace_idx>65535){
 	                 	    ftrace_idx=0;
 	                 	    loop=true;
