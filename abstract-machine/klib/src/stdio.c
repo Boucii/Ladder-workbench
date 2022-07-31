@@ -229,7 +229,7 @@ int printf(const char *fmt, ...) {
 }
 
 int sprintf(char *out, const char *fmt, ...) {
-  char buf2[65536];
+  char buf2[655];
   memset(buf2,0,sizeof(buf2));
      va_list ap;
      va_start(ap, fmt);
