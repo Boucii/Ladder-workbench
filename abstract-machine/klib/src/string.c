@@ -23,7 +23,7 @@ char *strcpy(char *dst, const char *src) {
     ptr++;
   }
   *(++tar)='\0';
-  return dst+1;
+  return dst;
 }
 
 char *strncpy(char *dst, const char *src, size_t n) {
