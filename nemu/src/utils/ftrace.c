@@ -17,7 +17,7 @@ static struct FtraceOneline{
 	paddr_t pc;
 	unsigned name_idx;
 	paddr_t dst;
-} ftrace_res[131072];
+} ftrace_res[65535];
 
 static unsigned ftrace_idx = 0;
 
@@ -131,9 +131,6 @@ int k=0;
 		for (; k < func_idx; k++){
 			if (dst == func_table[k].begin_addr){
 				struct FtraceOneline *cur = &ftrace_res[ftrace_idx++];
-				if(ftrace_idx>90000){
-				  printf("%d\n",ftrace_idx);
-				}
 				/* if (strcmp(func_table[k].name, "putch") == 0){ */
 				if (in_ban_funcs(func_table[k].name)) {
 					ftrace_idx--;
