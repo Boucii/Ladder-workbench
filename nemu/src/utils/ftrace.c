@@ -20,6 +20,7 @@ static struct FtraceOneline{
 } ftrace_res[65535];
 
 static unsigned ftrace_idx = 0;
+static bool loop=false;
 
 static void tableheader(const char *pbuff)
 {
@@ -72,6 +73,7 @@ void init_ftrace(const char *elf_file){
   assert(ret == size);
   fclose(elf_ptr);
   tableheader(elf_str);
+  loop=false;
   
   free(elf_str);
   Log("Symbol table is loaded from %s", elf_file);
@@ -111,11 +113,18 @@ void write_to_log(struct FtraceOneline *cur){
 void ftrace_write(paddr_t src, paddr_t dst, bool is_call){
 	// ret 
 	if (!is_call){
-		struct FtraceOneline *cur = &ftrace_res[ftrace_idx++];
+		struct FtraceOneline *cur = &ftrace_res[ftrace_idx];
+		if(ftrace_idx>65535){
+		    ftrace_idx=0;
+		    loop=true;
+		}
 		for (int k = 0; k < func_idx; k++){
 			if (in_func(k, src)){
 				if (in_ban_funcs(func_table[k].name)) {
 					ftrace_idx--;
+					if(ftrace_idx<0){
+					    ftrace_idx=65535;
+					}
 					return;
 				}
 				cur->is_call = 0;
@@ -131,9 +140,16 @@ int k=0;
 		for (; k < func_idx; k++){
 			if (dst == func_table[k].begin_addr){
 				struct FtraceOneline *cur = &ftrace_res[ftrace_idx++];
+	                 	if(ftrace_idx>65535){
+	                 	    ftrace_idx=0;
+	                 	    loop=true;
+	                 	}
 				/* if (strcmp(func_table[k].name, "putch") == 0){ */
 				if (in_ban_funcs(func_table[k].name)) {
 					ftrace_idx--;
+					if(ftrace_idx<0){
+					    ftrace_idx=65535;
+					}
 					return;
 				}
 				cur->is_call = 1;
@@ -161,6 +177,20 @@ static void tab_in(int dep){
 void ftrace_display(){
 	struct FtraceOneline *cur;
 	int depth = 0;
+	if(loop==true){
+	    for(unsigned k = ftrace_idx+1; k < 65536; k++){
+            	cur = &ftrace_res[k];
+            	printf("0x%08x: ",cur->pc);
+            	if(cur->is_call){
+            		tab_in(++depth);
+            		printf("call [%s@0x%x]\n", func_table[cur->name_idx].name, cur->dst);
+            	}
+            	else{
+            		tab_in(depth--);
+            		printf("ret [%s]\n", func_table[cur->name_idx].name);
+            	}
+            }
+	}
 	for(unsigned k = 0; k < ftrace_idx; k++){
 		cur = &ftrace_res[k];
 		printf("0x%08x: ",cur->pc);
