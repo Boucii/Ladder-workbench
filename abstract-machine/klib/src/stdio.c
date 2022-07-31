@@ -220,7 +220,7 @@ int printf(const char *fmt, ...) {
   memset(buf1,0,sizeof(buf1));
   va_list ap;
   va_start(ap,fmt);
-  int res=vsprintf(buf,fmt,ap);
+  int res=vsprintf(buf1,fmt,ap);
   va_end(ap);
   putstr(buf1);
   free(buf1);
@@ -235,7 +235,7 @@ int sprintf(char *out, const char *fmt, ...) {
      va_start(ap, fmt);
      int res=vsprintf(out,fmt,ap);
      va_end(ap);
-     free(buf);
+     free(buf2);
      return res;
 }
 
