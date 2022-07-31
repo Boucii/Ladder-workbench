@@ -63,13 +63,15 @@ int isDigit(unsigned char c)
 }
 int printf(const char *fmt, ...) {
   char buf[65536];
-  va_list args;
-  va_start(args,fmt);
-  int res=vsprintf(buf,fmt,args);
-  va_end(args);
+  memset(buf,0,sizeof(buf));
+  va_list ap;
+  va_start(ap,fmt);
+  int res=vsprintf(buf,fmt,ap);
+  va_end(ap);
   putstr(buf);
   free(buf);
   return res;
+
 }
 
 int vsprintf(char *out, const char *fmt, va_list ap) {
