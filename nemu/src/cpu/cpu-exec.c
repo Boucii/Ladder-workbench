@@ -28,8 +28,8 @@ void device_update();
 static void trace_and_difftest(Decode *_this, vaddr_t dnpc) {
 #ifdef CONFIG_ITRACE_COND
   if (ITRACE_COND) { log_write("%s\n", _this->logbuf); }
-#endif
   write_irbuf(_this);
+#endif
   if (g_print_step) { IFDEF(CONFIG_ITRACE, puts(_this->logbuf)); }
   IFDEF(CONFIG_DIFFTEST, difftest_step(_this->pc, dnpc));
 #ifdef CONFIG_WATCHPOINT
@@ -134,7 +134,9 @@ void cpu_exec(uint64_t n) {
 #endif
       if(nemu_state.state == NEMU_ABORT||nemu_state.halt_ret != 0){
       log_write("--------Abnormal End of Simulation---------\n");
+#ifdef CONFIG_ITRACE
 	      print_buf();
+#endif
 /*
 #ifdef CONFIG_FTRACE
 	      ftrace_display();
