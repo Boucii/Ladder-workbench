@@ -8,7 +8,7 @@ static struct func{
 	paddr_t end_addr;
 	uint32_t size;
 	char name[200];
-} func_table[1024];
+} func_table[2048];
 
 static short func_idx=0;
 
