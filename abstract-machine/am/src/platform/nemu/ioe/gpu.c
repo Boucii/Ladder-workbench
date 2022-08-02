@@ -2,8 +2,15 @@
 #include <nemu.h>
 
 #define SYNC_ADDR (VGACTL_ADDR + 4)
-
+#define W   inw(VGACTL_ADDR+2)
+#define H   inw(VGACTL_ADDR) 
 void __am_gpu_init() {
+ // int i;
+ // int w = W;
+ // int h = H;
+ // uint32_t *fb = (uint32_t *)(uintptr_t)FB_ADDR;
+ // for (i = 0; i < w * h; i ++) fb[i] = i;
+ // outl(SYNC_ADDR, 1);
 }
 
 void __am_gpu_config(AM_GPU_CONFIG_T *cfg) {
@@ -15,9 +22,22 @@ void __am_gpu_config(AM_GPU_CONFIG_T *cfg) {
 }
 
 void __am_gpu_fbdraw(AM_GPU_FBDRAW_T *ctl) {
+	/*
   if (ctl->sync) {
     outl(SYNC_ADDR, 1);
-  }
+  }*/
+	int x = ctl->x, y = ctl->y, w = ctl->w, h = ctl->h;
+	uint32_t *pixels = ctl->pixels;
+	for(int r = y; r < y + h; r++, pixels+=w){
+		for(int c = x; c < x + w; c++){
+			uint32_t p = pixels[c-x];
+			outl(FB_ADDR+(c+r*W)*4, p);
+		}
+	}
+	/* if (ctl->sync) { */
+	/* 	outl(SYNC_ADDR, 1); */
+	/* } */
+	outl(SYNC_ADDR, ctl->sync);
 }
 
 void __am_gpu_status(AM_GPU_STATUS_T *status) {
