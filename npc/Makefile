@@ -38,6 +38,6 @@ genwave:
 sim:
 	$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
 #	@echo "Write this Makefile by yourself."
-	verilator --cc --exe --build -CFLAGS -g  -Isim/ $(CSRCS) $(VSRCS) --Mdir $(BUILD_DIR) ./SimGen #sim/memory.cpp sim/main.cpp build/TOP.v
+	verilator --cc --exe --build -CFLAGS -g  -Isim/ $(CSRCS) $(VSRCS) --Mdir $(BUILD_DIR)./SimGen #sim/memory.cpp sim/main.cpp build/TOP.v
 
 include ../Makefile
