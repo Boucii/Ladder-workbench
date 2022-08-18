@@ -84,7 +84,7 @@ int main(int argc, char** argv, char** env){
     //if(Check()){
       //break;  
     //}
-    helloFromCpp();
+    //helloFromCpp();
     single_cycle();
     time++;
   }

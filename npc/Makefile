@@ -33,11 +33,19 @@ clean:
 genwave:
 	verilator --cc --exe --trace --build -CFLAGS -g  -Isim/ $(CSRCS) $(VSRCS) 
 
-.PHONY: test verilog help compile bsp reformat checkformat clean genwave sim
+.PHONY: test verilog help compile bsp reformat checkformat clean genwave sim wave debug
 
 sim:
 	$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
 #	@echo "Write this Makefile by yourself."
 	verilator --cc --exe --build --trace -CFLAGS -g  -Isim/ $(CSRCS) $(VSRCS) --Mdir $(BUILD_DIR)/SimGen #sim/memory.cpp sim/main.cpp build/TOP.v
+
+wave:
+	./build/SimGen/VTOP
+	gtkwave wave.vcd
+
+debug:
+	gdb ./build/SimGen/VTOP -tui
+
 
 include ../Makefile
