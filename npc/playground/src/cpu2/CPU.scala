@@ -22,7 +22,7 @@ class TOP extends Module{
   val stopflag=0.U(1.W)
 
   //instruction fetch
-  val inst=0.U(64.W)
+  var inst=0.U(64.W)
   io.InstAddr:=Cat(0x00000000.U,pc)
   inst:=io.InstIn
 
