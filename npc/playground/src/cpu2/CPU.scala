@@ -119,7 +119,7 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
   regs.raddr2:=rs2
   src1:=regs.rdata1
   src2:=regs.rdata2
-  regs.wdata:=Mux((src1+src2)(31)===1.U,(src1+src2),Cat(0xffffffff.U,(src1+src2))
+  regs.wdata:=Mux((src1+src2)(31)===1.U,(src1+src2),Cat(0xffffffff.U,(src1+src2)))
   regs.waddr:=dest
   regs.wen:=1.U
 }.elsewhen(pt0==="b0000000".U && pt3==="b111".U && pt5==="b01100".U && pt6==="b11".U){    // and    
@@ -143,7 +143,7 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
   regs.raddr2:=rs2
   src1:=regs.rdata1
   src2:=regs.rdata2
-  intermediate=(src1<<src2(4:0))(31:0)
+  intermediate=(src1<<src2(4,0))(31,0)
   regs.wdata:=(intermediate(31)===1,intermediate,Cat(0xffffffff.U,intermediate))
   regs.waddr:=dest
   regs.wen:=1.U
@@ -176,7 +176,7 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
   regs.raddr2:=rs2
   src1:=regs.rdata1
   src2:=regs.rdata2
-  intermediate=src1.S>>src2(4:0)
+  intermediate=src1.S>>src2(4,0)
   regs.wdata:=Mux(intermediate(31)===1.U,intermediate,Cat(0xffffffff.U,intermediate))
   regs.waddr:=dest
   regs.wen:=1.U
@@ -193,7 +193,7 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
   regs.raddr2:=rs2
   src1:=regs.rdata1
   src2:=regs.rdata2
-  intermediate=src1.U>>src2(4:0)
+  intermediate=src1.U>>src2(4,0)
   regs.wdata:=Mux(intermediate(31)===1.U,intermediate,Cat(0xffffffff.U,intermediate))
   regs.waddr:=dest
   regs.wen:=1.U
@@ -373,7 +373,7 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
   io.Men:=1.U
   io.Maddr:=src1+src2
   io.Mlen:=4.U
-  regs.wdata:=Mux((MdataIn)(15)===1.U,(MdataIn),Cat(0xffffffffffff.U,(MdataIn(15:0))))
+  regs.wdata:=Mux((MdataIn)(15)===1.U,(MdataIn),Cat(0xffffffffffffL.U,(MdataIn(15:0))))
   regs.waddr:=dest
   regs.wen:=1.U
 }.elsewhen(pt3==="b000".U && pt5==="b00000".U && pt6==="b11".U){    // lb     
@@ -383,7 +383,7 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
   io.Men:=1.U
   io.Maddr:=src1+src2
   io.Mlen:=4.U
-  regs.wdata:=Mux((MdataIn)(7)===1.U,(MdataIn),Cat(0xffffffffffff.U,(MdataIn(7:0))))
+  regs.wdata:=Mux((MdataIn)(7)===1.U,(MdataIn),Cat(0xffffffffffffL.U,(MdataIn(7:0))))
   regs.waddr:=dest
   regs.wen:=1.U
 }.elsewhen(pt3==="b110".U && pt5==="b00000".U && pt6==="b11".U){    // lwu    
