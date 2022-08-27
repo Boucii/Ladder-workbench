@@ -71,7 +71,7 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
   dest:=immS
   regs.io.raddr1:=rs1
   regs.io.raddr2:=rs2
-  src1:=regs.io.rdata1;src2:=regs.rdata2
+  src1:=regs.io.rdata1;src2:=regs.io.rdata2
   io.Men:=1.U
   io.Mwout:=1.U
   io.Maddr:=src1+dest
@@ -81,7 +81,7 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
   dest:=immS
   regs.io.raddr1:=rs1
   regs.io.raddr2:=rs2
-  src1:=regs.io.rdata1;src2:=regs.rdata2
+  src1:=regs.io.rdata1;src2:=regs.io.rdata2
   io.Men:=1.U
   io.Mwout:=1.U
   io.Maddr:=src1+dest
@@ -91,7 +91,7 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
   dest:=immS
   regs.io.raddr1:=rs1
   regs.io.raddr2:=rs2
-  src1:=regs.io.rdata1;src2:=regs.rdata2
+  src1:=regs.io.rdata1;src2:=regs.io.rdata2
   io.Men:=1.U
   io.Mwout:=1.U
   io.Maddr:=src1+dest
@@ -101,7 +101,7 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
   dest:=immS
   regs.io.raddr1:=rs1
   regs.io.raddr2:=rs2
-  src1:=regs.io.rdata1;src2:=regs.rdata2
+  src1:=regs.io.rdata1;src2:=regs.io.rdata2
   io.Men:=1.U
   io.Mwout:=1.U
   io.Maddr:=src1+dest
@@ -144,7 +144,7 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
   regs.io.raddr2:=rs2
   src1:=regs.io.rdata1
   src2:=regs.io.rdata2
-  intermediate=(src1<<src2(4,0))(31,0)
+  intermediate:=(src1<<src2(4,0))(31,0)
   regs.io.wdata:=(intermediate(31)===1,intermediate,Cat(0xffffffff.U,intermediate))
   regs.io.waddr:=dest
   regs.io.wen:=1.U
@@ -177,7 +177,7 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
   regs.io.raddr2:=rs2
   src1:=regs.io.rdata1
   src2:=regs.io.rdata2
-  intermediate=src1.S>>src2(4,0)
+  intermediate:=src1.S>>src2(4,0)
   regs.io.wdata:=Mux(intermediate(31)===1.U,intermediate,Cat(0xffffffff.U,intermediate))
   regs.io.waddr:=dest
   regs.io.wen:=1.U
@@ -194,7 +194,7 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
   regs.io.raddr2:=rs2
   src1:=regs.io.rdata1
   src2:=regs.io.rdata2
-  intermediate=src1.U>>src2(4,0)
+  intermediate:=src1.U>>src2(4,0)
   regs.io.wdata:=Mux(intermediate(31)===1.U,intermediate,Cat(0xffffffff.U,intermediate))
   regs.io.waddr:=dest
   regs.io.wen:=1.U
@@ -312,7 +312,7 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
   regs.io.raddr2:=rs2
   src1:=regs.io.rdata1
   src2:=regs.io.rdata2
-  intermediate=src1(31,0).U/src2(31,0).U
+  intermediate:=src1(31,0).U/src2(31,0).U
   regs.io.wdata:=Mux(intermediate(31)===1.U,intermediate,Cat(0xffffffff.U,intermediate))
   regs.io.waddr:=dest
   regs.io.wen:=1.U
@@ -321,7 +321,7 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
   regs.io.raddr2:=rs2
   src1:=regs.io.rdata1
   src2:=regs.io.rdata2
-  val intermediate=src1(31,0).S/src2(31,0).S
+  val intermediate:=src1(31,0).S/src2(31,0).S
   regs.io.wdata:=Mux(intermediate(31)===1.U,intermediate,Cat(0xffffffff.U,intermediate))
   regs.io.waddr:=dest
   regs.io.wen:=1.U
@@ -336,7 +336,7 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
   regs.io.raddr1:=rs1
   src1:=regs.io.rdata1
   src2:=immI
-  intermediate=(src1+src2)(31,0)
+  intermediate:=(src1+src2)(31,0)
   regs.io.wdata:=Mux(intermediate(31)===1.U,intermediate,Cat(0xffffffff.U,intermediate))
   regs.io.waddr:=dest
   regs.io.wen:=1.U
