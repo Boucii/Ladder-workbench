@@ -1,6 +1,6 @@
-package cpu
+package cpu2
 import chisel3.stage._
-import cpu._
+import cpu2._
 
 object GenVerilog extends App {
   //(new chisel3.stage.ChiselStage).emitVerilog(new TOP)
