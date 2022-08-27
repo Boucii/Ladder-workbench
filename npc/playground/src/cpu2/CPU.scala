@@ -49,13 +49,13 @@ class TOP extends Module{
   val immB=Cat(Cat(Cat(Mux(inst(31)===1.U,inst(31,31),Cat(0xff.U,inst(31,31)))<<12,inst(7,7)<<11),inst(30,25)<<5),inst(11,8)<<1)
 
   //decode to src and dest
-  val dest=0.U(64.W)
+  val dest=rd(64.W)
   val src1=0.U(64.W)
   val src2=0.U(64.W)
   
   //todo:connect src to regs.io.or mem
 
-  dest:=rd//default is rd,todo and change
+  //dest:=rd//default is rd,todo and change
   //itermidiate
   val intermediate=0.U(64.W)
 
