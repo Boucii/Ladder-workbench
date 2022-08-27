@@ -43,7 +43,7 @@ class DECODE extends Module{
 
   //imm decode ext
   val immI=Mux(inst(31)===1.U,inst(31,20),Cat(0xfffffffffffffL.U,inst(31,20)))
-  val immS=Cat(Mux(inst(31===1.U,inst(31,25),Cat(0xff.U,inst(31,25))))<<5,inst(11,7))
+  val immS=Cat(Mux(inst(31)===1.U,inst(31,25),Cat(0xff.U,inst(31,25)))<<5,inst(11,7))
   val immU=inst(31,12)<<12
   val immJ=Cat(Cat(Cat(Mux(inst(31)===1.U,inst(31,31),Cat(0xff.U,inst(31,31)))<<20,inst(19,12)<<12),inst(20,20)<<11),inst(30,21)<<1) //optimization?
   val immB=Cat(Cat(Cat(Mux(inst(31)===1.U,inst(31,31),Cat(0xff.U,inst(31,31)))<<12,inst(7,7)<<11),inst(30,25)<<5),inst(11,8)<<1)
