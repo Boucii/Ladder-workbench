@@ -41,9 +41,9 @@ class TOP extends Module{
   val rs2=Wire(UInt(64.W))
   val rd=Wire(UInt(64.W))
 
-  rs1=inst(19,15)
-  rs2=inst(24,20)
-  rd=inst(11,7)
+  rs1:=inst(19,15)
+  rs2:=inst(24,20)
+  rd:=inst(11,7)
 
   //imm decode ext
   val immI=Mux(inst(31)===1.U,inst(31,20),Cat(0xfffffffffffffL.U,inst(31,20)))
