@@ -23,9 +23,10 @@ class DECODE extends Module{
 
   //instruction fetch
   val inst=0.U(64.W)
-  inst:=InstIn
+  io.InstAddr=Cat(0x00000000.U,pc)
+  inst:=io.InstIn
 
-  val dpc=pc+4
+  val dpc=pc+4.U
 
   //decode
   val pt0=inst(6,0)
