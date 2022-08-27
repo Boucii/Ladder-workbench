@@ -423,7 +423,7 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
   regs.io.wdata:=io.MdataIn
   regs.io.waddr:=dest
   regs.io.wen:=1.U
-}.elsewhen(pt0==="b000000?".U && pt3==="b001".U && pt5==="b00100".U && pt6==="b11".U){    // slli   
+}.elsewhen(pt0==="b0000000".U && pt3==="b001".U && pt5==="b00100".U && pt6==="b11".U){    // slli   
   regs.io.raddr1:=rs1
   src1:=regs.io.rdata1
   src2:=immI
