@@ -15,41 +15,22 @@ int mem_init(){
 }
 
 
-uint64_t pmem_read(int addr){
+uint32_t pmem_read(int addr){
   std::cout<<"mem read: 0x"<<std::hex<<addr<< "\n";
   int base_addr=addr-0x80000000;
-  uint64_t lo0=(uint64_t)mem[base_addr];
-  uint64_t lo1=((uint64_t)mem[base_addr+1])<<8;
-  uint64_t lo2=((uint64_t)mem[base_addr+2])<<16;
-  uint64_t lo3=((uint64_t)mem[base_addr+3])<<24;
-  uint64_t lo4=((uint64_t)mem[base_addr+4])<<32;
-  uint64_t lo5=((uint64_t)mem[base_addr+5])<<40;
-  uint64_t lo6=((uint64_t)mem[base_addr+6])<<48;
-  uint64_t lo7=((uint64_t)mem[base_addr+7])<<56;
-
+  uint32_t lo0=(uint32_t)mem[base_addr];
+  uint32_t lo1=((uint32_t)mem[base_addr+1])<<8;
+  uint32_t lo2=((uint32_t)mem[base_addr+2])<<16;
+  uint32_t lo3=((uint32_t)mem[base_addr+3])<<24;
   std::cout<<"0x";
-  return lo0+lo1+lo2+lo3+lo4+lo5+lo6+lo7;
+  return lo0+lo1+lo2+lo3;
 }
-int pmem_write(uint64_t content,uint64_t addr,uint32_t len){
+int pmem_write(uint32_t content,uint32_t addr){
   int base_addr=addr-0x80000000;
-  if(len){
   mem[addr-0x80000000]=content;
-  if(len>=2){
   mem[addr-0x80000000+1]=content>>8;
-  if(len>=4){
   mem[addr-0x80000000+2]=content>>16;
   mem[addr-0x80000000+3]=content>>24;
-  if(len==8){
-  mem[addr-0x80000000+4]=content>>32;
-  mem[addr-0x80000000+5]=content>>40;
-  mem[addr-0x80000000+6]=content>>48;
-  mem[addr-0x80000000+7]=content>>56;
-  }
-  }
-  }
-  }
-
-
   return 0;
 }
 int free_memory(){

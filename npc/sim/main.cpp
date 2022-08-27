@@ -8,36 +8,21 @@
 #include "verilated_vcd_c.h"
 #include "memory.h"
 #include <svdpi.h>
+#include "VTOP__Dpi.h"
+
 
 using namespace std;
 
 //from memory.h
 extern int mem_init();
-extern uint32_t pmem_read(int addr);
-extern int pmem_write(uint32_t content,uint32_t addr);
+extern uint64_t pmem_read(int addr);
+extern int pmem_write(uint64 content,uint64_t addr,uint32_t len);
 extern int free_memory();
 extern long load_img();
 
 
-extern "C" void Check();
-//from verilog DPI-C
-extern "C" void helloFromCpp() {
-  // 0 is 0
-  // 1 is 1
-  // 2 is Z
-  // 3 is X
-  int a_int = 1;
-  cout << "(C++) a is " << a_int << endl;
-  svScope scope_a = svGetScope();
-  if(!scope_a)
-  svSetScope(scope_a);
-  cout << "Scope is " << svGetNameFromScope(svGetScope()) << endl;
-  svSetScope (svGetScopeFromName ("top"));
-  Check();
-  //return 0;
-}
-//extern "C" svBit Check();
-extern void check();
+extern "C" svBit CheckEnd();
+
 //Start of Program
 static VTOP* top;
 VerilatedVcdC* tfp=NULL;
@@ -62,6 +47,11 @@ int main(int argc, char** argv, char** env){
   contextp = new VerilatedContext;
   contextp->commandArgs(argc, argv);
   top= new VTOP{contextp};
+  
+  //set scope for dpi-c function
+  const svScope scope = svGetScopeFromName("TOP.TOP");
+  assert(scope);  // Check for nullptr if scope not found
+  svSetScope(scope);
 
   contextp->traceEverOn(true); //打开追踪功能
   tfp = new VerilatedVcdC; //初始化VCD对象指针
@@ -75,16 +65,27 @@ int main(int argc, char** argv, char** env){
   cout<<"\nstart simulating\n";
   dumpwave();
   while (time<20) {
-    cout<<"cycle passed\n";
-
+    cout<<"cycle "<<time<<" passed\n";
+    //instruction fetch
     int addr=(int)(top->io_InstReadPort_addr);
-    top->io_InstReadPort_data = pmem_read(addr);
-   // svSetScope (svGetScopeFromName ("SimuControl.v"));
- // svSetScope (svGetScopeFromName ("VTOP.v"));
-    //if(Check()){
-      //break;  
-    //}
-    //helloFromCpp();
+    top->io_InstReadPort_data = (uint32_t)pmem_read(addr);
+    //check for trap
+    if(Check()){
+      break;  
+    }
+    //memory read/write
+    if(top->io_Men){
+      if(top->io_Mwout){//write
+	uint64_t data=top->io_MdataOut;
+	uint32_t addr=top->io_Maddr;
+	uint32_t len=top->io_Mlen
+	pmem_write(data,addr,len);
+      }else{  //read
+	uint32_t addr=top->io_Maddr;
+	uint32_t len=top->io_Mlen
+	top->io_MdataIn=pmem_read(addr);
+      }
+    }
     single_cycle();
     time++;
   }
