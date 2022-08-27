@@ -476,7 +476,7 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
   src1:=regs.io.rdata1
   src2:=immI
   pc:=src1+src2
-  regs.io.wdata:=pc+4
+  regs.io.wdata:=pc+4.U
   regs.io.waddr:=dest
   regs.io.wen:=1.U
 }.elsewhen(pt3==="b110".U && pt5==="b00100".U && pt6==="b11".U){    // ori    
