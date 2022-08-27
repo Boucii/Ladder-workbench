@@ -1,7 +1,7 @@
 package cpu2 
 import chisel3._
 import chisel3.experimental._
-import cpu.Defs._
+import chisel3.util._
 
 class DECODE extends Module{
     val io=IO(new Bundle{
