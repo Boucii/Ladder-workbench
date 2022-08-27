@@ -184,7 +184,7 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
   src1:=regs.io.rdata1
   src2:=regs.io.rdata2
   intermediate:=(src1.asSInt>>src2(4,0)).asUInt
-  regs.io.wdata:=Mux(intermediate(31)===1.U,intermediate,Cat(0xffffffff.U,intermediate))
+  regs.io.wdata:=Mux(intermediate(31)===1.U,intermediate,Cat(0xffffffffL.U,intermediate))
   regs.io.waddr:=dest
   regs.io.wen:=1.U
 }.elsewhen(pt0==="b0000000".U && pt3==="b101".U && pt5==="b01100".U && pt6==="b11".U){    // srl    
