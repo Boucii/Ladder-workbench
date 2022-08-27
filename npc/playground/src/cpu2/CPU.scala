@@ -19,7 +19,9 @@ class TOP extends Module{
   })
   val pc=RegInit(0x80000000L.U(64.W))//todo :modify pc to branches
   val regs=Module(new Regfile)
-  val stopflag=0.U(1.W)
+  val stopflag=Wire(UInt(1.W))
+
+  stopflag:=0.U
 
   //instruction fetch
   val inst=io.InstIn
