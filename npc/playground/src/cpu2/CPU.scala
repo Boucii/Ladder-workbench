@@ -26,7 +26,8 @@ class TOP extends Module{
   io.InstAddr:=Cat(0x00000000.U,pc)
   //inst:=io.InstIn
 
-  val dpc=pc+4.U
+  val dpc=Wire(UInt(32.W))
+  dpc:=pc+4.U
 
   //decode
   val pt0=inst(6,0)
@@ -545,7 +546,7 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
   regs.io.raddr2:=rs2
   src1:=regs.io.rdata1
   src2:=regs.io.rdata2
-  dpc:=Mux((src1.asUInt<src2.asUInt),pc,pc+dest)
+  dpc:=(Mux((src1.asUInt<src2.asUInt),pc,pc+dest)).asUInt
 }.elsewhen(pt3==="b110".U && pt5==="b11000".U && pt6==="b11".U){    // bltu   
   dest:=immB
   regs.io.raddr1:=rs1
