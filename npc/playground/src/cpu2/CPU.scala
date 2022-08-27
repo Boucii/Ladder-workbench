@@ -70,7 +70,6 @@ class TOP extends Module{
   io.Maddr:=0.U
   io.Men:=0.U
   io.Mlen:=0.U
-  io.MdataIn:=0.U
   io.MdataOut:=0.U
 
 when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd     
