@@ -37,9 +37,13 @@ class TOP extends Module{
   val pt5=inst(29,25)
   val pt6=inst(31,30)
   
-  val rs1=inst(19,15)
-  val rs2=inst(24,20)
-  val rd=inst(11,7)
+  val rs1=Wire(UInt(64.W))
+  val rs2=Wire(UInt(64.W))
+  val rd=Wire(UInt(64.W))
+
+  rs1=inst(19,15)
+  rs2=inst(24,20)
+  rd=inst(11,7)
 
   //imm decode ext
   val immI=Mux(inst(31)===1.U,inst(31,20),Cat(0xfffffffffffffL.U,inst(31,20)))
@@ -49,13 +53,15 @@ class TOP extends Module{
   val immB=Cat(Cat(Cat(Mux(inst(31)===1.U,inst(31,31),Cat(0xff.U,inst(31,31)))<<12,inst(7,7)<<11),inst(30,25)<<5),inst(11,8)<<1)
 
   //decode to src and dest
-  val dest=0.U(64.W)
-  val src1=0.U(64.W)
-  val src2=0.U(64.W)
-  
-  //todo:connect src to regs.io.or mem
+  val dest=Wire(UInt(64.W))
+  val src1=Wire(UInt(64.W))
+  val src2=Wire(UInt(64.W))
 
+  dest:=0.U
+  src1:=0.U
+  src2:=0.U
   dest:=rd//default is rd,todo and change
+
   //itermidiate
   val intermediate=0.U(64.W)
 
