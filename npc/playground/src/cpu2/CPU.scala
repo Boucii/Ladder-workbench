@@ -373,7 +373,7 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
   io.Men:=1.U
   io.Maddr:=src1+src2
   io.Mlen:=4.U
-  regs.wdata:=Mux((MdataIn)(15)===1.U,(MdataIn),Cat(0xffffffffffffL.U,(MdataIn(15:0))))
+  regs.wdata:=Mux((MdataIn)(15)===1.U,(MdataIn),Cat(0xffffffffffffL.U,(MdataIn(15,0))))
   regs.waddr:=dest
   regs.wen:=1.U
 }.elsewhen(pt3==="b000".U && pt5==="b00000".U && pt6==="b11".U){    // lb     
@@ -383,7 +383,7 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
   io.Men:=1.U
   io.Maddr:=src1+src2
   io.Mlen:=4.U
-  regs.wdata:=Mux((MdataIn)(7)===1.U,(MdataIn),Cat(0xffffffffffffL.U,(MdataIn(7:0))))
+  regs.wdata:=Mux((MdataIn)(7)===1.U,(MdataIn),Cat(0xffffffffffffL.U,(MdataIn(7,0))))
   regs.waddr:=dest
   regs.wen:=1.U
 }.elsewhen(pt3==="b110".U && pt5==="b00000".U && pt6==="b11".U){    // lwu    
