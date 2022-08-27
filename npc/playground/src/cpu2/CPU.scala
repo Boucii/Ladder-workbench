@@ -18,7 +18,7 @@ class DECODE extends Module{
     val InstIn=Input(UInt(32.W))  //still has a 32 bit wide port for now
   })
   val pc=RegInit(0x80000000L.U(64.W))//todo :modify pc to branches
-  val regs.io.Module(new Regfile)
+  val regs=Module(new Regfile)
   val stopflag=0.U(1.W)
 
   //instruction fetch
