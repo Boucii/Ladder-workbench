@@ -42,11 +42,11 @@ class DECODE extends Module{
   val rd=inst(11,7)
 
   //imm decode ext
-  val immI=Mux(inst(31)===1.B,inst(31,20),Cat(0xfffffffffffffL.U,inst(31,20)))
-  val immS=Cat(Mux(inst(31==1.B,inst(31,25),Cat(0xff.U,inst(31,25))))<<5,inst(11,7))
+  val immI=Mux(inst(31)===1.U,inst(31,20),Cat(0xfffffffffffffL.U,inst(31,20)))
+  val immS=Cat(Mux(inst(31===1.U,inst(31,25),Cat(0xff.U,inst(31,25))))<<5,inst(11,7))
   val immU=inst(31,12)<<12
-  val immJ=Cat(Cat(Cat(Mux(inst(31)===1.B,inst(31,31),Cat(0xff.U,inst(31,31)))<<20,inst(19,12)<<12),inst(20,20)<<11),inst(30,21)<<1) //optimization?
-  val immB=Cat(Cat(Cat(Mux(inst(31)===1.B,inst(31,31),Cat(0xff.U,inst(31,31)))<<12,inst(7,7)<<11),inst(30,25)<<5),inst(11,8)<<1)
+  val immJ=Cat(Cat(Cat(Mux(inst(31)===1.U,inst(31,31),Cat(0xff.U,inst(31,31)))<<20,inst(19,12)<<12),inst(20,20)<<11),inst(30,21)<<1) //optimization?
+  val immB=Cat(Cat(Cat(Mux(inst(31)===1.U,inst(31,31),Cat(0xff.U,inst(31,31)))<<12,inst(7,7)<<11),inst(30,25)<<5),inst(11,8)<<1)
 
   //decode to src and dest
   val dest=0.U(64.W)
@@ -145,7 +145,7 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
   src1:=regs.io.rdata1
   src2:=regs.io.rdata2
   intermediate:=(src1<<src2(4,0))(31,0)
-  regs.io.wdata:=(intermediate(31)===1,intermediate,Cat(0xffffffff.U,intermediate))
+  regs.io.wdata:=(intermediate(31)===1.U,intermediate,Cat(0xffffffff.U,intermediate))
   regs.io.waddr:=dest
   regs.io.wen:=1.U
 }.elsewhen(pt0==="b0000000".U && pt3==="b010".U && pt5==="b01100".U && pt6==="b11".U){    // slt    
