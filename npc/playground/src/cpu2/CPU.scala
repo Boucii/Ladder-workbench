@@ -22,6 +22,12 @@ class TOP extends Module{
   val stopflag=Wire(UInt(1.W))
 
   stopflag:=0.U
+  regs.io.waddr:=0.U
+  regs.io.raddr1:=0.U
+  regs.io.raddr2:=0.U
+  regs.io.waddr:=0.U
+  regs.io.wdata=0.U
+
   //instruction fetch
   val inst=io.InstIn
   io.InstAddr:=Cat(0x00000000.U,pc)
