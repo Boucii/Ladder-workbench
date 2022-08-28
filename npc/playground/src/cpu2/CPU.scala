@@ -435,7 +435,7 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
   regs.io.raddr1:=rs1
   src1:=regs.io.rdata1
   src2:=immI
-  regs.io.wdata:=(src1.asUInt<<src2(18,0)).asUInt
+  regs.io.wdata:=(src1(63,0)<<src2(18,0))
   regs.io.waddr:=dest
   regs.io.wen:=1.U
 }.elsewhen(pt0==="b0000000".U && pt3==="b001".U && pt5==="b00110".U && pt6==="b11".U){    // slliw  
@@ -460,7 +460,7 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
   regs.io.raddr1:=rs1
   src1:=regs.io.rdata1
   src2:=immI
-  regs.io.wdata:=(src1.asSInt>>src2).asUInt
+  regs.io.wdata:=(src1(63,0).asSInt>>src2).asUInt
   regs.io.waddr:=dest
   regs.io.wen:=1.U
 }.elsewhen(pt0==="b0100000".U && pt3==="b101".U && pt5==="b00110".U && pt6==="b11".U){    // sraiw  
