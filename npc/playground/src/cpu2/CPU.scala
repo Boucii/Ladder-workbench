@@ -2,7 +2,7 @@ package cpu2
 import chisel3._
 import chisel3.experimental._
 import chisel3.util._
-class func extends BlackBox{
+class funcs extends BlackBox{
   val io = IO(new Bundle {
     val stop = Input(UInt(1.W))
   })
@@ -24,7 +24,7 @@ class TOP extends Module{
   val pc=RegInit(0x80000000L.U(64.W))//todo :modify pc to branches
   val regs=Module(new Regfile)
   val stopflag=Wire(UInt(1.W))
-  val nemu_stop=Module(new stop)
+  val nemu_stop=Module(new funcs)
 
   stopflag:=0.U
   nemu_stop.io.stop:=stopflag

@@ -1,4 +1,4 @@
-module automatic func;
+module automatic funcs;
 (
     input wire  stop,
 );
