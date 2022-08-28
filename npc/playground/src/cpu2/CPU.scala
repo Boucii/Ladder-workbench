@@ -26,6 +26,7 @@ class TOP extends Module{
   regs.io.raddr1:=0.U
   regs.io.raddr2:=0.U
   regs.io.wdata:=0.U
+  regs.io.wen:=0.U
 
   //instruction fetch
   val inst=io.InstIn
