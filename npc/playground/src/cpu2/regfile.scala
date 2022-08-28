@@ -1,7 +1,7 @@
 package cpu2
 import chisel3._
 import chisel3.experimental._
-import cpu.Defs._
+import cpu2.Defs._
 
 
 class Regfile extends Module{
