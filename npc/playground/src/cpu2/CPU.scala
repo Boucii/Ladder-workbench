@@ -150,7 +150,7 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
   regs.io.raddr2:=rs2
   src1:=regs.io.rdata1
   src2:=regs.io.rdata2
-  regs.io.wdata:=(src1<<src2(18,0))(63,0)
+  regs.io.wdata:=(src1(63,0)<<src2(18,0))(63,0)
   regs.io.waddr:=dest(18,0)
   regs.io.wen:=1.U
 }.elsewhen(pt0==="b0000000".U && pt3==="b001".U && pt5==="b01110".U && pt6==="b11".U){    // sllw   
