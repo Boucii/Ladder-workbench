@@ -7,15 +7,15 @@ import cpu2.Defs._
 class Regfile extends Module{
   val io=IO(new Bundle{
   val raddr1=Input(UInt(5.W))
-  val rdata1=Output(UInt(XLEN.W))
+  val rdata1=Output(UInt(64.W))
   val raddr2=Input(UInt(5.W))
-  val rdata2=Output(UInt(XLEN.W))
+  val rdata2=Output(UInt(64.W))
   val wen=Input(Bool())
   val waddr=Input(UInt(5.W))
-  val wdata=Input(UInt(XLEN.W))
+  val wdata=Input(UInt(64.W))
   })
   //val regs=Wire(RegInit(Vec(32, UInt(XLEN.W))))
-  val regs=Reg(Vec(32,UInt(XLEN.W)))
+  val regs=Reg(Vec(32,UInt(64.W)))
   /*
   for (i<-0 to 32-1) {
       regs(i):=0.U
