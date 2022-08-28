@@ -21,7 +21,7 @@ extern int free_memory();
 extern long load_img();
 
 
-extern "C" svBit CheckEnd();
+extern "C" svBit Check();
 
 //Start of Program
 static VTOP* top;
