@@ -158,7 +158,7 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
   regs.io.raddr2:=rs2
   src1:=regs.io.rdata1
   src2:=regs.io.rdata2
-  intermediate:=(src1<<src2(4,0))(31,0)
+  intermediate:=(src1(63,0)<<src2(4,0))(31,0)
   regs.io.wdata:=Mux(intermediate(31)===1.U,intermediate,Cat(0xffffffffL.U,intermediate))
   regs.io.waddr:=dest
   regs.io.wen:=1.U
