@@ -16,7 +16,7 @@ using namespace std;
 //from memory.h
 extern int mem_init();
 extern uint64_t pmem_read(int addr);
-extern int pmem_write(uint64 content,uint64_t addr,uint32_t len);
+extern int pmem_write(uint64_t content,uint64_t addr,uint32_t len);
 extern int free_memory();
 extern long load_img();
 
