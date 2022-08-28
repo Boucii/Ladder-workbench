@@ -48,7 +48,8 @@ int main(int argc, char** argv, char** env){
   contextp->commandArgs(argc, argv);
   top= new VTOP{contextp};
   
-  //set scope for dpi-c function
+  //set scope for dpi-c function  
+  Verilated::scopesDump();
   const svScope scope = svGetScopeFromName("TOP.TOP");
   assert(scope);  // Check for nullptr if scope not found
   svSetScope(scope);
