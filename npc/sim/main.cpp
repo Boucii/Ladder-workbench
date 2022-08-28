@@ -67,8 +67,8 @@ int main(int argc, char** argv, char** env){
   while (time<20) {
     cout<<"cycle "<<time<<" passed\n";
     //instruction fetch
-    int addr=(int)(top->io_InstReadPort_addr);
-    top->io_InstReadPort_data = (uint32_t)pmem_read(addr);
+    int addr=(int)(top->io_InstAddr);
+    top->io_InstIn = (uint32_t)pmem_read(addr);
     //check for trap
     if(Check()){
       break;  
