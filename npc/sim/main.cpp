@@ -8,7 +8,7 @@
 #include "verilated_vcd_c.h"
 #include "memory.h"
 #include <svdpi.h>
-#include "VTOP__Dpi.h"
+#include "VFUNC__Dpi.h"
 
 
 using namespace std;

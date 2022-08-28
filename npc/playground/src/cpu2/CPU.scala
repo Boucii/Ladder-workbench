@@ -2,7 +2,11 @@ package cpu2
 import chisel3._
 import chisel3.experimental._
 import chisel3.util._
-
+class func extends BlackBox{
+  val io = IO(new Bundle {
+    val stop = Input(UInt(1.W))
+  })
+}
 class TOP extends Module{
     val io=IO(new Bundle{
     //dmemory ports
@@ -20,8 +24,11 @@ class TOP extends Module{
   val pc=RegInit(0x80000000L.U(64.W))//todo :modify pc to branches
   val regs=Module(new Regfile)
   val stopflag=Wire(UInt(1.W))
+  val nemu_stop=Module(new stop)
 
   stopflag:=0.U
+  nemu_stop.io.stop:=stopflag
+
   regs.io.waddr:=0.U
   regs.io.raddr1:=0.U
   regs.io.raddr2:=0.U
@@ -80,6 +87,8 @@ class TOP extends Module{
   io.Men:=0.U
   io.Mlen:=0.U
   io.MdataOut:=0.U
+
+
 
 when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd     
   dest:=immS
