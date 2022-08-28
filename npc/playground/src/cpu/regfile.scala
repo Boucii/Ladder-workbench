@@ -4,7 +4,7 @@ import chisel3.experimental._
 import cpu.Defs._
 
 
-class Regfile extends Module{
+class Regfile1 extends Module{
   val io=IO(new Bundle{
   val raddr1=Input(UInt(5.W))
   val rdata1=Output(UInt(XLEN.W))
