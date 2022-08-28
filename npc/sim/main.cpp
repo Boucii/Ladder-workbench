@@ -78,7 +78,7 @@ int main(int argc, char** argv, char** env){
       if(top->io_Mwout){//write
 	uint64_t data=top->io_MdataOut;
 	uint32_t addr=top->io_Maddr;
-	uint32_t len=top->io_Mlen
+	uint32_t len=top->io_Mlen;
 	pmem_write(data,addr,len);
       }else{  //read
 	uint32_t addr=top->io_Maddr;
