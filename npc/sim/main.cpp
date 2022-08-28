@@ -49,8 +49,8 @@ int main(int argc, char** argv, char** env){
   top= new VTOP{contextp};
   
   //set scope for dpi-c function  
-  Verilated::scopesDump();
-  const svScope scope = svGetScopeFromName("TOP.TOP");
+  //Verilated::scopesDump();
+  const svScope scope = svGetScopeFromName("TOP.nemu_stop");
   assert(scope);  // Check for nullptr if scope not found
   svSetScope(scope);
 
