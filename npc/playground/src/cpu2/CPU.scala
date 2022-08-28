@@ -71,7 +71,7 @@ class TOP extends Module{
   dest:=rd//default is rd,todo and change
 
   //itermidiate
-  val intermediate=Wire(UInt(64.W))
+  val intermediate=Wire(UInt(32.W))
   intermediate:=0.U
 
   //initiallization
