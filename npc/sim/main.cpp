@@ -37,6 +37,15 @@ void single_cycle() {
     top->clock = 1; top->eval();
     dumpwave();
 }
+void single_cycleup() {
+    top->clock = 0; top->eval(); 
+    dumpwave();
+}
+void single_cycledown() {
+    top->clock = 1; top->eval();
+    dumpwave();
+}
+
 void reset(int n) {
 	  top->reset = 1;
 	    while (n -- > 0) single_cycle();
@@ -70,11 +79,8 @@ int main(int argc, char** argv, char** env){
     //instruction fetch
     int addr=(int)(top->io_InstAddr);
     top->io_InstIn = (uint32_t)pmem_read(addr);
-    //check for trap
-    if(Check()){
-      break;  
-    }
     //memory read/write
+    single_cycleup();
     if(top->io_Men){
       if(top->io_Mwout){//write
 	uint64_t data=top->io_MdataOut;
@@ -87,7 +93,11 @@ int main(int argc, char** argv, char** env){
 	top->io_MdataIn=pmem_read(addr);
       }
     }
-    single_cycle();
+    single_cycledown();
+    //check for trap
+    if(Check()){
+      break;  
+    }
     time++;
   }
   cout<<"simulation over\n";
