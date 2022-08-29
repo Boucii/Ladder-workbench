@@ -44,13 +44,13 @@ class TOP extends Module{
   dpc:=pc+4.U
 
   //decode
-  val pt0=inst(6,0)
-  val pt1=inst(11,7)
-  val pt2=inst(16,12)
-  val pt3=inst(19,17)
-  val pt4=inst(24,20)
-  val pt5=inst(29,25)
-  val pt6=inst(31,30)
+  val pt0=inst(31,25)
+  val pt1=inst(24,20)
+  val pt2=inst(19,15)
+  val pt3=inst(14,12)
+  val pt4=inst(11,7)
+  val pt5=inst(6,2)
+  val pt6=inst(1,0)
   
   val rs1=Wire(UInt(64.W))
   val rs2=Wire(UInt(64.W))
