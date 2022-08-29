@@ -74,7 +74,7 @@ int main(int argc, char** argv, char** env){
   reset(10);
   cout<<"\nstart simulating\n";
   dumpwave();
-  while (time<20) {
+  while (time<50) {
     cout<<"cycle "<<time<<" passed\n";
     //instruction fetch
     int addr=(int)(top->io_InstAddr);
