@@ -62,7 +62,7 @@ static char *img_file=name;
 
 long load_img(){
   
-  const char *img = getenv("IMG");
+  char *img = getenv("IMG");
   if(img_file==NULL||img==NULL){
     std::cout<<"no img is given,please specify a img";
     return -1;
