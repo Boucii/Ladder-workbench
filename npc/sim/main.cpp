@@ -53,8 +53,7 @@ void reset(int n) {
 }
 
 int main(int argc, char** argv, char** env){
-  cout<<argc<<endl;
-  cout<<"env "<<getenv("IMG")<<" endenv"<<endl;
+  //cout<<argc<<endl;
   contextp = new VerilatedContext;
   contextp->commandArgs(argc, argv);
   top= new VTOP{contextp};
