@@ -62,7 +62,7 @@ static char *img_file=name;
 
 
 long load_img(){
-  if(img_file==NULL){
+  if(IMAGE==NULL){
     std::cout<<"no img is given,please specify a img";
     return -1;
   }
