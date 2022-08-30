@@ -43,7 +43,7 @@ sim:
 	verilator --cc --exe --build --trace -CFLAGS -g  -Isim/ $(CSRCS) $(VSRCS) --Mdir $(BUILD_DIR)/SimGen 
 
 wave:
-	./build/SimGen/VTOP IMG=$(IMG)
+	./build/SimGen/VTOP IMG=$(IMG) aaa bbb ccc
 	gtkwave wave.vcd
 
 debug:
