@@ -60,11 +60,15 @@ int free_memory(){
 char name[30]="sim/demorevert.txt";
 static char *img_file=name;
 
-
 long load_img(){
-  if(IMAGE==NULL){
+  
+  const char *img = getenv("IMG");
+  if(img_file==NULL||img==NULL){
     std::cout<<"no img is given,please specify a img";
     return -1;
+  }
+  if(img!=NULL){
+    img_file=img;
   }
 
 //打印输出当前路径
