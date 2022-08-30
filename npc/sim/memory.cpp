@@ -64,11 +64,14 @@ long load_img(){
   
   char *img = getenv("IMG");
   if(img_file==NULL||img==NULL){
-    std::cout<<"no img is given,please specify a img";
+    std::cout<<"no img is given,please specify a img\n";
     return -1;
   }
   if(img!=NULL){
+    std::cout<<"using specified img\n";
     img_file=img;
+  }else{
+    std::cout<<"using default img\n";
   }
 
 //打印输出当前路径
