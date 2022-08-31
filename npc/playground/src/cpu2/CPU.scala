@@ -560,21 +560,20 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
   src2:=regs.io.rdata2
   pc:=(Mux((src1.asSInt<src2.asSInt),pc,pc+dest)).asUInt
 }
-/*
 }.elsewhen(pt3==="b111".U && pt5==="b11000".U && pt6==="b11".U){    // bgeu   
   dest:=immB
   regs.io.raddr1:=rs1
   regs.io.raddr2:=rs2
   src1:=regs.io.rdata1
   src2:=regs.io.rdata2
-  pc:=Mux((src1.asUInt>=src2.asUInt),pc,pc+dest)
+  pc:=Mux((src1.asUInt<src2.asUInt),pc,pc+dest)
 }.elsewhen(pt3==="b100".U && pt5==="b11000".U && pt6==="b11".U){    // blt    
   dest:=immB
   regs.io.raddr1:=rs1
   regs.io.raddr2:=rs2
   src1:=regs.io.rdata1
   src2:=regs.io.rdata2
-  dpc:=(Mux((src1.asUInt<src2.asUInt),pc,pc+dest)).asUInt
+  dpc:=(Mux((src1.asUInt>=src2.asUInt),pc,pc+dest)).asUInt
 }.elsewhen(pt3==="b110".U && pt5==="b11000".U && pt6==="b11".U){    // bltu   
   dest:=immB
   regs.io.raddr1:=rs1
@@ -587,7 +586,7 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
   regs.io.raddr2:=rs2
   src1:=regs.io.rdata1
   src2:=regs.io.rdata2
-  dpc:=Mux((src1.asUInt=/=src2.asUInt),pc,pc+dest)
+  dpc:=Mux((src1.asUInt===src2.asUInt),pc,pc+dest)
 }.elsewhen(pt5==="b11011".U && pt6==="b11".U){    // jal    
   src1:=immJ
   regs.io.wdata:=pc+4.U
@@ -600,7 +599,6 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
 }.otherwise{    // inv 
   stopflag:=1.U
 }
-*/
   //update pc reg
   pc:=Mux(stopflag===1.U,dpc,pc)
 }
