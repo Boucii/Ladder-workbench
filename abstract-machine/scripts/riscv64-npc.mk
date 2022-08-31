@@ -22,7 +22,10 @@ image: $(IMAGE).elf
 	@$(OBJCOPY) -S --set-section-flags .bss=alloc,contents -O binary $(IMAGE).elf $(IMAGE).bin
 
 run: image
-	$(MAKE) -C $(NPC_HOME) wave 
+	@echo $(IMAGE)
+	@echo "hello from ab"
+	export IMAGE=$(IMAGE)
+	$(MAKE) -C $(NPC_HOME) IMAGE=$(IMAGE).bin wave 
 
 gdb: image
-	$(MAKE) -C $(NPC_HOME) debug 
+	$(MAKE) -C $(NPC_HOME) IMAGE=$(IMAGE).bin debug
