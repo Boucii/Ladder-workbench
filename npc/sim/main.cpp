@@ -25,6 +25,20 @@ extern long load_img(char **argv);
 
 extern "C" svBit Check();
 
+uint64_t *cpu_gpr = NULL;
+
+extern "C" void set_gpr_ptr(const svOpenArrayHandle r) {
+  cpu_gpr = (uint64_t *)(((VerilatedDpiOpenVar*)r)->datap());
+}
+
+// 一个输出RTL中通用寄存器的值的示例
+void dump_gpr() {
+  int i;
+  for (i = 0; i < 32; i++) {
+    printf("gpr[%d] = 0x%lx\n", i, cpu_gpr[i]);
+  }
+}
+
 //Start of Program
 static VTOP* top;
 VerilatedVcdC* tfp=NULL;
@@ -108,6 +122,7 @@ int main(int argc, char** argv, char** env){
   if(time==MAX_TIME){
       cout<<"HIT BAD TRAP"<<endl;
   }
+  dump_gpr();
   cout<<"simulation over\n";
   delete top;
   delete contextp;

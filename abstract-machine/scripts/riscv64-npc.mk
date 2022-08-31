@@ -20,3 +20,12 @@ image: $(IMAGE).elf
 	@$(OBJDUMP) -d $(IMAGE).elf > $(IMAGE).txt
 	@echo + OBJCOPY "->" $(IMAGE_REL).bin
 	@$(OBJCOPY) -S --set-section-flags .bss=alloc,contents -O binary $(IMAGE).elf $(IMAGE).bin
+
+run: image
+	@echo $(IMAGE)
+	@echo "hello from ab"
+	export IMAGE=$(IMAGE)
+	$(MAKE) -C $(NPC_HOME) IMAGE=$(IMAGE).bin wave 
+
+gdb: image
+	$(MAKE) -C $(NPC_HOME) IMAGE=$(IMAGE).bin debug
