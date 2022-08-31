@@ -97,7 +97,7 @@ class TOP extends Module{
   io.MdataOut:=0.U
 
 
-
+/*
 when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd     
   dest:=immS
   regs.io.raddr1:=rs1
@@ -598,6 +598,7 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
 }.otherwise{    // inv 
   stopflag:=1.U
 }
+*/
   //update pc reg
   pc:=Mux(stopflag===1.U,dpc,pc)
 }
