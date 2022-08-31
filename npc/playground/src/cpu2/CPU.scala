@@ -465,7 +465,7 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
   regs.io.raddr1:=rs1
   src1:=regs.io.rdata1
   src2:=immI
-  regs.io.wdata:=(Mux(src1.asSInts>=rc2.asSInt,0.U,1.U)).asUInt
+  regs.io.wdata:=(Mux(src1.asSInt>=src2.asSInt,0.U,1.U)).asUInt
   regs.io.waddr:=dest
   regs.io.wen:=1.U
 }.elsewhen(pt3==="b011".U && pt5==="b00100".U && pt6==="b11".U){    // sltiu  
