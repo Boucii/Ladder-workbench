@@ -69,11 +69,11 @@ class TOP extends Module{
   rd:=inst(11,7)
 
   //imm decode ext
-  val immI=Mux(inst(31)===1.U,inst(31,20),Cat(0xfffffffffffffL.U,inst(31,20)))
-  val immS=Cat(Mux(inst(31)===1.U,inst(31,25),Cat(0xff.U,inst(31,25)))<<5,inst(11,7))
+  val immI=Mux(inst(31)=/=1.U,inst(31,20),Cat(0xfffffffffffffL.U,inst(31,20)))
+  val immS=Cat(Mux(inst(31)=/=1.U,inst(31,25),Cat(0xff.U,inst(31,25)))<<5,inst(11,7))
   val immU=inst(31,12)<<12
-  val immJ=Cat(Cat(Cat(Mux(inst(31)===1.U,inst(31,31),Cat(0xff.U,inst(31,31)))<<20,inst(19,12)<<12),inst(20,20)<<11),inst(30,21)<<1) //optimization?
-  val immB=Cat(Cat(Cat(Mux(inst(31)===1.U,inst(31,31),Cat(0xff.U,inst(31,31)))<<12,inst(7,7)<<11),inst(30,25)<<5),inst(11,8)<<1)
+  val immJ=Cat(Cat(Cat(Mux(inst(31)=/=1.U,inst(31,31),Cat(0xff.U,inst(31,31)))<<20,inst(19,12)<<12),inst(20,20)<<11),inst(30,21)<<1) //optimization?
+  val immB=Cat(Cat(Cat(Mux(inst(31)=/=1.U,inst(31,31),Cat(0xff.U,inst(31,31)))<<12,inst(7,7)<<11),inst(30,25)<<5),inst(11,8)<<1)
 
   //decode to src and dest
   val dest=Wire(UInt(64.W))
@@ -151,7 +151,7 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
   regs.io.raddr2:=rs2
   src1:=regs.io.rdata1
   src2:=regs.io.rdata2
-  regs.io.wdata:=Mux((src1+src2)(31)===1.U,(src1+src2),Cat(0xffffffffL.U,(src1+src2)))
+  regs.io.wdata:=Mux((src1+src2)(31)=/=1.U,(src1+src2),Cat(0xffffffffL.U,(src1+src2)))
   regs.io.waddr:=dest
   regs.io.wen:=1.U
 }.elsewhen(pt0==="b0000000".U && pt3==="b111".U && pt5==="b01100".U && pt6==="b11".U){    // and    
@@ -176,7 +176,7 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
   src1:=regs.io.rdata1
   src2:=regs.io.rdata2
   intermediate:=(src1(63,0)<<src2(4,0))(31,0)
-  regs.io.wdata:=Mux(intermediate(31)===1.U,intermediate,Cat(0xffffffffL.U,intermediate))
+  regs.io.wdata:=Mux(intermediate(31)=/=1.U,intermediate,Cat(0xffffffffL.U,intermediate))
   regs.io.waddr:=dest
   regs.io.wen:=1.U
 }.elsewhen(pt0==="b0000000".U && pt3==="b010".U && pt5==="b01100".U && pt6==="b11".U){    // slt    
@@ -184,7 +184,7 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
   regs.io.raddr2:=rs2
   src1:=regs.io.rdata1
   src2:=regs.io.rdata2
-  regs.io.wdata:=(Mux(src1.asSInt<src2.asSInt,0.U,1.U)).asUInt
+  regs.io.wdata:=(Mux(src1.asSInt<src2.asSInt,1.U,0.U)).asUInt
   regs.io.waddr:=dest
   regs.io.wen:=1.U
 }.elsewhen(pt0==="b0000000".U && pt3==="b011".U && pt5==="b01100".U && pt6==="b11".U){    // sltu   
@@ -192,7 +192,7 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
   regs.io.raddr2:=rs2
   src1:=regs.io.rdata1
   src2:=regs.io.rdata2
-   regs.io.wdata:=Mux(src1.asUInt<src2.asUInt,0.U,1.U) 
+   regs.io.wdata:=Mux(src1.asUInt<src2.asUInt,1.U,0.U) 
    regs.io.waddr:=dest
    regs.io.wen:=1.U
 }.elsewhen(pt0==="b0100000".U && pt3==="b101".U && pt5==="b01100".U && pt6==="b11".U){    // sra    
@@ -209,7 +209,7 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
   src1:=regs.io.rdata1
   src2:=regs.io.rdata2
   intermediate:=(src1.asSInt>>src2(4,0)).asUInt
-  regs.io.wdata:=Mux(intermediate(31)===1.U,intermediate,Cat(0xffffffffL.U,intermediate))
+  regs.io.wdata:=Mux(intermediate(31)=/=1.U,intermediate,Cat(0xffffffffL.U,intermediate))
   regs.io.waddr:=dest
   regs.io.wen:=1.U
 }.elsewhen(pt0==="b0000000".U && pt3==="b101".U && pt5==="b01100".U && pt6==="b11".U){    // srl    
@@ -226,7 +226,7 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
   src1:=regs.io.rdata1
   src2:=regs.io.rdata2
   intermediate:=(src1.asUInt>>src2(4,0)).asUInt
-  regs.io.wdata:=Mux(intermediate(31)===1.U,intermediate,Cat(0xffffffffL.U,intermediate))
+  regs.io.wdata:=Mux(intermediate(31)=/=1.U,intermediate,Cat(0xffffffffL.U,intermediate))
   regs.io.waddr:=dest
   regs.io.wen:=1.U
 }.elsewhen(pt0==="b0100000".U && pt3==="b000".U && pt5==="b01100".U && pt6==="b11".U){    // sub    
@@ -242,7 +242,7 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
   regs.io.raddr2:=rs2
   src1:=regs.io.rdata1
   src2:=regs.io.rdata2
-  regs.io.wdata:=Mux((src1-src2)(31)===1.U,(src1-src2),Cat(0xffffffffL.U,(src1-src2)))
+  regs.io.wdata:=Mux((src1-src2)(31)=/=1.U,(src1-src2),Cat(0xffffffffL.U,(src1-src2)))
   regs.io.waddr:=dest
   regs.io.wen:=1.U
 }.elsewhen(pt0==="b0000000".U && pt3==="b100".U && pt5==="b01100".U && pt6==="b11".U){    // xor    
@@ -301,7 +301,7 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
   src1:=regs.io.rdata1
   src2:=regs.io.rdata2
   intermediate:=src1*src2
-  regs.io.wdata:=Mux(intermediate(31)===1.U,intermediate,Cat(0xffffffffL.U,intermediate))
+  regs.io.wdata:=Mux(intermediate(31)=/=1.U,intermediate,Cat(0xffffffffL.U,intermediate))
   regs.io.waddr:=dest
   regs.io.wen:=1.U
 }.elsewhen(pt0==="b0000001".U && pt3==="b010".U && pt5==="b01100".U && pt6==="b11".U){    // mulhsu 
@@ -319,7 +319,7 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
   regs.io.raddr2:=rs2
   src1:=regs.io.rdata1
   src2:=regs.io.rdata2
-  regs.io.wdata:=Mux((src1*src2)(31)===1.U,(src1*src2),Cat(0xffffffffL.U,(src1*src2)))
+  regs.io.wdata:=Mux((src1*src2)(31)=/=1.U,(src1*src2),Cat(0xffffffffL.U,(src1*src2)))
   regs.io.waddr:=dest
   regs.io.wen:=1.U
   /*
@@ -370,7 +370,7 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
   src1:=regs.io.rdata1
   src2:=immI
   intermediate:=(src1+src2)(31,0)
-  regs.io.wdata:=Mux(intermediate(31)===1.U,intermediate,Cat(0xffffffffL.U,intermediate))
+  regs.io.wdata:=Mux(intermediate(31)=/=1.U,intermediate,Cat(0xffffffffL.U,intermediate))
   regs.io.waddr:=dest
   regs.io.wen:=1.U
 }.elsewhen(pt3==="b111".U && pt5==="b00100".U && pt6==="b11".U){    // andi   
@@ -397,7 +397,7 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
   io.Men:=1.U
   io.Maddr:=src1+src2
   io.Mlen:=4.U
-  regs.io.wdata:=Mux((io.MdataIn)(31)===1.U,(io.MdataIn),Cat(0xffffffffL.U,(io.MdataIn(31,0))))
+  regs.io.wdata:=Mux((io.MdataIn)(31)=/=1.U,(io.MdataIn),Cat(0xffffffffL.U,(io.MdataIn(31,0))))
   regs.io.waddr:=dest
   regs.io.wen:=1.U
 }.elsewhen(pt3==="b001".U && pt5==="b00000".U && pt6==="b11".U){    // lh     
@@ -407,7 +407,7 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
   io.Men:=1.U
   io.Maddr:=src1+src2
   io.Mlen:=4.U
-  regs.io.wdata:=Mux((io.MdataIn)(15)===1.U,(io.MdataIn),Cat(0xffffffffffffL.U,(io.MdataIn(15,0))))
+  regs.io.wdata:=Mux((io.MdataIn)(15)=/=1.U,(io.MdataIn),Cat(0xffffffffffffL.U,(io.MdataIn(15,0))))
   regs.io.waddr:=dest
   regs.io.wen:=1.U
 }.elsewhen(pt3==="b000".U && pt5==="b00000".U && pt6==="b11".U){    // lb     
@@ -417,7 +417,7 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
   io.Men:=1.U
   io.Maddr:=src1+src2
   io.Mlen:=4.U
-  regs.io.wdata:=Mux((io.MdataIn)(7)===1.U,(io.MdataIn),Cat(0xffffffffffffL.U,(io.MdataIn(7,0))))
+  regs.io.wdata:=Mux((io.MdataIn)(7)=/=1.U,(io.MdataIn),Cat(0xffffffffffffL.U,(io.MdataIn(7,0))))
   regs.io.waddr:=dest
   regs.io.wen:=1.U
 }.elsewhen(pt3==="b110".U && pt5==="b00000".U && pt6==="b11".U){    // lwu    
@@ -465,14 +465,14 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
   regs.io.raddr1:=rs1
   src1:=regs.io.rdata1
   src2:=immI
-  regs.io.wdata:=(Mux(src1.asSInt<src2.asSInt,0.U,1.U)).asUInt
+  regs.io.wdata:=(Mux(src1.asSInt<src2.asSInt,1.U,0.U)).asUInt
   regs.io.waddr:=dest
   regs.io.wen:=1.U
 }.elsewhen(pt3==="b011".U && pt5==="b00100".U && pt6==="b11".U){    // sltiu  
   regs.io.raddr1:=rs1
   src1:=regs.io.rdata1
   src2:=immI
-  regs.io.wdata:=Mux(src1<src2,0.U,1.U)
+  regs.io.wdata:=Mux(src1<src2,1.U,0.U)
   regs.io.waddr:=dest
   regs.io.wen:=1.U
 }.elsewhen(pt0==="b0100000".U && pt3==="b101".U && pt5==="b00100".U && pt6==="b11".U){    // srai   
@@ -551,28 +551,28 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
   regs.io.raddr2:=rs2
   src1:=regs.io.rdata1
   src2:=regs.io.rdata2
-  dpc:=(Mux((src1.asSInt===src2.asSInt),pc,pc+dest)).asUInt
+  dpc:=(Mux((src1.asSInt=/=src2.asSInt),pc,pc+dest)).asUInt
 }.elsewhen(pt3==="b101".U && pt5==="b11000".U && pt6==="b11".U){    // bge    
   dest:=immB
   regs.io.raddr1:=rs1
   regs.io.raddr2:=rs2
   src1:=regs.io.rdata1
   src2:=regs.io.rdata2
-  pc:=(Mux((src1.asSInt>=src2.asSInt),pc,pc+dest)).asUInt
+  pc:=(Mux((src1.asSInt<src2.asSInt),pc,pc+dest)).asUInt
 }.elsewhen(pt3==="b111".U && pt5==="b11000".U && pt6==="b11".U){    // bgeu   
   dest:=immB
   regs.io.raddr1:=rs1
   regs.io.raddr2:=rs2
   src1:=regs.io.rdata1
   src2:=regs.io.rdata2
-  pc:=Mux((src1.asUInt>=src2.asUInt),pc,pc+dest)
+  pc:=Mux((src1.asUInt<src2.asUInt),pc,pc+dest)
 }.elsewhen(pt3==="b100".U && pt5==="b11000".U && pt6==="b11".U){    // blt    
   dest:=immB
   regs.io.raddr1:=rs1
   regs.io.raddr2:=rs2
   src1:=regs.io.rdata1
   src2:=regs.io.rdata2
-  dpc:=(Mux((src1.asUInt<src2.asUInt),pc,pc+dest)).asUInt
+  dpc:=(Mux((src1.asUInt>=src2.asUInt),pc,pc+dest)).asUInt
 }.elsewhen(pt3==="b110".U && pt5==="b11000".U && pt6==="b11".U){    // bltu   
   dest:=immB
   regs.io.raddr1:=rs1
@@ -585,7 +585,7 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
   regs.io.raddr2:=rs2
   src1:=regs.io.rdata1
   src2:=regs.io.rdata2
-  dpc:=Mux((src1.asUInt=/=src2.asUInt),pc,pc+dest)
+  dpc:=Mux((src1.asUInt===src2.asUInt),pc,pc+dest)
 }.elsewhen(pt5==="b11011".U && pt6==="b11".U){    // jal    
   src1:=immJ
   regs.io.wdata:=pc+4.U
@@ -599,5 +599,5 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
   stopflag:=1.U
 }
   //update pc reg
-  pc:=Mux(stopflag===1.U,dpc,pc)
+  pc:=Mux(stopflag=/=1.U,dpc,pc)
 }
