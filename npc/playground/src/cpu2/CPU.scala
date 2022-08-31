@@ -200,7 +200,6 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
   regs.io.raddr2:=rs2
   src1:=regs.io.rdata1
   src2:=regs.io.rdata2
-}
   regs.io.wdata:=(src1.asSInt>>src2(5,0).asUInt).asUInt//????
   regs.io.waddr:=dest
   regs.io.wen:=1.U
