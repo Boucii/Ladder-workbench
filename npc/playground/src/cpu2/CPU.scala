@@ -599,5 +599,5 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
   stopflag:=1.U
 }
   //update pc reg
-  pc:=Mux(stopflag===1.U,dpc,pc)
+  pc:=Mux(stopflag=/=1.U,dpc,pc)
 }
