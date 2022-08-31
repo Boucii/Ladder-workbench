@@ -559,7 +559,6 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
   src1:=regs.io.rdata1
   src2:=regs.io.rdata2
   pc:=(Mux((src1.asSInt<src2.asSInt),pc,pc+dest)).asUInt
-}
 }.elsewhen(pt3==="b111".U && pt5==="b11000".U && pt6==="b11".U){    // bgeu   
   dest:=immB
   regs.io.raddr1:=rs1
