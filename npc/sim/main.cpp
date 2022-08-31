@@ -13,6 +13,8 @@
 
 using namespace std;
 
+#define MAX_TIME 50
+
 //from memory.h
 extern int mem_init();
 extern uint64_t pmem_read(int addr);
@@ -76,7 +78,7 @@ int main(int argc, char** argv, char** env){
   reset(10);
   cout<<"\nstart simulating\n";
   dumpwave();
-  while (time<50) {
+  while (time<MAX_TIME) {
     cout<<"cycle "<<time<<" passed\n";
     //instruction fetch
     int addr=(int)(top->io_InstAddr);
@@ -98,9 +100,13 @@ int main(int argc, char** argv, char** env){
     single_cycledown();
     //check for trap
     if(Check()){
+      cout<<"HIT GOOD TRAP"<<endl;
       break;  
     }
     time++;
+  }
+  if(time==MAX_TIME){
+      cout<<"HIT BAD TRAP"<<endl;
   }
   cout<<"simulation over\n";
   delete top;
