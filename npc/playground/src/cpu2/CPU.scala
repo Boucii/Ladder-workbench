@@ -97,7 +97,6 @@ class TOP extends Module{
   io.MdataOut:=0.U
 
 
-/*
 when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd     
   dest:=immS
   regs.io.raddr1:=rs1
@@ -170,6 +169,8 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
   regs.io.wdata:=(src1(63,0)<<src2(5,0))
   regs.io.waddr:=dest(18,0)
   regs.io.wen:=1.U
+
+/*
 }.elsewhen(pt0==="b0000000".U && pt3==="b001".U && pt5==="b01110".U && pt6==="b11".U){    // sllw   
   regs.io.raddr1:=rs1
   regs.io.raddr2:=rs2
