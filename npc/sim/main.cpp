@@ -54,7 +54,7 @@ void reset(int n) {
 
 int main(int argc, char** argv, char** env){
   cout<<argc<<endl;
-  cout<<"argvs:"<<argv[0]<<argv[1]<<argv[2]<<argv[3]<<endl;
+  cout<<"argvs:"<<argv[0]<<argv[1]<<endl;
   contextp = new VerilatedContext;
   contextp->commandArgs(argc, argv);
   top= new VTOP{contextp};
