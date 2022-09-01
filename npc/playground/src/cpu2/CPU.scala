@@ -2,10 +2,23 @@ package cpu2
 import chisel3._
 import chisel3.experimental._
 import chisel3.util._
+class Regfile extends BlackBox{
+  val io = IO(new Bundle {
+    val clk=Input(Clock())
+    val rst=Input(Bool())
+    val raddr1=Input(UInt(5.W))
+    val rdata1=Output(UInt(64.W))
+    val raddr2=Input(UInt(5.W))
+    val rdata2=Output(UInt(64.W))
+    val wen=Input(Bool())
+    val waddr=Input(UInt(5.W))
+    val wdata=Input(UInt(64.W))
+  })
+}
 class funcs extends BlackBox{
   val io = IO(new Bundle {
     val stop = Input(UInt(1.W))
-    val regsout = Input(Vec(32, UInt(64.W)))
+    //val regsout = Input(Vec(32, UInt(64.W)))
   })
 }
 class TOP extends Module{
@@ -25,14 +38,16 @@ class TOP extends Module{
   val pc=RegInit(0x80000000L.U(64.W))//todo :modify pc to branches
   val regs=Module(new Regfile)
   val stopflag=Wire(UInt(1.W))
-  val dpic_tunn=Module(new funcs)
+  //val dpic_tunn=Module(new funcs)
 
   //io for blackbox
   stopflag:=0.U
-  dpic_tunn.io.stop:=stopflag
-  dpic_tunn.io.regsout:=regs.io.regsout
+  //dpic_tunn.io.stop:=stopflag
+  //dpic_tunn.io.regsout:=regs.io.regsout
 
-
+  regs.io.clk:=clock
+  regs.io.rst:=reset.asBool
+  
   regs.io.waddr:=0.U
   regs.io.raddr1:=0.U
   regs.io.raddr2:=0.U
