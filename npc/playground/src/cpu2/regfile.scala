@@ -16,7 +16,6 @@ class Regfile extends Module{
 
   val regsout=Output(Vec(32,UInt(64.W)))
   })
-  //val regs=Wire(RegInit(Vec(32, UInt(XLEN.W))))
   val regs=Reg(Vec(32,UInt(64.W)))
   for (i<-0 to 32-1) {
       io.regsout:=regs(i)
