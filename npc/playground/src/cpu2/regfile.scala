@@ -13,15 +13,14 @@ class Regfile extends Module{
   val wen=Input(Bool())
   val waddr=Input(UInt(5.W))
   val wdata=Input(UInt(64.W))
+
+  val regsout=Output(Vec(32,UInt(64.W)))
   })
   //val regs=Wire(RegInit(Vec(32, UInt(XLEN.W))))
   val regs=Reg(Vec(32,UInt(64.W)))
-  /*
   for (i<-0 to 32-1) {
-      regs(i):=0.U
+      io.regsout:=regs(i)
   }
-  */
-
   val data1=Mux((io.raddr1===0.U),0.U,regs(io.raddr1))
   val data2=Mux((io.raddr2===0.U),0.U,regs(io.raddr2))
   dontTouch(regs)

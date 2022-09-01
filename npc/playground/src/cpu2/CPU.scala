@@ -5,6 +5,7 @@ import chisel3.util._
 class funcs extends BlackBox{
   val io = IO(new Bundle {
     val stop = Input(UInt(1.W))
+    val regsout = Input(Vec(32, UInt(64.W)))
   })
 }
 class TOP extends Module{
@@ -24,10 +25,13 @@ class TOP extends Module{
   val pc=RegInit(0x80000000L.U(64.W))//todo :modify pc to branches
   val regs=Module(new Regfile)
   val stopflag=Wire(UInt(1.W))
-  val nemu_stop=Module(new funcs)
+  val pdic_tunn=Module(new funcs)
 
+  //io for blackbox
   stopflag:=0.U
-  nemu_stop.io.stop:=stopflag
+  dpic_tunn.io.stop:=stopflag
+  dpic_tunn.io.regsout:=regs.io.regsout
+
 
   regs.io.waddr:=0.U
   regs.io.raddr1:=0.U
