@@ -18,7 +18,7 @@ class Regfile extends Module{
   })
   val regs=Reg(Vec(32,UInt(64.W)))
   for (i<-0 to 32-1) {
-      io.regsout:=regs(i)
+      io.regsout(i):=regs(i)
   }
   val data1=Mux((io.raddr1===0.U),0.U,regs(io.raddr1))
   val data2=Mux((io.raddr2===0.U),0.U,regs(io.raddr2))
