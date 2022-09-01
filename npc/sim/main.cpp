@@ -9,7 +9,7 @@
 #include "memory.h"
 #include <svdpi.h>
 #include "VTOP__Dpi.h"
-
+#include "verilated_dpi.h"
 
 using namespace std;
 
