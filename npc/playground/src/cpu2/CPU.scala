@@ -38,12 +38,12 @@ class TOP extends Module{
   val pc=RegInit(0x80000000L.U(64.W))//todo :modify pc to branches
   val regs=Module(new Regfile)
   val stopflag=Wire(UInt(1.W))
-  val dpic_tunn=Module(new funcs)
+  val npc_ctl=Module(new funcs)
 
   //io for blackbox
   stopflag:=0.U
-  dpic_tunn.io.stop:=stopflag
-  dpic_tunn.io.regsout:=regs.io.regsout
+  npc_ctl.io.stop:=stopflag
+  npc_ctl.io.regsout:=regs.io.regsout
 
   regs.io.clk:=clock
   regs.io.rst:=reset.asBool
