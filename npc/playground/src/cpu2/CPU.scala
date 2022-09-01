@@ -43,7 +43,6 @@ class TOP extends Module{
   //io for blackbox
   stopflag:=0.U
   npc_ctl.io.stop:=stopflag
-  npc_ctl.io.regsout:=regs.io.regsout
 
   regs.io.clk:=clock
   regs.io.rst:=reset.asBool
