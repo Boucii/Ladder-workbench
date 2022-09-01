@@ -1,6 +1,6 @@
 module automatic funcs
 (
-    input wire  stop,
+    input wire  stop
     //input reg[63:0] regsout[0:31]
 );
 

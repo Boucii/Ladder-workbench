@@ -1,4 +1,4 @@
-module regfile(
+module Regfile(
   input wire clk,
   input wire rst,
 
