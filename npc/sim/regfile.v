@@ -1,3 +1,6 @@
+import "DPI-C" function void set_gpr_ptr(input logic [63:0] a []);
+initial set_gpr_ptr(regs);  // rf为通用寄存器的二维数组变量
+
 module Regfile(
   input wire clk,
   input wire rst,
@@ -38,8 +41,8 @@ module Regfile(
 	  end
   end
 
-  import "DPI-C" function void set_gpr_ptr(input logic [63:0] a [0:31]);
-  initial set_gpr_ptr(regs);  // rf为通用寄存器的二维数组变量
+
+
 
 
 endmodule
