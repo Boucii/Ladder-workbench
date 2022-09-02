@@ -11,6 +11,7 @@
 #include "VTOP__Dpi.h"
 #include "verilated_dpi.h"
 
+//possible to change context when invoking getregs
 using namespace std;
 
 #define MAX_TIME 50
