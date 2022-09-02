@@ -35,12 +35,16 @@ genwave:
 
 .PHONY: test verilog help compile bsp reformat checkformat clean genwave sim wave debug
 
+CXXFLAGS += $(shell llvm-config-14 --cxxflags) 
+CXXFLAGS += -g
+LDFLAGS += $(shell llvm-config-14 --ldflags) 
+
 sim:
 	$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
 #	@echo "Write this Makefile by yourself."
 #	verilator --cc --exe --build --trace -CFLAGS -g  -Isim/ $(CSRCS) $(VSRCS) --Mdir $(BUILD_DIR)/SimGen #sim/memory.cpp sim/main.cpp build/TOP.v
 
-	verilator --cc --exe --build --trace -CFLAGS -g  -Isim/ $(CSRCS) $(VSRCS) --Mdir $(BUILD_DIR)/SimGen 
+	verilator --cc --exe --build --trace -CFLAGS $(CXXFLAGS) -LDFLAGS $(LDFLAGS) -Isim/ $(CSRCS) $(VSRCS) --Mdir $(BUILD_DIR)/SimGen 
 
 wave:
 	@echo "Hello from npc"
