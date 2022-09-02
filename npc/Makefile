@@ -46,7 +46,7 @@ sim:
 
 	verilator --cc --exe --build --trace -Isim/ $(CSRCS) $(VSRCS) --Mdir $(BUILD_DIR)/SimGen  -CFLAGS $(CXXFLAGS) -LDFLAGS $(LDFLAGS) 
 
-	#verilator --cc --exe --build --trace -CFLAGS $(CXXFLAGS) -LDFLAGS $(LDFLAGS) -Isim/ $(CSRCS) $(VSRCS) --Mdir $(BUILD_DIR)/SimGen 
+	#verilator --cc --exe --build --trace -CFLAGS "$(CXXFLAGS)" -LDFLAGS "$(LDFLAGS)" -Isim/ $(CSRCS) $(VSRCS) --Mdir $(BUILD_DIR)/SimGen 
 	#verilator --cc --exe --build --trace -Isim/ $(CSRCS) $(VSRCS) --Mdir $(BUILD_DIR)/SimGen 
 wave:
 	@echo "Hello from npc"
