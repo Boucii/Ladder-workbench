@@ -44,9 +44,9 @@ sim:
 #	@echo "Write this Makefile by yourself."
 #	verilator --cc --exe --build --trace -CFLAGS -g  -Isim/ $(CSRCS) $(VSRCS) --Mdir $(BUILD_DIR)/SimGen #sim/memory.cpp sim/main.cpp build/TOP.v
 
-	verilator --cc --exe --build --trace -Isim/ $(CSRCS) $(VSRCS) --Mdir $(BUILD_DIR)/SimGen  -CFLAGS $(CXXFLAGS) -LDFLAGS $(LDFLAGS) 
+	#verilator --cc --exe --build --trace -Isim/ $(CSRCS) $(VSRCS) --Mdir $(BUILD_DIR)/SimGen  -CFLAGS $(CXXFLAGS) -LDFLAGS $(LDFLAGS) 
 
-	#verilator --cc --exe --build --trace -CFLAGS "$(CXXFLAGS)" -LDFLAGS "$(LDFLAGS)" -Isim/ $(CSRCS) $(VSRCS) --Mdir $(BUILD_DIR)/SimGen 
+	verilator --cc --exe --build --trace -CFLAGS "$(CXXFLAGS)" -LDFLAGS "$(LDFLAGS)" -Isim/ $(CSRCS) $(VSRCS) --Mdir $(BUILD_DIR)/SimGen 
 	#verilator --cc --exe --build --trace -Isim/ $(CSRCS) $(VSRCS) --Mdir $(BUILD_DIR)/SimGen 
 wave:
 	@echo "Hello from npc"
