@@ -38,7 +38,7 @@ genwave:
 CXXFLAGS += $(shell llvm-config-14 --cxxflags) 
 CXXFLAGS += -g
 LDFLAGS += $(shell llvm-config-14 --ldflags) 
-CXXFLAGS+= $(shell llvm-config-14 --libs all)
+LDFLAGS += $(shell llvm-config-14 --libs all)
 
 
 sim:
