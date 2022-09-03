@@ -7,4 +7,4 @@
 
 using namespace std;
 void Log(string content);
-void LogInit()
+void LogInit();
