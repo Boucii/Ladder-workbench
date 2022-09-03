@@ -1,5 +1,4 @@
 #include "log.h"
-using namesapce std
 
 ofstram fout;
 
