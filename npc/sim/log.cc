@@ -1,6 +1,6 @@
 #include "log.h"
 
-ofstram fout;
+ofstram fout("../build/log/npc_log.txt",ios::out);
 
 void Log(string content){
     fout<<content<<endl;
@@ -8,6 +8,5 @@ void Log(string content){
 
 
 void LogInit(){
-  fout.open("../build/log/npc_log.txt",ios::out);
   assert(fout.isopen());
 }
