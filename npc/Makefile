@@ -38,16 +38,13 @@ genwave:
 CXXFLAGS += $(shell llvm-config-14 --cxxflags) 
 CXXFLAGS += -g
 LDFLAGS += $(shell llvm-config-14 --ldflags) 
+CXXFLAGS+= $(shell llvm-config-14 --libs all)
+
 
 sim:
 	$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
 #	@echo "Write this Makefile by yourself."
-#	verilator --cc --exe --build --trace -CFLAGS -g  -Isim/ $(CSRCS) $(VSRCS) --Mdir $(BUILD_DIR)/SimGen #sim/memory.cpp sim/main.cpp build/TOP.v
-
-	#verilator --cc --exe --build --trace -Isim/ $(CSRCS) $(VSRCS) --Mdir $(BUILD_DIR)/SimGen  -CFLAGS $(CXXFLAGS) -LDFLAGS $(LDFLAGS) 
-
 	verilator --cc --exe --build --trace -CFLAGS "$(CXXFLAGS)" -LDFLAGS "$(LDFLAGS)" -Isim/ $(CSRCS) $(VSRCS) --Mdir $(BUILD_DIR)/SimGen 
-	#verilator --cc --exe --build --trace -Isim/ $(CSRCS) $(VSRCS) --Mdir $(BUILD_DIR)/SimGen 
 wave:
 	@echo "Hello from npc"
 	@echo $(IMAGE)
