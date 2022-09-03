@@ -23,7 +23,10 @@
 #define ANSI_BG_WHITE   "\33[1;47m"
 #define ANSI_NONE       "\33[0m"
 #define ANSI_FMT(str, fmt) fmt str ANSI_NONE
-#define log_write(...) 
+
+char *log_fp="../build/log/npc_log.txt";
+
+#define log_write(...) \
   do { \
     extern FILE* log_fp; \
       fprintf(log_fp, __VA_ARGS__); \
@@ -40,7 +43,6 @@
     _Log(ANSI_FMT("[%s:%d %s] " format, ANSI_FG_BLUE) "\n", \
         __FILE__, __LINE__, __func__, ## __VA_ARGS__)
 
-char *log_fp="../build/log/npc_log.txt";
 void LogInit(){
   if(log_file!=NULL){
     FILE *fp = fopen(log_file, "w");
