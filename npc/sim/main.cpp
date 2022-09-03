@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
+#include <string>
 #include "VTOP.h"
 #include <verilated.h>
 #include "verilated_vcd_c.h"
@@ -40,7 +41,8 @@ void dump_gpr() {
     printf("gpr[%d] = 0x%lx\n", i, cpu_gpr[i]);
   }
 }
-
+extern void disassemble(char *str, int size, uint64_t pc, uint8_t *code, int nbyte);
+char logbuf[50]="\0";
 //Start of Program
 static VTOP* top;
 VerilatedVcdC* tfp=NULL;
@@ -98,7 +100,14 @@ int main(int argc, char** argv, char** env){
     cout<<"cycle "<<time<<" passed\n";
     //instruction fetch
     int addr=(int)(top->io_InstAddr);
-    top->io_InstIn = (uint32_t)pmem_read(addr);
+    Log("0x")
+    Log(to_string(addr));
+    Log(":	");
+    uint32_t cur_inst = (uint32_t)pmem_read(addr);
+    top->io_InstIn = cur_inst;
+    disassemble(logbuf, 0,addr, cur_inst, 4);
+    string temp=logbuf;
+    Log(temp);
     //memory read/write
     single_cycleup();
     if(top->io_Men){
