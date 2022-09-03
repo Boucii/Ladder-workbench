@@ -1,9 +1,4 @@
 #include "log.h"
-#include <cstdio>
-#include <cassert>
-#include <cstdlib>
-#include <fstream>
-#include <string>
 using namesapce std
 
 ofstram fout;
