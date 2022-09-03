@@ -46,13 +46,13 @@ sim:
 #	@echo "Write this Makefile by yourself."
 	verilator --cc --exe --build --trace -CFLAGS "$(CXXFLAGS)" -LDFLAGS "$(LDFLAGS)" -Isim/ $(CSRCS) $(VSRCS) --Mdir $(BUILD_DIR)/SimGen 
 wave:
-	@echo "Hello from npc"
+	#@echo "Hello from npc"
 	@echo $(IMAGE)
 	./build/SimGen/VTOP $(IMAGE) $(IMAGE)
 	gtkwave wave.vcd
 
 debug:
-	@echo "Hello from npc"
+	#@echo "Hello from npc"
 	@echo $(IMAGE)
 	gdb ./build/SimGen/VTOP $(IMAGE) $(IMAGE)  -tui
 
