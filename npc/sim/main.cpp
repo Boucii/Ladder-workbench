@@ -10,6 +10,7 @@
 #include <svdpi.h>
 #include "VTOP__Dpi.h"
 #include "verilated_dpi.h"
+#include "log.h"
 
 //possible to change context when invoking getregs
 using namespace std;
