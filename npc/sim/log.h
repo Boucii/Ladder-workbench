@@ -4,6 +4,6 @@
 #include <fstream>
 #include <string>
 
-using namesapce std
+using namespace std;
 void Log(string content);
 void LogInit()
