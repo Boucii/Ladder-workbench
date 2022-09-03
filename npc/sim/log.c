@@ -1,7 +1,7 @@
 #include "log.h"
-#include <cstdio>
-#include <cassert>
-#include <cstdlib>
+#include <stdio.h>
+#include <assert.h>
+#include <stdlib.h>
 
 // ----------- log -----------
 
