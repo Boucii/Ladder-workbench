@@ -30,6 +30,7 @@ extern "C" svBit Check();
 
 uint64_t *cpu_gpr = NULL;
 
+const svOpenArrayHandle r=new svOpenArrayHandle();
 extern "C" void set_gpr_ptr(const svOpenArrayHandle r) {
   cpu_gpr = (uint64_t *)(((VerilatedDpiOpenVar*)r)->datap());
 }
@@ -85,7 +86,7 @@ int main(int argc, char** argv, char** env){
   assert(scope);  // Check for nullptr if scope not found
   svSetScope(scope);
 
-  set_gpr_ptr();
+  set_gpr_ptr(r);
 
   contextp->traceEverOn(true); //打开追踪功能
   tfp = new VerilatedVcdC; //初始化VCD对象指针
