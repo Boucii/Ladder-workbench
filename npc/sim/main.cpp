@@ -41,7 +41,7 @@ void dump_gpr() {
     printf("gpr[%d] = 0x%lx\n", i, cpu_gpr[i]);
   }
 }
-void disassemble(char *str, int size, uint64_t pc, uint8_t *code, int nbyte);
+extern void disassemble(char *str, int size, uint64_t pc, uint8_t *code, int nbyte);
 char logbuf[50]="\0";
 //Start of Program
 static VTOP* top;
