@@ -5,9 +5,9 @@
 #include <string>
 #include "VTOP.h"
 //#include <verilated.h>
-//#include "verilated_vcd_c.h"
+#include "verilated_vcd_c.h"
 #include "memory.h"
-#include <svdpi.h>
+//#include <svdpi.h>
 //#include "VTOP__Dpi.h"
 #include "verilated_dpi.h"
 #include "log.h"
