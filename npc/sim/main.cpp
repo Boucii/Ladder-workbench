@@ -41,7 +41,9 @@ void dump_gpr() {
     printf("gpr[%d] = 0x%lx\n", i, cpu_gpr[i]);
   }
 }
+extern void init_disasm(const char *triple);
 extern void disassemble(char *str, int size, uint64_t pc, uint8_t *code, int nbyte);
+
 char logbuf[50]="\0";
 //Start of Program
 static VTOP* top;
@@ -95,6 +97,7 @@ int main(int argc, char** argv, char** env){
   int time=0;
   mem_init();
   load_img(argv);
+  init_disasm("riscv64","bad","-pc-linux-gnu");
   reset(10);
   cout<<"\nstart simulating\n";
   dumpwave();

@@ -96,7 +96,7 @@ void disassemble(char *str, int size, uint64_t pc, uint8_t *code, int nbyte) {
   uint64_t dummy_size ;
   std::string s1;
   raw_string_ostream os1(s1);
-  gDisassembler->getInstruction(inst, dummy_size, arr, pc, llvm::nulls());
+  gDisassembler->getInstruction(inst, dummy_size, arr, pc, os1);// llvm::nulls());
 
   std::string s;
   raw_string_ostream os(s);
