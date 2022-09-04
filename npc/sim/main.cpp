@@ -8,8 +8,8 @@
 #include "verilated_vcd_c.h"
 #include "memory.h"
 #include <svdpi.h>
-#include "VTOP__Dpi.h"
-//#include "verilated_dpi.h"
+//#include "VTOP__Dpi.h"
+#include "verilated_dpi.h"
 #include "log.h"
 
 //possible to change context when invoking getregs
