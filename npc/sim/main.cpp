@@ -43,7 +43,7 @@ void dump_gpr() {
   }
 }
 extern void disassemble(char *str, int size, uint64_t pc, uint8_t *code, int nbyte);
-char logbuf[50]="\0";
+char logbuf[100]="\0";
 //Start of Program
 static VTOP* top;
 VerilatedVcdC* tfp=NULL;
@@ -109,7 +109,7 @@ int main(int argc, char** argv, char** env){
     uint32_t cur_inst = (uint32_t)pmem_read(addr);
     top->io_InstIn = cur_inst;
     uint8_t *instaddr=(uint8_t *)&cur_inst;
-    disassemble(logbuf, 50,addr, instaddr, 4);
+    disassemble(logbuf, 90,addr, instaddr, 4);
     string temp=logbuf;
     Log(temp);
     Log("\n");
