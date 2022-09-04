@@ -95,6 +95,7 @@ int main(int argc, char** argv, char** env){
   tfp->open("wave.vcd"); //设置输出的文件wave.vcd
 
   int time=0;
+  LogInit();
   mem_init();
   load_img(argv);
   init_disasm("riscv64-pc-linux-gnu");
