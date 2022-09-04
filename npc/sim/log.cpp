@@ -1,6 +1,6 @@
 #include "log.h"
 
-ofstream fout("./build/npc_log.txt",ios::out);
+ofstream fout("./build/npc_log.txt",ios::out|ios::trunc);
 
 void LogInit(){
   cout<<"Current path is:"<<getcwd(NULL,0)<<'\n';
