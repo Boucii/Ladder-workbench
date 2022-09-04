@@ -48,13 +48,13 @@ sim:
 wave:
 	#@echo "Hello from npc"
 	@echo $(IMAGE)
-	./build/SimGen/VTOP $(IMAGE) $(IMAGE)
+	./build/SimGen/VTOP $(IMAGE)
 	gtkwave wave.vcd
 
 debug:
 	#@echo "Hello from npc"
 	@echo $(IMAGE)
-	gdb ./build/SimGen/VTOP $(IMAGE) $(IMAGE)  -tui
+	gdb ./build/SimGen/VTOP $(IMAGE) -tui
 
 
 include ../Makefile

@@ -28,4 +28,5 @@ run: image
 	$(MAKE) -C $(NPC_HOME) IMAGE=$(IMAGE).bin wave 
 
 gdb: image
+	export IMAGE=$(IMAGE)
 	$(MAKE) -C $(NPC_HOME) IMAGE=$(IMAGE).bin debug
