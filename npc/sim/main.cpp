@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <assert.h>
 #include <string>
-//#include "VTOP.h"
+#include "VTOP.h"
 //#include <verilated.h>
 #include "verilated_vcd_c.h"
 #include "memory.h"
