@@ -54,7 +54,7 @@ wave:
 debug:
 	#@echo "Hello from npc"
 	@echo $(IMAGE)
-	gdb ./build/SimGen/VTOP $(IMAGE) -tui
+	gdb  -tui --args ./build/SimGen/VTOP $(IMAGE) 
 
 
 include ../Makefile

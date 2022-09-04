@@ -7,4 +7,5 @@ void LogInit(){
 }
 void Log(string content){
     fout<<content<<endl;
+    fout.sync();
 }
