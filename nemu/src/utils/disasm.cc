@@ -23,7 +23,7 @@ static llvm::MCDisassembler *gDisassembler = nullptr;
 static llvm::MCSubtargetInfo *gSTI = nullptr;
 static llvm::MCInstPrinter *gIP = nullptr;
 
-void init_disasm(const char *triple) {
+extern "C" void init_disasm(const char *triple) {
   llvm::InitializeAllTargetInfos();
   llvm::InitializeAllTargetMCs();
   llvm::InitializeAllAsmParsers();
