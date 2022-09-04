@@ -1,5 +1,4 @@
 #include <iostream>
-#include <svdpi.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
@@ -10,7 +9,7 @@
 #include "memory.h"
 #include <svdpi.h>
 #include "VTOP__Dpi.h"
-#include "verilated_dpi.h"
+//#include "verilated_dpi.h"
 #include "log.h"
 
 //possible to change context when invoking getregs
