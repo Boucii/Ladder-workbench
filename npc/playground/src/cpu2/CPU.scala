@@ -606,6 +606,7 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
   dpc:=Mux((src1.asUInt===src2.asUInt),pc,pc+dest)
 }.elsewhen(pt5==="b11011".U && pt6==="b11".U){    // jal    
   src1:=immJ
+  println(s"\nimmJ= $immJ")
   regs.io.wdata:=pc+4.U
   regs.io.waddr:=dest
   regs.io.wen:=1.U
