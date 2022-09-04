@@ -97,7 +97,7 @@ int main(int argc, char** argv, char** env){
   int time=0;
   mem_init();
   load_img(argv);
-  init_disasm("riscv64","-pc-linux-gnu");
+  init_disasm("riscv64-pc-linux-gnu");
   reset(10);
   cout<<"\nstart simulating\n";
   dumpwave();
