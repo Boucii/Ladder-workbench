@@ -7,6 +7,6 @@ void LogInit(){
   assert(fout.is_open());
 }
 void Log(string content){
-    fout<<content<<endl;
+    fout<<content;
     sync();
 }

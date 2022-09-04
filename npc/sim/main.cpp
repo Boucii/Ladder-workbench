@@ -107,7 +107,9 @@ int main(int argc, char** argv, char** env){
     //instruction fetch
     int addr=(int)(top->io_InstAddr);
     Log("0x");
-    Log(to_string(addr));
+    char hex_string[20];
+    sprintf(hex_string, "%X", addr);
+    Log(hex_string);
     Log(":	");
     uint32_t cur_inst = (uint32_t)pmem_read(addr);
     top->io_InstIn = cur_inst;
