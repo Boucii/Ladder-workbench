@@ -5,7 +5,7 @@
 #include <assert.h>
 #include <string>
 #include "VTOP.h"
-#include <verilated.h>
+//#include <verilated.h>
 #include "verilated_vcd_c.h"
 #include "memory.h"
 #include <svdpi.h>
