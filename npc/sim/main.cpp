@@ -109,7 +109,8 @@ int main(int argc, char** argv, char** env){
     uint32_t cur_inst = (uint32_t)pmem_read(addr);
     top->io_InstIn = cur_inst;
     uint8_t *instaddr=(uint8_t *)&cur_inst;
-    disassemble(logbuf, 90, (int64_t)addr, instaddr, 4);
+    uint64_t addrin=((uint64_t)addr)%(0x80000000);
+    disassemble(logbuf, 100, addrin, instaddr, 4);
     string temp=logbuf;
     Log(temp);
     Log("\n");
