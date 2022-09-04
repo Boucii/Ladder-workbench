@@ -3,7 +3,7 @@
 ofstream fout("../build/log/npc_log.txt",ios::out);
 
 void LogInit(){
-  cout<<"Current path is:"<<std::filesystem::currentpath()<<'\n'; 
+  cout<<"Current path is:"<<_getcwd();
   assert(fout.is_open());
 }
 void Log(string content){
