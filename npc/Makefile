@@ -37,6 +37,7 @@ genwave:
 
 CXXFLAGS += $(shell llvm-config-14 --cxxflags) 
 CXXFLAGS += -g
+CXXFLAGS +=-fexceptions
 LDFLAGS += $(shell llvm-config-14 --ldflags) 
 LDFLAGS += $(shell llvm-config-14 --libs all)
 
