@@ -94,6 +94,7 @@ class TOP extends Module{
   val immB=Cat(Cat(Cat(Mux(inst(31)=/=1.U,inst(31,31),Cat(0xff.U,inst(31,31)))<<12,inst(7,7)<<11),inst(30,25)<<5),inst(11,8)<<1)
 
   val immJ=Wire(UInt(64.W))
+  immJ:=0.U
   printf(p"$inst \n")
   immJ:=Cat(Cat(Cat(Mux(inst(31)===1.U,Cat(0xff.U,inst(31,31)),inst(31,31))<<20,inst(19,12)<<12),inst(20,20)<<11),inst(30,21)<<1)
 
