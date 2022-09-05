@@ -99,8 +99,8 @@ class TOP extends Module{
   val immS=Cat(Mux(inst(31)=/=1.U,inst(31,25),Cat(0xff.U,inst(31,25))),inst(11,7))
   val immU=inst(31,12)<<12
   //val immJ=Cat(Cat(Cat(Mux(inst(31)===1.U,Cat(0xff.U,inst(31,31)),inst(31,31))<<20,inst(19,12)<<12),inst(20,20)<<11),inst(30,21)<<1) //optimization?
-  val immJ=(Mux(inst(31)===1.U,Cat(0xff.U,inst(31,31)),inst(31,31))<<20).U+(inst(19,12)<<12).U+(inst(20,20)<<11).U+(inst(30,21)<<1).U //optimization?
-  val immB=(Mux(inst(31)=/=1.U,inst(31,31),Cat(0xff.U,inst(31,31)))<<12).U+(inst(7,7)<<11).U+(inst(30,25)<<5).U+(inst(11,8)<<1).U
+  val immJ=(Mux(inst(31)===1.U,Cat(0xff.U,inst(31,31)),inst(31,31))<<20).asUInt+(inst(19,12)<<12).asUInt+(inst(20,20)<<11).asUInt+(inst(30,21)<<1).asUInt //optimization?
+  val immB=(Mux(inst(31)=/=1.U,inst(31,31),Cat(0xff.U,inst(31,31)))<<12).asUInt+(inst(7,7)<<11).asUInt+(inst(30,25)<<5).asUInt+(inst(11,8)<<1).asUInt
   //decode to src and dest
   val dest=Wire(UInt(64.W))
   val src1=Wire(UInt(64.W))
