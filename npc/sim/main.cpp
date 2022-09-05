@@ -11,7 +11,7 @@
 //#include "VTOP__Dpi.h"
 #include "verilated_dpi.h"
 #include "log.h"
-#include <exception>
+
 //possible to change context when invoking getregs
 using namespace std;
 
@@ -102,7 +102,6 @@ int main(int argc, char** argv, char** env){
   reset(10);
   cout<<"\nstart simulating\n";
   dumpwave();
-  try{
   while (time<MAX_TIME) {
     cout<<"cycle "<<time<<" passed\n";
     //instruction fetch
@@ -145,9 +144,6 @@ int main(int argc, char** argv, char** env){
   }
   if(time==MAX_TIME){
       cout<<"HIT BAD TRAP"<<endl;
-  }
-  }catch(exception &e){
-  
   }
   dump_gpr();
   cout<<"simulation over\n";
