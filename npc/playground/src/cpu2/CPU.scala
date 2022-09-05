@@ -104,6 +104,7 @@ class TOP extends Module{
   dest:=rd//default is rd,todo and change
 
   printf("\n\nimmj =%d \n\n\n",immJ);
+
   //itermidiate
   val intermediate=Wire(UInt(32.W))
   intermediate:=0.U
