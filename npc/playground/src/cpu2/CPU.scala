@@ -609,11 +609,14 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
 }.elsewhen(pt5==="b11011".U && pt6==="b11".U){    // jal    
   src1:=immJ
   
+  printf(p"inst=0x${Hexadecimal(inst)} \nimmJ=0x${Hexadecimal(src1)\nimmI=0x${Hexadecimal(immI)")
+  /*
   printf(p"inst=0x${Hexadecimal(inst)} \n")
   printf(p"immJ=0x${Hexadecimal(src1)} \n")
   printf(p"immJ=0x${Hexadecimal(immJ)} \n")
   printf(p"immI=0x${Hexadecimal(immI)} \n")
   printf(p"immB=0x${Hexadecimal(immB)} \n")
+*/
 
   //println(s"\nimmJ= $immJ")
   regs.io.wdata:=pc+4.U
