@@ -10,7 +10,7 @@ test:
 verilog:
 	$(call git_commit, "generate verilog")
 	mkdir -p $(BUILD_DIR)
-	mill  __.test.runMain cpu2.GenVerilog -td $(BUILD_DIR) --jobs 5
+	mill -i __.test.runMain cpu2.GenVerilog -td $(BUILD_DIR) --jobs 0
 
 help:
 	mill -i __.test.runMain cpu2.GenVerilog --help
