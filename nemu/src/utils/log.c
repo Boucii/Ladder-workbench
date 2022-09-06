@@ -10,12 +10,14 @@ uint32_t ibufptr=0;
 bool loop_complete=false;
 
 int write_irbuf(Decode *d){
-  strcpy(iringbuf[ibufptr],d->logbuf);
-  ibufptr++;
-  if(!(ibufptr<20)){
-    loop_complete=true;
-    ibufptr=0;
-  }
+  #ifdef CONFIG_ITRACE
+  	strcpy(iringbuf[ibufptr],d->logbuf);
+  	ibufptr++;
+  	if(!(ibufptr<20)){
+  	  loop_complete=true;
+  	  ibufptr=0;
+  	}
+  #endif
   return 0;
 }
 void print_buf(){
