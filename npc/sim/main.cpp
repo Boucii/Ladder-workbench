@@ -12,6 +12,28 @@
 #include "verilated_dpi.h"
 #include "log.h"
 
+
+#define DIFFTEST_EN 1
+#define ITRACE_EN 1
+
+#define RESET   "\033[0m"
+#define BLACK   "\033[30m"      /* Black */
+#define RED     "\033[31m"      /* Red */
+#define GREEN   "\033[32m"      /* Green */
+#define YELLOW  "\033[33m"      /* Yellow */
+#define BLUE    "\033[34m"      /* Blue */
+#define MAGENTA "\033[35m"      /* Magenta */
+#define CYAN    "\033[36m"      /* Cyan */
+#define WHITE   "\033[37m"      /* White */
+#define BOLDBLACK   "\033[1m\033[30m"      /* Bold Black */
+#define BOLDRED     "\033[1m\033[31m"      /* Bold Red */
+#define BOLDGREEN   "\033[1m\033[32m"      /* Bold Green */
+#define BOLDYELLOW  "\033[1m\033[33m"      /* Bold Yellow */
+#define BOLDBLUE    "\033[1m\033[34m"      /* Bold Blue */
+#define BOLDMAGENTA "\033[1m\033[35m"      /* Bold Magenta */
+#define BOLDCYAN    "\033[1m\033[36m"      /* Bold Cyan */
+#define BOLDWHITE   "\033[1m\033[37m"      /* Bold White */
+
 //possible to change context when invoking getregs
 using namespace std;
 
@@ -28,6 +50,9 @@ extern long load_img(char **argv);
 extern "C" svBit Check();
 
 uint64_t *cpu_gpr = NULL;
+uint32_t pc=0;
+uint64_t ref_gpr[32];
+
 
 const svOpenArrayHandle r=new svOpenArrayHandle();
 extern "C" void set_gpr_ptr(const svOpenArrayHandle r) {
@@ -74,6 +99,27 @@ void reset(int n) {
 	      top->reset = 0;
 }
 
+diff_check_regs(){
+	for(int i=0;i<32;i++){
+	  if(ref_gpr[i]!=cpu_gpr[i]){
+	      cout<<ios::hex()<<"Error:Difftest failed at pc=0x"<<pc<<ios::dec()<<"reg "<<i<<endl;
+	      cout<<ios::hex()<<"cpu_gpr="<<GREEN<<cpu_gpr[i]<<RESET<<"and ref ="<<BOLDGREEN<<ref_gpr[i]<<endl<<ios::dec();
+	  }
+	  if(ref_gpr[32]!=pc){
+	      cout<<ios::hex()<<RED<<"pc error! pc="<<GREEN<<pc<<RESET<<"and ref ="<<BOLDGREEN<<ref_gpr[32]<<endl<<ios::dec()<<RESET;
+	  }
+	  
+	}
+}
+
+
+void difftest_exec_once(){
+	ref_difftest_exec(1);
+	ref_difftest_regcpy(ref_gpr,DIFFTEST_TO_DUT);
+}
+
+
+
 int main(int argc, char** argv, char** env){
   cout<<argc<<endl;
   cout<<"argvs:"<<argv[0]<<argv[1]<<endl;
@@ -98,7 +144,12 @@ int main(int argc, char** argv, char** env){
   LogInit();
   mem_init();
   load_img(argv);
-  init_disasm("riscv64-pc-linux-gnu");
+  if(ITRACE_EN){
+      init_disasm("riscv64-pc-linux-gnu");
+  }
+  if(DIFFTEST_EN){
+      init_difftest();
+  }
   reset(10);
   cout<<"\nstart simulating\n";
   dumpwave();
@@ -106,6 +157,7 @@ int main(int argc, char** argv, char** env){
     cout<<"cycle "<<time<<" passed\n";
     //instruction fetch
     int addr=(int)(top->io_InstAddr);
+    pc=addr;
     Log("0x");
     char hex_string[20];
     sprintf(hex_string, "%X", addr);
@@ -116,7 +168,9 @@ int main(int argc, char** argv, char** env){
     top->io_InstIn = cur_inst;
     uint8_t *instaddr=(uint8_t *)&cur_inst;
     uint64_t addrin=(uint64_t)((uint64_t)addr)-(uint64_t)0xffffffff00000000;
-    disassemble(logbuf, 50, addrin, instaddr, 4);
+    if(ITRACE_EN){
+        disassemble(logbuf, 50, addrin, instaddr, 4);
+    }
     string temp=logbuf;
     Log(temp);
     Log("\n");
@@ -135,6 +189,9 @@ int main(int argc, char** argv, char** env){
       }
     }
     single_cycledown();
+    if(DIFFTEST_EN){
+        difftest_exec_once();
+    }
     //check for trap
     if(Check()){
       cout<<"HIT GOOD TRAP"<<endl;
