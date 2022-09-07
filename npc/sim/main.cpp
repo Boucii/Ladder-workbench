@@ -40,6 +40,10 @@ using namespace std;
 #define MAX_TIME 50
 
 //from memory.h
+
+#define RESET_VECTOR 0x80000000
+
+extern uint8_t *mem;
 uint64_t img_size=0;
 extern int mem_init();
 extern uint64_t pmem_read(int addr);
