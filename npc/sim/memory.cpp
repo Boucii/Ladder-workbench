@@ -6,7 +6,7 @@
 #include <unistd.h>
 
 
-extern uint64_t img_file;
+extern uint64_t img_size;
 uint8_t *mem=nullptr;
 int size=0x8000000;
 int mem_init(){
@@ -59,7 +59,7 @@ int free_memory(){
 }
 
 char name[30]="sim/demorevert.txt";
-img_file=name;
+char img_file[50]=name;
 
 long load_img(char ** argv){
   
@@ -97,7 +97,7 @@ long load_img(char ** argv){
 
   fseek(fp, 0, SEEK_END);
   long size = ftell(fp);
-  extern uint64_t img_file=size;
+  img_size=size;
 
   std::cout<<"the img is "<<img_file<<", size="<<size;
   fseek(fp, 0, SEEK_SET);
