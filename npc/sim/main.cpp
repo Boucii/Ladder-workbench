@@ -75,7 +75,8 @@ void (*ref_difftest_memcpy)(uint32_t addr, void *buf, size_t n, bool direction) 
 void (*ref_difftest_regcpy)(void *dut, bool direction) = NULL;
 void (*ref_difftest_exec)(uint64_t n) = NULL;
 
-void init_difftest(char *ref_so_file, long img_size, int port) {
+void init_difftest() {
+  char ref_so_file[]="/home/mint/ysyx-workbench/nemu/build/riscv64-nemu-interpreter-so";
 
   assert(ref_so_file != NULL);
 
@@ -151,6 +152,7 @@ void diff_check_regs(){
 void difftest_exec_once(){
 	ref_difftest_exec(1);
 	ref_difftest_regcpy(ref_gpr,DIFFTEST_TO_DUT);
+	diff_check_regs();
 }
 
 
