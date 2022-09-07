@@ -59,7 +59,7 @@ int free_memory(){
 }
 
 char name[30]="sim/demorevert.txt";
-char img_file[50]=name;
+char *img_file=name;
 
 long load_img(char ** argv){
   
