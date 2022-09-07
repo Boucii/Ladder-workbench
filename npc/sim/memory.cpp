@@ -6,6 +6,7 @@
 #include <unistd.h>
 
 
+extern uint64_t img_file;
 uint8_t *mem=nullptr;
 int size=0x8000000;
 int mem_init(){
@@ -58,7 +59,7 @@ int free_memory(){
 }
 
 char name[30]="sim/demorevert.txt";
-static char *img_file=name;
+img_file=name;
 
 long load_img(char ** argv){
   
