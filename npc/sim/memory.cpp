@@ -96,6 +96,7 @@ long load_img(char ** argv){
 
   fseek(fp, 0, SEEK_END);
   long size = ftell(fp);
+  extern img_file=size;
 
   std::cout<<"the img is "<<img_file<<", size="<<size;
   fseek(fp, 0, SEEK_SET);
