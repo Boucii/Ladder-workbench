@@ -11,7 +11,7 @@
 //#include "VTOP__Dpi.h"
 #include "verilated_dpi.h"
 #include "log.h"
-
+#include <dlfcn.h>
 
 #define DIFFTEST_EN 1
 #define ITRACE_EN 1
@@ -100,7 +100,7 @@ void init_difftest() {
   assert(ref_difftest_init);
 
   ref_difftest_init();
-  ref_difftest_memcpy(RESET_VECTOR,memory, img_size, DIFFTEST_TO_REF);
+  ref_difftest_memcpy(RESET_VECTOR,mem, img_size, DIFFTEST_TO_REF);
   ref_difftest_regcpy(cpu_gpr, DIFFTEST_TO_REF);
 }
 
