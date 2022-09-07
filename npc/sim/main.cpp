@@ -99,7 +99,7 @@ void reset(int n) {
 	      top->reset = 0;
 }
 
-diff_check_regs(){
+void diff_check_regs(){
 	for(int i=0;i<32;i++){
 	  if(ref_gpr[i]!=cpu_gpr[i]){
 	      cout<<ios::hex()<<"Error:Difftest failed at pc=0x"<<pc<<ios::dec()<<"reg "<<i<<endl;
