@@ -196,14 +196,11 @@ int main(int argc, char** argv, char** env){
   if(ITRACE_EN){
       init_disasm("riscv64-pc-linux-gnu");
   }
+  cout<<"popopopopo";
   char ref_so_file[]="/home/mint/ysyx-workbench/nemu/build/riscv64-nemu-interpreter-so";
-
-  assert(ref_so_file != NULL);
-
   void *handle;
+  cout<<"adsadfasdf";
   handle = dlopen(ref_so_file, RTLD_LAZY);
-  //assert(handle);
-
   cout<<dlerror()<<"jajajajajajajajaja";
 
 
