@@ -87,6 +87,7 @@ void init_difftest() {
 
   printf("%s","aaaa");
   cout<<dlerror()<<"jajajajajajajajaja";
+  fout.flush();
   void *handle;
   handle = dlopen(ref_so_file, RTLD_LAZY);
   assert(handle);
