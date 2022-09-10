@@ -45,7 +45,7 @@ CXXFLAGS += -lriscv64-nemu-interpreter-so
 LDFLAGS += -ldl
 LDFLAGS += $(shell llvm-config-14 --ldflags) 
 LDFLAGS += $(shell llvm-config-14 --libs all)
-
+LDFLAGS +=-fsanitize=address
 sim:
 	$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
 #	@echo "Write this Makefile by yourself."
