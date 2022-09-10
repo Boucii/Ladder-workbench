@@ -199,10 +199,10 @@ int main(int argc, char** argv, char** env){
   cout<<"popopopopo\n";
   char ref_so_file[]="/home/mint/ysyx-workbench/nemu/build/riscv64-nemu-interpreter-so";
   void *handle;
-  cout<<"adsadfasdf";
+  cout<<"adsadfasdf\n";
   handle = dlopen(ref_so_file, RTLD_LAZY);
   string t=dlerror();
-  cout<<dlerror()<<"jajajajajajajajaja";
+  cout<<dlerror()<<"jajajajajajajajaja\n"<<t;
 
 
 
