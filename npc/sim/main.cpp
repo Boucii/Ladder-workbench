@@ -14,7 +14,7 @@
 #include <dlfcn.h>
 
 #define DIFFTEST_EN 1
-#define ITRACE_EN 1
+#define ITRACE_EN 0
 
 #define RESET   "\033[0m"
 #define BLACK   "\033[30m"      /* Black */
@@ -68,7 +68,8 @@ extern "C" void set_gpr_ptr(const svOpenArrayHandle r) {
 void dump_gpr() {
   int i;
   for (i = 0; i < 32; i++) {
-    printf("gpr[%d] = 0x%lx\n", i, cpu_gpr[i]);
+	  cout<<cpu_gpr[i];
+    //printf("gpr[%d] = 0x%lx\n", i, cpu_gpr[i]);
   }
 }
 extern void init_disasm(const char *triple);
@@ -88,7 +89,6 @@ void init_difftest() {
 
   printf("%s","aaaa");
   cout<<dlerror()<<"jajajajajajajajaja";
-  fout.flush();
   void *handle;
   handle = dlopen(ref_so_file, RTLD_LAZY);
   assert(handle);
