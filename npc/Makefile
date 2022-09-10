@@ -42,9 +42,9 @@ CXXFLAGS += -L$(NEMU_HOME)/build/
 CXXFLAGS += -lriscv64-nemu-interpreter-so
 #CXXFLAGS += -ldl
 
+LDFLAGS += -ldl
 LDFLAGS += $(shell llvm-config-14 --ldflags) 
 LDFLAGS += $(shell llvm-config-14 --libs all)
-LDFLAGS += -ldl
 
 sim:
 	$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
