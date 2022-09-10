@@ -1,5 +1,4 @@
 #include <dlfcn.h>
-
 #include <isa.h>
 #include <cpu/cpu.h>
 #include <memory/paddr.h>
