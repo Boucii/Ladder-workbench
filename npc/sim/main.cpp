@@ -81,6 +81,7 @@ void (*ref_difftest_regcpy)(void *dut, bool direction) = NULL;
 void (*ref_difftest_exec)(uint64_t n) = NULL;
 void (*ref_difftest_raise_intr)(uint64_t NO) = NULL;
 
+
 extern ofstream fout;
 void init_difftest() {
   char ref_so_file[]="/home/mint/ysyx-workbench/nemu/build/riscv64-nemu-interpreter-so";
@@ -89,7 +90,7 @@ void init_difftest() {
 
   printf("%s\n","aaaa");
   cout<<dlerror()<<"jajajajajajajajaja";
-  fflush();
+  fflush(stdout);
   void *handle;
   handle = dlopen(ref_so_file, RTLD_LAZY);
   assert(handle);
