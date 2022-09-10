@@ -194,7 +194,7 @@ int main(int argc, char** argv, char** env){
   mem_init();
   load_img(argv);
   if(ITRACE_EN){
-      //init_disasm("riscv64-pc-linux-gnu");
+      init_disasm("riscv64-pc-linux-gnu");
   }
   cout<<"popopopopo\n";
   char ref_so_file[]="/home/mint/ysyx-workbench/nemu/build/riscv64-nemu-interpreter-so";
