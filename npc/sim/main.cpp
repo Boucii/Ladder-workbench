@@ -201,7 +201,7 @@ int main(int argc, char** argv, char** env){
   void *handle;
   cout<<"adsadfasdf";
   handle = dlopen(ref_so_file, RTLD_LAZY);
-  string t=dlopen();
+  string t=dlerror();
   cout<<dlerror()<<"jajajajajajajajaja";
 
 
