@@ -85,9 +85,9 @@ void init_difftest() {
 
   assert(ref_so_file != NULL);
 
+  dlerror();
   void *handle;
   handle = dlopen(ref_so_file, RTLD_LAZY);
-  dlerror();
   assert(handle);
 
   ref_difftest_memcpy = (void (*)(uint32_t addr, void *buf, size_t n, bool direction))dlsym(handle, "difftest_memcpy");
