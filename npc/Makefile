@@ -49,7 +49,7 @@ LDFLAGS +=-fsanitize=address
 sim:
 	$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
 #	@echo "Write this Makefile by yourself."
-	verilator --cc --exe --build --trace -CFLAGS "$(CXXFLAGS)" -LDFLAGS "$(LDFLAGS)" -Isim/ $(CSRCS) $(VSRCS) --Mdir $(BUILD_DIR)/SimGen 
+	verilator --cc --exe --build --trace -CFLAGS "$(CXXFLAGS)" -LDFLAGS "$(LDFLAGS)" -Isim/ $(VSRCS) $(CSRCS)  --Mdir $(BUILD_DIR)/SimGen 
 wave:
 	#@echo "Hello from npc"
 	@echo $(IMAGE)
