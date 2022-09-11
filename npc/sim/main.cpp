@@ -176,6 +176,7 @@ int main(int argc, char** argv, char** env){
   assert(scope);  // Check for nullptr if scope not found
   svSetScope(scope);
 
+  set_gpr_ptr(r);
 
   contextp->traceEverOn(true); //打开追踪功能
   tfp = new VerilatedVcdC; //初始化VCD对象指针
@@ -188,7 +189,6 @@ int main(int argc, char** argv, char** env){
   mem_init();
   load_img(argv);
 
-  set_gpr_ptr(r);
   reset(10);
 
   if(ITRACE_EN){
