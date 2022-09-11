@@ -182,6 +182,9 @@ int main(int argc, char** argv, char** env){
   top->trace(tfp, 0); //
   tfp->open("wave.vcd"); //设置输出的文件wave.vcd
 
+  reset(10);
+
+  set_gpr_ptr(r);
   int time=0;
   LogInit();
   mem_init();
@@ -192,10 +195,8 @@ int main(int argc, char** argv, char** env){
   if(DIFFTEST_EN){
       init_difftest();
   }
-  reset(10);
   cout<<"\nstart simulating\n";
   dumpwave();
-  set_gpr_ptr(r);
   while (time<MAX_TIME) {
     cout<<"cycle "<<time<<" passed\n";
     //instruction fetch
