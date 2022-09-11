@@ -182,16 +182,20 @@ int main(int argc, char** argv, char** env){
   top->trace(tfp, 0); //
   tfp->open("wave.vcd"); //设置输出的文件wave.vcd
 
-  reset(10);
 
-  set_gpr_ptr(r);
   int time=0;
   LogInit();
   mem_init();
   load_img(argv);
+
+  reset(10);
+
   if(ITRACE_EN){
       init_disasm("riscv64-pc-linux-gnu");
   }
+  
+  set_gpr_ptr(r);
+
   if(DIFFTEST_EN){
       init_difftest();
   }
