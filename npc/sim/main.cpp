@@ -188,13 +188,13 @@ int main(int argc, char** argv, char** env){
   mem_init();
   load_img(argv);
 
+  set_gpr_ptr(r);
   reset(10);
 
   if(ITRACE_EN){
       init_disasm("riscv64-pc-linux-gnu");
   }
   
-  set_gpr_ptr(r);
 
   if(DIFFTEST_EN){
       init_difftest();
