@@ -176,13 +176,13 @@ int main(int argc, char** argv, char** env){
   assert(scope);  // Check for nullptr if scope not found
   svSetScope(scope);
 
-  set_gpr_ptr(r);
 
   contextp->traceEverOn(true); //打开追踪功能
   tfp = new VerilatedVcdC; //初始化VCD对象指针
   top->trace(tfp, 0); //
   tfp->open("wave.vcd"); //设置输出的文件wave.vcd
 
+  set_gpr_ptr(r);
 
   int time=0;
   LogInit();
