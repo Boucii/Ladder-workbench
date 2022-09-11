@@ -120,6 +120,7 @@ void reset(int n) {
 }
 //----------------------DPI-C FUNCTIONS------------------------
 uint64_t *cpu_gpr = NULL;
+int pc=0;
 extern "C" void set_gpr_ptr(const svOpenArrayHandle r) {
   cpu_gpr = (uint64_t *)(((VerilatedDpiOpenVar*)r)->datap());
 }
