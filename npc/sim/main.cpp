@@ -48,7 +48,7 @@ uint64_t img_size=0;
 extern uint64_t pmem_read(int addr);
 extern int pmem_write(uint64_t content,uint64_t addr,uint32_t len);
 extern int free_memory();
-extern svBit Check();
+
 
 uint64_t *cpu_gpr = NULL;
 uint32_t pc=0;
@@ -98,6 +98,7 @@ void init_difftest() {
   ref_difftest_regcpy(cpu_gpr, DIFFTEST_TO_REF);
 }
 
+extern svBit Check();
 char logbuf[50]="\0";
 //Start of Program
 static VTOP* top;
