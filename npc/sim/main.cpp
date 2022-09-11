@@ -121,6 +121,7 @@ void reset(int n) {
 //----------------------DPI-C FUNCTIONS------------------------
 uint64_t *cpu_gpr = NULL;
 int pc=0;
+const svOpenArrayHandle r;
 extern "C" void set_gpr_ptr(const svOpenArrayHandle r) {
   cpu_gpr = (uint64_t *)(((VerilatedDpiOpenVar*)r)->datap());
 }
@@ -146,7 +147,7 @@ void diff_check_regs(){
 	}
 }
 
-uint64_t ref_regs[33];
+uint64_t ref_gpr[33];
 void difftest_exec_once(){
 	ref_difftest_exec(1);
 	ref_difftest_regcpy(ref_gpr,DIFFTEST_TO_DUT);
