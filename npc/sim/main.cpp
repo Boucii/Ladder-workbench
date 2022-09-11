@@ -89,7 +89,6 @@ void init_difftest() {
   ref_difftest_regcpy(cpu_gpr, DIFFTEST_TO_REF);
 }
 
-
 char logbuf[50]="\0";
 //Start of Program
 static VTOP* top;
@@ -119,7 +118,20 @@ void reset(int n) {
 	    while (n -- > 0) single_cycle();
 	      top->reset = 0;
 }
+//----------------------DPI-C FUNCTIONS------------------------
+uint64_t *cpu_gpr = NULL;
+extern "C" void set_gpr_ptr(const svOpenArrayHandle r) {
+  cpu_gpr = (uint64_t *)(((VerilatedDpiOpenVar*)r)->datap());
+}
 
+// 一个输出RTL中通用寄存器的值的示例
+void dump_gpr() {
+  int i;
+  for (i = 0; i < 32; i++) {
+    printf("gpr[%d] = 0x%lx\n", i, cpu_gpr[i]);
+  }
+}
+//---------------------------------------------------------------
 void diff_check_regs(){
 	for(int i=0;i<32;i++){
 	  if(ref_gpr[i]!=cpu_gpr[i]){
@@ -133,7 +145,7 @@ void diff_check_regs(){
 	}
 }
 
-uint64_t ref_regs[32];
+uint64_t ref_regs[33];
 void difftest_exec_once(){
 	ref_difftest_exec(1);
 	ref_difftest_regcpy(ref_gpr,DIFFTEST_TO_DUT);
