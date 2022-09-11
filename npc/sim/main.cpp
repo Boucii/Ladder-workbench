@@ -133,7 +133,7 @@ void diff_check_regs(){
 	}
 }
 
-
+uint64_t ref_regs[32];
 void difftest_exec_once(){
 	ref_difftest_exec(1);
 	ref_difftest_regcpy(ref_gpr,DIFFTEST_TO_DUT);
