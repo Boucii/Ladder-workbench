@@ -176,7 +176,6 @@ int main(int argc, char** argv, char** env){
   assert(scope);  // Check for nullptr if scope not found
   svSetScope(scope);
 
-  set_gpr_ptr(r);
 
   contextp->traceEverOn(true); //打开追踪功能
   tfp = new VerilatedVcdC; //初始化VCD对象指针
@@ -196,6 +195,7 @@ int main(int argc, char** argv, char** env){
   reset(10);
   cout<<"\nstart simulating\n";
   dumpwave();
+  set_gpr_ptr(r);
   while (time<MAX_TIME) {
     cout<<"cycle "<<time<<" passed\n";
     //instruction fetch
