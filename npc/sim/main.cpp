@@ -52,10 +52,9 @@ extern svBit Check();
 
 uint64_t *cpu_gpr = NULL;
 uint32_t pc=0;
-uint64_t ref_gpr[32];
 long load_img(char **argv);
 
-extern int mem_init_disasm(const char *triple);
+extern int init_disasm(const char *triple);
 extern void disassemble(char *str, int size, uint64_t pc, uint8_t *code, int nbyte);
 
 enum { DIFFTEST_TO_DUT, DIFFTEST_TO_REF };
