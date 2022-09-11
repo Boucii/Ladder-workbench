@@ -45,6 +45,16 @@ using namespace std;
 
 extern uint8_t *mem;
 uint64_t img_size=0;
+extern uint64_t pmem_read(int addr);
+extern int pmem_write(uint64_t content,uint64_t addr,uint32_t len);
+extern int free_memory();
+extern svBit Check();
+
+uint64_t *cpu_gpr = NULL;
+uint32_t pc=0;
+uint64_t ref_gpr[32];
+long load_img(char **argv);
+
 extern int mem_init_disasm(const char *triple);
 extern void disassemble(char *str, int size, uint64_t pc, uint8_t *code, int nbyte);
 
@@ -119,8 +129,6 @@ void reset(int n) {
 	      top->reset = 0;
 }
 //----------------------DPI-C FUNCTIONS------------------------
-uint64_t *cpu_gpr = NULL;
-int pc=0;
 const svOpenArrayHandle r;
 extern "C" void set_gpr_ptr(const svOpenArrayHandle r) {
   cpu_gpr = (uint64_t *)(((VerilatedDpiOpenVar*)r)->datap());
