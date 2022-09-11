@@ -141,6 +141,7 @@ void dump_gpr() {
   }
 }
 //---------------------------------------------------------------
+uint64_t ref_gpr[33];
 void diff_check_regs(){
 	for(int i=0;i<32;i++){
 	  if(ref_gpr[i]!=cpu_gpr[i]){
@@ -154,7 +155,6 @@ void diff_check_regs(){
 	}
 }
 
-uint64_t ref_gpr[33];
 void difftest_exec_once(){
 	ref_difftest_exec(1);
 	ref_difftest_regcpy(ref_gpr,DIFFTEST_TO_DUT);
