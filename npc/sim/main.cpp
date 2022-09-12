@@ -197,7 +197,7 @@ int main(int argc, char** argv, char** env){
 
   //pc=&((uint32_t)(top->io_InstAddr));
 
-  int addr=0;
+  uint32_t addr=0;
   pc=&addr;
 
   while (time<MAX_TIME) {
