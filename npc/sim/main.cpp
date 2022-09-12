@@ -195,7 +195,7 @@ int main(int argc, char** argv, char** env){
   cout<<"\nstart simulating\n";
   dumpwave();
 
-  pc=&(uint32_t)top->io_InstAddr;
+  pc=&((uint32_t)(top->io_InstAddr));
 
   while (time<MAX_TIME) {
     cout<<"cycle "<<time<<" passed\n";
