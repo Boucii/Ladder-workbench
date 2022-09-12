@@ -94,11 +94,11 @@ void init_difftest() {
 void diff_check_regs(){
 	for(int i=0;i<32;i++){
 	  if(ref_gpr[i]!=cpu_gpr[i]){
-	      cout<<ios::hex<<"Error:Difftest failed at pc=0x"<<*pc<<"	"<<ios::dec<<"in reg["<<i<<"]\n";
-	      cout<<ios::hex<<"cpu_gpr="<<GREEN<<cpu_gpr[i]<<RESET<<"	and ref ="<<BOLDGREEN<<ref_gpr[i]<<ios::dec<<RESET<<endl;
+	      cout<<hex<<"Error:Difftest failed at pc=0x"<<*pc<<"	"<<dec<<"in reg["<<i<<"]\n";
+	      cout<<hex<<"cpu_gpr="<<GREEN<<cpu_gpr[i]<<RESET<<"	and ref ="<<BOLDGREEN<<ref_gpr[i]<<dec<<RESET<<endl;
 	  }
 	  if(ref_gpr[32]!=*pc){
-	      cout<<ios::hex<<RED<<"pc error! pc="<<GREEN<<*pc<<RESET<<"	and ref ="<<BOLDGREEN<<ref_gpr[32]<<ios::dec<<RESET<<endl;
+	      cout<<hex<<RED<<"pc error! pc="<<GREEN<<*pc<<RESET<<"	and ref ="<<BOLDGREEN<<ref_gpr[32]<<dec<<RESET<<endl;
 	  }
 	  
 	}
