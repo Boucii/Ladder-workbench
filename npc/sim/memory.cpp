@@ -99,7 +99,7 @@ long load_img(char ** argv){
   long size = ftell(fp);
   img_size=size;
 
-  std::cout<<"the img is "<<img_file<<", size="<<size<<endl;
+  std::cout<<"the img is "<<img_file<<", size="<<size<<std::endl;
   fseek(fp, 0, SEEK_SET);
   int ret = fread(mem, size, 1, fp);
   assert(ret == 1);
