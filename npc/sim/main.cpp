@@ -68,7 +68,6 @@ void init_difftest() {
   handle = dlopen(ref_so_file, RTLD_LAZY);
   assert(handle);
 
-  cout<<dlerror()<<"jajajajajajajajaja";
   ref_difftest_memcpy = (void (*)(uint32_t addr, void *buf, size_t n, bool direction))dlsym(handle, "difftest_memcpy");
   assert(ref_difftest_memcpy);
 
@@ -176,7 +175,7 @@ int main(int argc, char** argv, char** env){
   top->trace(tfp, 0); //
   tfp->open("wave.vcd"); //设置输出的文件wave.vcd
 
-  set_gpr_ptr(r);
+  //set_gpr_ptr(r);
 
   int time=0;
   LogInit();
