@@ -11,7 +11,7 @@
 #include "memory.h"
 //#include <verilated.h>
 //#include <svdpi.h>
-//#include "VTOP__Dpi.h"
+#include "VTOP__Dpi.h"
 
 #define DIFFTEST_EN 1
 #define ITRACE_EN 0
