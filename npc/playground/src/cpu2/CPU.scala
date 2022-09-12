@@ -19,6 +19,11 @@ class funcs extends BlackBox{
   val io = IO(new Bundle {
     val stop = Input(UInt(1.W))
     //val regsout = Input(Vec(32, UInt(64.W)))
+    val rdata =Output(UInt(32.W))
+    val raddr =Input(UInt(64.W))
+    val waddr =Input(UInt(64.W))
+    val wdata =Input(UInt(32.W))
+    val wmask =Input(UInt(8.W))
   })
 }
 class TOP extends Module{
@@ -43,6 +48,24 @@ class TOP extends Module{
   //io for blackbox
   stopflag:=0.U
   npc_ctl.io.stop:=stopflag
+
+  //npc_ctl.io.rdata:=io.MdataIn
+  npc_ctl.io.raddr:=io.Maddr
+  npc_ctl.io.waddr:=io.Maddr
+  npc_ctl.io.wdata:=io.MdataOut
+  when(io.Mlen===0.U){
+      npc_ctl.io.wmask:=0.U
+  }.elsewhen(io.Mlen===1.U){
+      npc_ctl.io.wmask:=1.U
+  }.elsewhen(io.Mlen===2.U){
+      npc_ctl.io.wmask:=3.U
+  }.elsewhen(io.Mlen===4.U){
+      npc_ctl.io.wmask:=15.U
+  }.elsewhen(io.Mlen===8.U){
+      npc_ctl.io.wmask:=255.U
+  }.otherwise{
+      npc_ctl.io.wmask:=0.U
+  }
 
   regs.io.clk:=clock
   regs.io.rst:=reset.asBool

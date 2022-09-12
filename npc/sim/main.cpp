@@ -94,7 +94,7 @@ void init_difftest() {
 void diff_check_regs(){
 	for(int i=0;i<32;i++){
 	  if(ref_gpr[i]!=cpu_gpr[i]){
-	      cout<<hex<<"Error:Difftest failed at pc=0x"<<*pc<<"	"<<dec<<"in reg["<<i<<"]\n";
+	      cout<<hex<<"\nError:Difftest failed at pc=0x"<<*pc<<"	"<<dec<<"in reg["<<i<<"]\n";
 	      cout<<hex<<"cpu_gpr="<<GREEN<<cpu_gpr[i]<<RESET<<"	and ref ="<<BOLDGREEN<<ref_gpr[i]<<dec<<RESET<<endl;
 	      assert(0);
 	  }
@@ -123,6 +123,25 @@ void dump_gpr() {
   for (i = 0; i < 32; i++) {
     printf("gpr[%d] = 0x%lx\n", i, cpu_gpr[i]);
   }
+}
+extern "C" void pmem_read_dpi(long long raddr, long long *rdata) {
+  rdata=pmem_read((int)raddr);//it should be uint i think , but lets keep it this way and change when fail
+}
+extern "C" void pmem_write_dpi(long long waddr, long long wdata, char wmask) {
+	if(wmask==0){
+	}else if(wmask==1){
+	  pmem_write(wdata,waddr,1);
+	}else if(wmask==3){
+	  pmem_write(wdata,waddr,2);
+	}else if(wmask==7){
+	  pmem_write(wdata,waddr,4);
+	}else if(wmask==255){
+	  pmem_write(wdata,waddr,8);
+	}
+	else{
+	  cout<<"invalid pmem write, and here goes assert0"<<endl;
+	  assert(0);
+	}
 }
 //-----------------Log Module------------------------
 char logbuf[50]="\0";
@@ -224,6 +243,7 @@ int main(int argc, char** argv, char** env){
     Log("\n");
     //memory read/write
     single_cycleup();
+    /*
     if(top->io_Men){
       if(top->io_Mwout){//write
 	uint64_t data=top->io_MdataOut;
@@ -235,7 +255,7 @@ int main(int argc, char** argv, char** env){
 	uint32_t len=top->io_Mlen;
 	top->io_MdataIn=pmem_read(addr);
       }
-    }
+    }*/
     single_cycledown();
     addr=(int)(top->io_InstAddr);
     if(DIFFTEST_EN){
