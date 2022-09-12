@@ -43,7 +43,7 @@ uint64_t img_size=0;
 
 uint64_t *cpu_gpr = NULL;
 uint64_t ref_gpr[33];
-uint32_t *pc=RESET_VECTOR;
+uint32_t *pc=NULL;
 
 //----------------Memory Management------------------
 extern uint64_t pmem_read(int addr);
