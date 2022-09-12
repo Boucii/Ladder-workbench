@@ -43,7 +43,7 @@ uint64_t img_size=0;
 
 uint64_t *cpu_gpr = NULL;
 uint64_t ref_gpr[33];
-uint32_t pc=RESET_VECTOR;
+uint32_t *pc=RESET_VECTOR;
 
 //----------------Memory Management------------------
 extern uint64_t pmem_read(int addr);
@@ -94,11 +94,11 @@ void init_difftest() {
 void diff_check_regs(){
 	for(int i=0;i<32;i++){
 	  if(ref_gpr[i]!=cpu_gpr[i]){
-	      cout<<ios::hex<<"Error:Difftest failed at pc=0x"<<pc<<ios::dec<<"reg "<<i<<endl;
+	      cout<<ios::hex<<"Error:Difftest failed at pc=0x"<<*pc<<ios::dec<<"reg "<<i<<endl;
 	      cout<<ios::hex<<"cpu_gpr="<<GREEN<<cpu_gpr[i]<<RESET<<"and ref ="<<BOLDGREEN<<ref_gpr[i]<<endl<<ios::dec;
 	  }
-	  if(ref_gpr[32]!=pc){
-	      cout<<ios::hex<<RED<<"pc error! pc="<<GREEN<<pc<<RESET<<"and ref ="<<BOLDGREEN<<ref_gpr[32]<<endl<<ios::dec<<RESET;
+	  if(ref_gpr[32]!=*pc){
+	      cout<<ios::hex<<RED<<"pc error! pc="<<GREEN<<*pc<<RESET<<"and ref ="<<BOLDGREEN<<ref_gpr[32]<<endl<<ios::dec<<RESET;
 	  }
 	  
 	}
@@ -194,11 +194,14 @@ int main(int argc, char** argv, char** env){
   }
   cout<<"\nstart simulating\n";
   dumpwave();
+
+  pc=&(uint32_t)top->io_InstAddr;
+
   while (time<MAX_TIME) {
     cout<<"cycle "<<time<<" passed\n";
     //instruction fetch
     int addr=(int)(top->io_InstAddr);
-    pc=addr;
+    //pc=addr;
     Log("0x");
     char hex_string[20];
     sprintf(hex_string, "%X", addr);
