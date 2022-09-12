@@ -198,11 +198,12 @@ int main(int argc, char** argv, char** env){
   //pc=&((uint32_t)(top->io_InstAddr));
 
   int addr=0;
+  pc=&addr;
+
   while (time<MAX_TIME) {
     cout<<"cycle "<<time<<" passed\n";
     //instruction fetch
     addr=(int)(top->io_InstAddr);
-    pc=addr;
     Log("0x");
     char hex_string[20];
     sprintf(hex_string, "%X", addr);
@@ -235,7 +236,6 @@ int main(int argc, char** argv, char** env){
     }
     single_cycledown();
     addr=(int)(top->io_InstAddr);
-    pc=addr;
     if(DIFFTEST_EN){
         difftest_exec_once();
     }
