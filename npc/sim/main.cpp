@@ -3,18 +3,20 @@
 #include <stdlib.h>
 #include <assert.h>
 #include <string>
+#include <dlfcn.h>
 #include "VTOP.h"
-//#include <verilated.h>
 #include "verilated_vcd_c.h"
-#include "memory.h"
-//#include <svdpi.h>
-//#include "VTOP__Dpi.h"
 #include "verilated_dpi.h"
 #include "log.h"
-#include <dlfcn.h>
+#include "memory.h"
+//#include <verilated.h>
+//#include <svdpi.h>
+//#include "VTOP__Dpi.h"
 
 #define DIFFTEST_EN 1
 #define ITRACE_EN 0
+#define MAX_TIME 50
+#define RESET_VECTOR 0x80000000
 
 #define RESET   "\033[0m"
 #define BLACK   "\033[30m"      /* Black */
@@ -34,45 +36,37 @@
 #define BOLDCYAN    "\033[1m\033[36m"      /* Bold Cyan */
 #define BOLDWHITE   "\033[1m\033[37m"      /* Bold White */
 
-//possible to change context when invoking getregs
 using namespace std;
-
-#define MAX_TIME 50
-
-//from memory.h
-
-#define RESET_VECTOR 0x80000000
-
+//---------------Some Global Variables--------------
 extern uint8_t *mem;
 uint64_t img_size=0;
+
+uint64_t *cpu_gpr = NULL;
+uint64_t ref_gpr[33];
+uint32_t pc=0;
+
+//----------------Memory Management------------------
 extern uint64_t pmem_read(int addr);
 extern int pmem_write(uint64_t content,uint64_t addr,uint32_t len);
 extern int free_memory();
-extern svBit Check();
-
-uint64_t *cpu_gpr = NULL;
-uint32_t pc=0;
 long load_img(char **argv);
-
+//----------------Disasm Module--------------------
 extern int init_disasm(const char *triple);
 extern void disassemble(char *str, int size, uint64_t pc, uint8_t *code, int nbyte);
-
+//----------------Difftest Module------------------
 enum { DIFFTEST_TO_DUT, DIFFTEST_TO_REF };
 void (*ref_difftest_memcpy)(uint32_t addr, void *buf, size_t n, bool direction) = NULL;
 void (*ref_difftest_regcpy)(void *dut, bool direction) = NULL;
 void (*ref_difftest_exec)(uint64_t n) = NULL;
 void (*ref_difftest_raise_intr)(uint64_t NO) = NULL;
 
-
-extern ofstream fout;
 void init_difftest() {
   char ref_so_file[]="/home/mint/ysyx-workbench/nemu/build/riscv64-nemu-interpreter-so";
-
   assert(ref_so_file != NULL);
 
   void *handle;
   handle = dlopen(ref_so_file, RTLD_LAZY);
-  //assert(handle);
+  assert(handle);
 
   cout<<dlerror()<<"jajajajajajajajaja";
   ref_difftest_memcpy = (void (*)(uint32_t addr, void *buf, size_t n, bool direction))dlsym(handle, "difftest_memcpy");
@@ -98,8 +92,41 @@ void init_difftest() {
   ref_difftest_regcpy(cpu_gpr, DIFFTEST_TO_REF);
 }
 
+void diff_check_regs(){
+	for(int i=0;i<32;i++){
+	  if(ref_gpr[i]!=cpu_gpr[i]){
+	      cout<<ios::hex<<"Error:Difftest failed at pc=0x"<<pc<<ios::dec<<"reg "<<i<<endl;
+	      cout<<ios::hex<<"cpu_gpr="<<GREEN<<cpu_gpr[i]<<RESET<<"and ref ="<<BOLDGREEN<<ref_gpr[i]<<endl<<ios::dec;
+	  }
+	  if(ref_gpr[32]!=pc){
+	      cout<<ios::hex<<RED<<"pc error! pc="<<GREEN<<pc<<RESET<<"and ref ="<<BOLDGREEN<<ref_gpr[32]<<endl<<ios::dec<<RESET;
+	  }
+	  
+	}
+}
+void difftest_exec_once(){
+	ref_difftest_exec(1);
+	ref_difftest_regcpy(ref_gpr,DIFFTEST_TO_DUT);
+	diff_check_regs();
+}
+//----------------DPI-C functions------------------ 
+extern svBit Check();
+const svOpenArrayHandle r=NULL;
+extern "C" void set_gpr_ptr(const svOpenArrayHandle r) {
+  cout<<"nooooo!"<<endl;
+  cpu_gpr = (uint64_t *)(((VerilatedDpiOpenVar*)r)->datap());
+}
+// 一个输出RTL中通用寄存器的值的示例
+void dump_gpr() {
+  int i;
+  for (i = 0; i < 32; i++) {
+    printf("gpr[%d] = 0x%lx\n", i, cpu_gpr[i]);
+  }
+}
+//-----------------Log Module------------------------
 char logbuf[50]="\0";
-//Start of Program
+
+//----------------Verilator component----------------
 static VTOP* top;
 VerilatedVcdC* tfp=NULL;
 VerilatedContext* contextp=NULL;
@@ -127,42 +154,8 @@ void reset(int n) {
 	    while (n -- > 0) single_cycle();
 	      top->reset = 0;
 }
-//----------------------DPI-C FUNCTIONS------------------------
-const svOpenArrayHandle r=NULL;
-extern "C" void set_gpr_ptr(const svOpenArrayHandle r) {
-  cout<<"nooooo!"<<endl;
-  cpu_gpr = (uint64_t *)(((VerilatedDpiOpenVar*)r)->datap());
-}
 
-// 一个输出RTL中通用寄存器的值的示例
-void dump_gpr() {
-  int i;
-  for (i = 0; i < 32; i++) {
-    printf("gpr[%d] = 0x%lx\n", i, cpu_gpr[i]);
-  }
-}
-//---------------------------------------------------------------
-uint64_t ref_gpr[33];
-void diff_check_regs(){
-	for(int i=0;i<32;i++){
-	  if(ref_gpr[i]!=cpu_gpr[i]){
-	      cout<<ios::hex<<"Error:Difftest failed at pc=0x"<<pc<<ios::dec<<"reg "<<i<<endl;
-	      cout<<ios::hex<<"cpu_gpr="<<GREEN<<cpu_gpr[i]<<RESET<<"and ref ="<<BOLDGREEN<<ref_gpr[i]<<endl<<ios::dec;
-	  }
-	  if(ref_gpr[32]!=pc){
-	      cout<<ios::hex<<RED<<"pc error! pc="<<GREEN<<pc<<RESET<<"and ref ="<<BOLDGREEN<<ref_gpr[32]<<endl<<ios::dec<<RESET;
-	  }
-	  
-	}
-}
-
-void difftest_exec_once(){
-	ref_difftest_exec(1);
-	ref_difftest_regcpy(ref_gpr,DIFFTEST_TO_DUT);
-	diff_check_regs();
-}
-
-
+//----------main------------------
 
 int main(int argc, char** argv, char** env){
   cout<<argc<<endl;
@@ -258,3 +251,7 @@ int main(int argc, char** argv, char** env){
   tfp->close();
   return 0;
 }
+
+
+
+
