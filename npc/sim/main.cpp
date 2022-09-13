@@ -156,17 +156,17 @@ void dumpwave(){
     contextp->timeInc(1); //推动仿真时间
 }
 void single_cycle() {
-    top->clock = 0; top->eval(); 
+    top->clock = 1; top->eval(); 
     dumpwave();
-    top->clock = 1; top->eval();
+    top->clock = 0; top->eval();
     dumpwave();
 }
 void single_cycleup() {
-    top->clock = 0; top->eval(); 
+    top->clock = 1; top->eval(); 
     dumpwave();
 }
 void single_cycledown() {
-    top->clock = 1; top->eval();
+    top->clock = 0; top->eval();
     dumpwave();
 }
 
