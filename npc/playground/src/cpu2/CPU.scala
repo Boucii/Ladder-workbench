@@ -672,4 +672,6 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
 }
   //update pc reg
   pc:=Mux(stopflag=/=1.U,dpc,pc)
+  printf("npc_ctl addr=%x",npc_ctl.io.raddr)
+  printf("npc_ctl addr=%x",npc_ctl.io.waddr)
 }
