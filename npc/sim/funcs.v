@@ -4,11 +4,11 @@ module automatic funcs
     //input reg[63:0] regsout[0:31]
 
     //mem operation
-    output wire[31:0] rdata,
+    output wire[63:0] rdata,
     input wire[63:0] raddr,
 
     input wire[63:0] waddr,
-    input wire[31:0] wdata,
+    input wire[63:0] wdata,
     input wire[7:0] wmask
 
 );

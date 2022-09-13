@@ -19,10 +19,10 @@ class funcs extends BlackBox{
   val io = IO(new Bundle {
     val stop = Input(UInt(1.W))
     //val regsout = Input(Vec(32, UInt(64.W)))
-    val rdata =Output(UInt(32.W))
+    val rdata =Output(UInt(64.W))
     val raddr =Input(UInt(64.W))
     val waddr =Input(UInt(64.W))
-    val wdata =Input(UInt(32.W))
+    val wdata =Input(UInt(64.W))
     val wmask =Input(UInt(8.W))
   })
 }
@@ -438,7 +438,7 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
   io.Men:=1.U
   io.Maddr:=src1+src2
   io.Mlen:=8.U
-  regs.io.wdata:=io.MdataIn
+  regs.io.wdata:=npc_ctl.io.rdata
   regs.io.waddr:=dest
   regs.io.wen:=1.U
 }.elsewhen(pt3==="b010".U && pt5==="b00000".U && pt6==="b11".U){    // lw     
@@ -448,7 +448,7 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
   io.Men:=1.U
   io.Maddr:=src1+src2
   io.Mlen:=4.U
-  regs.io.wdata:=Mux((io.MdataIn)(31)=/=1.U,(io.MdataIn),Cat(0xffffffffL.U,(io.MdataIn(31,0))))
+  regs.io.wdata:=Mux((npc_ctl.io.rdata)(31)=/=1.U,(npc_ctl.io.rdata),Cat(0xffffffffL.U,(npc_ctl.io.rdata(31,0))))
   regs.io.waddr:=dest
   regs.io.wen:=1.U
 }.elsewhen(pt3==="b001".U && pt5==="b00000".U && pt6==="b11".U){    // lh     
@@ -458,7 +458,7 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
   io.Men:=1.U
   io.Maddr:=src1+src2
   io.Mlen:=4.U
-  regs.io.wdata:=Mux((io.MdataIn)(15)=/=1.U,(io.MdataIn),Cat(0xffffffffffffL.U,(io.MdataIn(15,0))))
+  regs.io.wdata:=Mux((npc_ctl.io.rdata)(15)=/=1.U,(npc_ctl.io.rdata),Cat(0xffffffffffffL.U,(npc_ctl.io.rdata(15,0))))
   regs.io.waddr:=dest
   regs.io.wen:=1.U
 }.elsewhen(pt3==="b000".U && pt5==="b00000".U && pt6==="b11".U){    // lb     
@@ -468,7 +468,7 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
   io.Men:=1.U
   io.Maddr:=src1+src2
   io.Mlen:=4.U
-  regs.io.wdata:=Mux((io.MdataIn)(7)=/=1.U,(io.MdataIn),Cat(0xffffffffffffL.U,(io.MdataIn(7,0))))
+  regs.io.wdata:=Mux((npc_ctl.io.rdata)(7)=/=1.U,(npc_ctl.io.rdata),Cat(0xffffffffffffL.U,(npc_ctl.io.rdata(7,0))))
   regs.io.waddr:=dest
   regs.io.wen:=1.U
 }.elsewhen(pt3==="b110".U && pt5==="b00000".U && pt6==="b11".U){    // lwu    
@@ -478,7 +478,7 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
   io.Men:=1.U
   io.Maddr:=src1+src2
   io.Mlen:=4.U
-  regs.io.wdata:=io.MdataIn
+  regs.io.wdata:=npc_ctl.io.rdata
   regs.io.waddr:=dest
   regs.io.wen:=1.U
 }.elsewhen(pt3==="b101".U && pt5==="b00000".U && pt6==="b11".U){    // lhu    
@@ -488,7 +488,7 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
   io.Men:=1.U
   io.Maddr:=src1+src2
   io.Mlen:=2.U
-  regs.io.wdata:=io.MdataIn
+  regs.io.wdata:=npc_ctl.io.rdata
   regs.io.waddr:=dest
   regs.io.wen:=1.U
 }.elsewhen(pt3==="b100".U && pt5==="b00000".U && pt6==="b11".U){    // lbu    
@@ -498,7 +498,7 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
   io.Men:=1.U
   io.Maddr:=src1+src2
   io.Mlen:=1.U
-  regs.io.wdata:=io.MdataIn
+  regs.io.wdata:=npc_ctl.io.rdata
   regs.io.waddr:=dest
   regs.io.wen:=1.U
 }.elsewhen(pt0==="b0000000".U && pt3==="b001".U && pt5==="b00100".U && pt6==="b11".U){    // slli   
