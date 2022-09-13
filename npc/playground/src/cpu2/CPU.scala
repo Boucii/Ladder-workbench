@@ -424,6 +424,10 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
   regs.io.wdata:=src1+src2
   regs.io.waddr:=dest
   regs.io.wen:=1.U
+  printf("src1=%H",src1)
+  printf("src2=%H",src2)
+  printf("wdata=%H",regs.io.wdata)
+
 }.elsewhen(pt3==="b000".U && pt5==="b00110".U && pt6==="b11".U){    // addiw  
   regs.io.raddr1:=rs1
   src1:=regs.io.rdata1
@@ -451,17 +455,12 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
   regs.io.wen:=1.U
 }.elsewhen(pt3==="b010".U && pt5==="b00000".U && pt6==="b11".U){    // lw     
   regs.io.raddr1:=rs1
-  printf("\nrs1=%x\n",rs1);
   src1:=regs.io.rdata1
-  printf("\nsrc1=%x\n",src1);
   src2:=immI
-  printf("\nsrc2=%x\n",src2);
   io.Men:=1.U
   io.Maddr:=src1+src2
-  printf("\naddr=%x\n",io.Maddr);
   io.Mlen:=4.U
   regs.io.wdata:=Mux((npc_ctl.io.rdata)(31)=/=1.U,(npc_ctl.io.rdata),Cat(0xffffffffL.U,(npc_ctl.io.rdata(31,0))))
-  printf("\nregwdata=%x\n",regs.io.wdata);
   regs.io.waddr:=dest
   regs.io.wen:=1.U
 }.elsewhen(pt3==="b001".U && pt5==="b00000".U && pt6==="b11".U){    // lh     
