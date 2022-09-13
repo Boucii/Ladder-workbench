@@ -459,6 +459,7 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
   printf("\naddr=%x\n",io.Maddr);
   io.Mlen:=4.U
   regs.io.wdata:=Mux((npc_ctl.io.rdata)(31)=/=1.U,(npc_ctl.io.rdata),Cat(0xffffffffL.U,(npc_ctl.io.rdata(31,0))))
+  printf("\nregwdata=%x\n",regs.io.wdata);
   regs.io.waddr:=dest
   regs.io.wen:=1.U
 }.elsewhen(pt3==="b001".U && pt5==="b00000".U && pt6==="b11".U){    // lh     
