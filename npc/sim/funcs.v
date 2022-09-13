@@ -8,12 +8,12 @@ module automatic funcs
     //mem operation
     input wire men,
     input wire mwen,
-    output wire[63:0] rdata,
-    input wire[63:0] raddr,
+    output reg[63:0] rdata,
+    input reg[63:0] raddr,
 
-    input wire[63:0] waddr,
-    input wire[63:0] wdata,
-    input wire[7:0] wmask
+    input reg[63:0] waddr,
+    input reg[63:0] wdata,
+    input reg[7:0] wmask
 
 );
 
@@ -25,15 +25,14 @@ module automatic funcs
 
   reg [63:0] rdata_in;
   always @(*) begin
-    if(men && !mwen) begin
+    if(men && !mwen) 
 	$display("From verilog,raddr is: %H.", raddr);
         pmem_read_dpi(raddr, rdata_in);
-    end else begin
+    else 
        rdata_in = 64'b0;	
-       end
-       if(men && mwen) begin
-    pmem_write_dpi(waddr, wdata, wmask);
+    if(men && mwen) 
+          pmem_write_dpi(waddr, wdata, wmask);
     end
-    end
+
   assign rdata=rdata_in;
 endmodule

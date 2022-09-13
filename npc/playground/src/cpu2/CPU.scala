@@ -674,6 +674,7 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
   pc:=Mux(stopflag=/=1.U,dpc,pc)
   printf("npc_ctl addr=%x\n",npc_ctl.io.raddr)
   printf("npc_ctl addr=%x\n",npc_ctl.io.waddr)
+  printf("raddr addr=%x\n",io.Maddr)
 
   //io for blackbox
   stopflag:=0.U
@@ -701,4 +702,5 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
   }
   printf("npc_ctl addr=%x\n",npc_ctl.io.raddr)
   printf("npc_ctl addr=%x\n",npc_ctl.io.waddr)
+  printf("raddr addr=%x\n",io.Maddr)
 }
