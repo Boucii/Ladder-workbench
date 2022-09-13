@@ -170,12 +170,13 @@ void single_cycle() {
     dumpwave();
 }
 void single_cycleup() {
+    mem_done=0;
     top->clock = 0; top->eval(); 
     dumpwave();
 }
 void single_cycledown() {
     top->clock = 1; 
-    mem_done=0;top->eval();
+    top->eval();
     dumpwave();
 }
 
