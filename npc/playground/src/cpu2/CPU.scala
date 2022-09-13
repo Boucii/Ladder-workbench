@@ -424,10 +424,6 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
   regs.io.wdata:=src1+src2
   regs.io.waddr:=dest
   regs.io.wen:=1.U
-  printf("src1=%x",src1)
-  printf("src2=%x",src2)
-  printf("wdata=%x",regs.io.wdata)
-
 }.elsewhen(pt3==="b000".U && pt5==="b00110".U && pt6==="b11".U){    // addiw  
   regs.io.raddr1:=rs1
   src1:=regs.io.rdata1
@@ -571,7 +567,7 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
   regs.io.raddr1:=rs1
   src1:=regs.io.rdata1
   src2:=immI
-  pc:=src1+src2
+  dpc:=src1+src2
   regs.io.wdata:=pc+4.U
   regs.io.waddr:=dest
   regs.io.wen:=1.U
