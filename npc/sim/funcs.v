@@ -1,3 +1,5 @@
+import "DPI-C" function void pmem_read_dpi(input longint raddr, output longint rdata);
+import "DPI-C" function void pmem_write_dpi(input longint waddr, input longint wdata, input byte wmask);
 module automatic funcs
 (
     input wire  stop,
@@ -19,15 +21,10 @@ module automatic funcs
     return stop;
   endfunction
 
-
-import "DPI-C" function void pmem_read_dpi(
-  input longint raddr, output longint rdata);
-import "DPI-C" function void pmem_write_dpi(
-  input longint waddr, input longint wdata, input byte wmask);
-wire [63:0] rdata_in;
-always @(*) begin
-  pmem_read_dpi(raddr, rdata_in);
-  pmem_write_dpi(waddr, wdata, wmask);
-end
-assign rdata=rdata_in;
+  wire [63:0] rdata_in;
+  always @(*) begin
+    pmem_read_dpi(raddr, rdata_in);
+    pmem_write_dpi(waddr, wdata, wmask);
+  end
+  assign rdata=rdata_in;
 endmodule
