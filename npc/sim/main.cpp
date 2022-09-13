@@ -162,11 +162,11 @@ void single_cycle() {
     dumpwave();
 }
 void single_cycleup() {
-    top->clock = 1; top->eval(); 
+    top->clock = 0; top->eval(); 
     dumpwave();
 }
 void single_cycledown() {
-    top->clock = 0; top->eval();
+    top->clock = 1; top->eval();
     dumpwave();
 }
 

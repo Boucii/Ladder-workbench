@@ -2,6 +2,7 @@ import "DPI-C" function void pmem_read_dpi(input longint raddr, output longint r
 import "DPI-C" function void pmem_write_dpi(input longint waddr, input longint wdata, input byte wmask);
 module automatic funcs
 (
+    input wire clk,
     input wire  stop,
     //input reg[63:0] regsout[0:31]
 
@@ -24,7 +25,9 @@ module automatic funcs
   endfunction
 
   reg [63:0] rdata_in;
+  reg done=1'b0;
   always @(*) begin
+	  if(done==1'b0) begin
 	  if(men && !mwen) begin
 		$display("From verilog,raddr is: %H.", raddr);
         	pmem_read_dpi(raddr, rdata_in);
@@ -34,6 +37,13 @@ module automatic funcs
     if(men && mwen) 
           pmem_write_dpi(waddr, wdata, wmask);
     end
+    done=1'b1;
+    end
+
+    always @(negedge clk) begin
+	    done=1'b0;
+    end
+
 
   assign rdata=rdata_in;
 endmodule

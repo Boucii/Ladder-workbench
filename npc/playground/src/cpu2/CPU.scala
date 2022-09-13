@@ -17,6 +17,7 @@ class Regfile extends BlackBox{
 }
 class funcs extends BlackBox{
   val io = IO(new Bundle {
+    val clk=Input(Clock())
     val stop = Input(UInt(1.W))
     //val regsout = Input(Vec(32, UInt(64.W)))
     val rdata =Output(UInt(64.W))
@@ -50,6 +51,7 @@ class TOP extends Module{
 
   //io for blackbox
   stopflag:=0.U
+  npc_ctl.io.clk:=clock()
   npc_ctl.io.stop:=stopflag
 
   //npc_ctl.io.rdata:=io.MdataIn
