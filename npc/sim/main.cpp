@@ -45,6 +45,8 @@ uint64_t *cpu_gpr = NULL;
 uint64_t ref_gpr[33];
 uint32_t *pc=NULL;
 
+
+bool mem_done=0;
 //----------------Memory Management------------------
 extern uint64_t pmem_read(int addr);
 extern int pmem_write(uint64_t content,uint64_t addr,uint32_t len);
@@ -124,9 +126,13 @@ void dump_gpr() {
   }
 }
 extern "C" void pmem_read_dpi(long long raddr, long long *rdata) {
+  if(mem_done==0){
   *rdata=pmem_read((int)raddr);//it should be uint i think , but lets keep it this way and change when fail
+  mem_done=1;
+  }
 }
 extern "C" void pmem_write_dpi(long long waddr, long long wdata, char wmask) {
+  if(mem_done==0){
 	uint8_t mask=(uint8_t)wmask;
 	if(mask==0){
 	}else if(mask==1){
@@ -143,6 +149,8 @@ extern "C" void pmem_write_dpi(long long waddr, long long wdata, char wmask) {
 	  cout<<"invalid pmem write, and here goes assert0"<<endl;
 	  assert(0);
 	}
+	mem_done=1;
+  }
 }
 //-----------------Log Module------------------------
 char logbuf[50]="\0";
@@ -166,6 +174,7 @@ void single_cycleup() {
     dumpwave();
 }
 void single_cycledown() {
+	mem_done=0;
     top->clock = 1; top->eval();
     dumpwave();
 }
