@@ -125,7 +125,7 @@ void dump_gpr() {
   }
 }
 extern "C" void pmem_read_dpi(long long raddr, long long *rdata) {
-  rdata=pmem_read((int)raddr);//it should be uint i think , but lets keep it this way and change when fail
+  *rdata=pmem_read((int)raddr);//it should be uint i think , but lets keep it this way and change when fail
 }
 extern "C" void pmem_write_dpi(long long waddr, long long wdata, char wmask) {
 	if(wmask==0){
