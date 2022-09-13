@@ -672,8 +672,8 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
 }
   //update pc reg
   pc:=Mux(stopflag=/=1.U,dpc,pc)
-  printf("npc_ctl addr=%x",npc_ctl.io.raddr)
-  printf("npc_ctl addr=%x",npc_ctl.io.waddr)
+  printf("npc_ctl addr=%x\n",npc_ctl.io.raddr)
+  printf("npc_ctl addr=%x\n",npc_ctl.io.waddr)
 
   //io for blackbox
   stopflag:=0.U
@@ -699,6 +699,6 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
   }.otherwise{
       npc_ctl.io.wmask:=0.U
   }
-
-
+  printf("npc_ctl addr=%x\n",npc_ctl.io.raddr)
+  printf("npc_ctl addr=%x\n",npc_ctl.io.waddr)
 }
