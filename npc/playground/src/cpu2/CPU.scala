@@ -24,6 +24,9 @@ class funcs extends BlackBox{
     val waddr =Input(UInt(64.W))
     val wdata =Input(UInt(64.W))
     val wmask =Input(UInt(8.W))
+
+    val men=Input(UInt(1.W))
+    val mwen=Input(UInt(1.W))
   })
 }
 class TOP extends Module{
