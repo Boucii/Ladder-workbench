@@ -450,12 +450,12 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
 }.elsewhen(pt3==="b010".U && pt5==="b00000".U && pt6==="b11".U){    // lw     
   regs.io.raddr1:=rs1
   src1:=regs.io.rdata1
-  printf("\nsrc1=%lx\n",src1);
+  printf("\nsrc1=%x\n",src1);
   src2:=immI
-  printf("\nsrc2=%lx\n",src2);
+  printf("\nsrc2=%x\n",src2);
   io.Men:=1.U
   io.Maddr:=src1+src2
-  printf("\naddr=%lx\n",io.Maddr);
+  printf("\naddr=%x\n",io.Maddr);
   io.Mlen:=4.U
   regs.io.wdata:=Mux((npc_ctl.io.rdata)(31)=/=1.U,(npc_ctl.io.rdata),Cat(0xffffffffL.U,(npc_ctl.io.rdata(31,0))))
   regs.io.waddr:=dest
