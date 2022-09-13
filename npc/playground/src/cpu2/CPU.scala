@@ -51,7 +51,7 @@ class TOP extends Module{
 
   //io for blackbox
   stopflag:=0.U
-  npc_ctl.io.clk:=clock()
+  npc_ctl.io.clk:=clock
   npc_ctl.io.stop:=stopflag
 
   //npc_ctl.io.rdata:=io.MdataIn
