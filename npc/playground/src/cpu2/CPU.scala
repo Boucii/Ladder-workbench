@@ -449,6 +449,7 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
   regs.io.wen:=1.U
 }.elsewhen(pt3==="b010".U && pt5==="b00000".U && pt6==="b11".U){    // lw     
   regs.io.raddr1:=rs1
+  printf("\nrs1=%x\n",rs1);
   src1:=regs.io.rdata1
   printf("\nsrc1=%x\n",src1);
   src2:=immI
