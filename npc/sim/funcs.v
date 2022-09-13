@@ -25,11 +25,12 @@ module automatic funcs
 
   reg [63:0] rdata_in;
   always @(*) begin
-    if(men && !mwen) 
-	$display("From verilog,raddr is: %H.", raddr);
-        pmem_read_dpi(raddr, rdata_in);
-    else 
-       rdata_in = 64'b0;	
+	  if(men && !mwen) begin
+		$display("From verilog,raddr is: %H.", raddr);
+        	pmem_read_dpi(raddr, rdata_in);
+	  end else begin 
+       		rdata_in = 64'b0;	
+       		end
     if(men && mwen) 
           pmem_write_dpi(waddr, wdata, wmask);
     end
