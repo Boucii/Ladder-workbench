@@ -23,12 +23,12 @@ module automatic funcs
     return stop;
   endfunction
 
-  wire [63:0] rdata_in;
+  reg [63:0] rdata_in;
   always @(*) begin
     if(men && !mwen) begin
         pmem_read_dpi(raddr, rdata_in);
     end else begin
-       rdata = 64'b0;	
+       rdata_in = 64'b0;	
        end
        if(men && mwen) begin
     pmem_write_dpi(waddr, wdata, wmask);
