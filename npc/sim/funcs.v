@@ -27,6 +27,7 @@ module automatic funcs
   reg [63:0] rdata_in;
   reg done=1'b0;
   always @(*) begin
+       		rdata_in = 64'b0;	
 	  if(done==1'b0) begin
 	  if(men && !mwen) begin
 		$display("From verilog,raddr is: %H.", raddr);
