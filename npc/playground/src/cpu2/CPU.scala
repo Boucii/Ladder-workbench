@@ -424,9 +424,9 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
   regs.io.wdata:=src1+src2
   regs.io.waddr:=dest
   regs.io.wen:=1.U
-  printf("src1=%H",src1)
-  printf("src2=%H",src2)
-  printf("wdata=%H",regs.io.wdata)
+  printf("src1=%x",src1)
+  printf("src2=%x",src2)
+  printf("wdata=%x",regs.io.wdata)
 
 }.elsewhen(pt3==="b000".U && pt5==="b00110".U && pt6==="b11".U){    // addiw  
   regs.io.raddr1:=rs1
