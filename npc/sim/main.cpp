@@ -126,19 +126,20 @@ void dump_gpr() {
 extern "C" void pmem_read_dpi(long long raddr, long long *rdata) {
   *rdata=pmem_read((int)raddr);//it should be uint i think , but lets keep it this way and change when fail
 }
-extern "C" void pmem_write_dpi(long long waddr, long long wdata, uint8_t wmask) {
-	if(wmask==0){
-	}else if(wmask==1){
+extern "C" void pmem_write_dpi(long long waddr, long long wdata, char wmask) {
+	uint8_t mask=(uint8_t)wmask;
+	if(mask==0){
+	}else if(mask==1){
 	  pmem_write(wdata,waddr,1);
-	}else if(wmask==3){
+	}else if(mask==3){
 	  pmem_write(wdata,waddr,2);
-	}else if(wmask==7){
+	}else if(mask==7){
 	  pmem_write(wdata,waddr,4);
-	}else if(wmask==255){
+	}else if(mask==255){
 	  pmem_write(wdata,waddr,8);
 	}
 	else{
-	  cout<<wmask<<hex<<endl<<wdata<<endl<<waddr<<endl;
+	  cout<<mask<<hex<<endl<<wdata<<endl<<waddr<<endl;
 	  cout<<"invalid pmem write, and here goes assert0"<<endl;
 	  assert(0);
 	}
