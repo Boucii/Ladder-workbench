@@ -47,17 +47,17 @@ class TOP extends Module{
   val regs=Module(new Regfile)
   val stopflag=Wire(UInt(1.W))
   val npc_ctl=Module(new funcs)
-
+/*
   //io for blackbox
   stopflag:=0.U
   npc_ctl.io.stop:=stopflag
 
   //npc_ctl.io.rdata:=io.MdataIn
-  npc_ctl.io.raddr=io.Maddr
-  npc_ctl.io.waddr=io.Maddr
-  npc_ctl.io.wdata=io.MdataOut
-  npc_ctl.io.men=io.Men
-  npc_ctl.io.mwen=io.Mwout
+  npc_ctl.io.raddr:=io.Maddr
+  npc_ctl.io.waddr:=io.Maddr
+  npc_ctl.io.wdata:=io.MdataOut
+  npc_ctl.io.men:=io.Men
+  npc_ctl.io.mwen:=io.Mwout
 
   when(io.Mlen===0.U){
       npc_ctl.io.wmask:=0.U
@@ -72,7 +72,7 @@ class TOP extends Module{
   }.otherwise{
       npc_ctl.io.wmask:=0.U
   }
-
+*/
   regs.io.clk:=clock
   regs.io.rst:=reset.asBool
   
@@ -674,4 +674,31 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
   pc:=Mux(stopflag=/=1.U,dpc,pc)
   printf("npc_ctl addr=%x",npc_ctl.io.raddr)
   printf("npc_ctl addr=%x",npc_ctl.io.waddr)
+
+  //io for blackbox
+  stopflag:=0.U
+  npc_ctl.io.stop:=stopflag
+
+  //npc_ctl.io.rdata:=io.MdataIn
+  npc_ctl.io.raddr:=io.Maddr
+  npc_ctl.io.waddr:=io.Maddr
+  npc_ctl.io.wdata:=io.MdataOut
+  npc_ctl.io.men:=io.Men
+  npc_ctl.io.mwen:=io.Mwout
+
+  when(io.Mlen===0.U){
+      npc_ctl.io.wmask:=0.U
+  }.elsewhen(io.Mlen===1.U){
+      npc_ctl.io.wmask:=1.U
+  }.elsewhen(io.Mlen===2.U){
+      npc_ctl.io.wmask:=3.U
+  }.elsewhen(io.Mlen===4.U){
+      npc_ctl.io.wmask:=15.U
+  }.elsewhen(io.Mlen===8.U){
+      npc_ctl.io.wmask:=255.U
+  }.otherwise{
+      npc_ctl.io.wmask:=0.U
+  }
+
+
 }
