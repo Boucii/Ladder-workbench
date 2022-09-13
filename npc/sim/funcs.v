@@ -25,10 +25,7 @@ module automatic funcs
   endfunction
 
   reg [63:0] rdata_in;
-  wire done;
   always @(*) begin
-       		rdata_in = 64'b0;	
-	  if(done==1'b0) begin
 	  if(men && !mwen) begin
 		$display("From verilog,raddr is: %H.", raddr);
         	pmem_read_dpi(raddr, rdata_in);
@@ -38,12 +35,7 @@ module automatic funcs
     if(men && mwen) 
           pmem_write_dpi(waddr, wdata, wmask);
     end
-    done=1'b1;
-    end
 
-    always @(negedge clk) begin
-	    done=1'b0;
-    end
 
 
   assign rdata=rdata_in;
