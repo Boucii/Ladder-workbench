@@ -6,6 +6,8 @@ module automatic funcs
     //input reg[63:0] regsout[0:31]
 
     //mem operation
+    input wire men,
+    input wire mwen,
     output wire[63:0] rdata,
     input wire[63:0] raddr,
 
@@ -23,8 +25,14 @@ module automatic funcs
 
   wire [63:0] rdata_in;
   always @(*) begin
-    pmem_read_dpi(raddr, rdata_in);
+    if(men && !mwen) begin
+        pmem_read_dpi(raddr, rdata_in);
+    end else begin
+       rdata = 64'b0;	
+       end
+       if(men && mwen) begin
     pmem_write_dpi(waddr, wdata, wmask);
-  end
+    end
+    end
   assign rdata=rdata_in;
 endmodule
