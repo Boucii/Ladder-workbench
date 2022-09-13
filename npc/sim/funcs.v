@@ -25,7 +25,7 @@ module automatic funcs
   endfunction
 
   reg [63:0] rdata_in;
-  reg done;
+  wire done;
   always @(*) begin
        		rdata_in = 64'b0;	
 	  if(done==1'b0) begin
