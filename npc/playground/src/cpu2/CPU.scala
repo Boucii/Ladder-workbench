@@ -53,11 +53,11 @@ class TOP extends Module{
   npc_ctl.io.stop:=stopflag
 
   //npc_ctl.io.rdata:=io.MdataIn
-  npc_ctl.io.raddr:=io.Maddr
-  npc_ctl.io.waddr:=io.Maddr
-  npc_ctl.io.wdata:=io.MdataOut
-  npc_ctl.io.men:=io.Men
-  npc_ctl.io.mwen:=io.Mwout
+  npc_ctl.io.raddr=io.Maddr
+  npc_ctl.io.waddr=io.Maddr
+  npc_ctl.io.wdata=io.MdataOut
+  npc_ctl.io.men=io.Men
+  npc_ctl.io.mwen=io.Mwout
 
   when(io.Mlen===0.U){
       npc_ctl.io.wmask:=0.U
