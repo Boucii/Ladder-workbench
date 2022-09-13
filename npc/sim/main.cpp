@@ -114,7 +114,6 @@ void difftest_exec_once(){
 extern svBit Check();
 const svOpenArrayHandle r=NULL;
 extern "C" void set_gpr_ptr(const svOpenArrayHandle r) {
-  cout<<"nooooo!"<<endl;
   cpu_gpr = (uint64_t *)(((VerilatedDpiOpenVar*)r)->datap());
 }
 // 一个输出RTL中通用寄存器的值的示例
