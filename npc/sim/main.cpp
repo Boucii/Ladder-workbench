@@ -174,8 +174,8 @@ void single_cycleup() {
     dumpwave();
 }
 void single_cycledown() {
-	mem_done=0;
-    top->clock = 1; top->eval();
+    top->clock = 1; 
+    mem_done=0;top->eval();
     dumpwave();
 }
 
