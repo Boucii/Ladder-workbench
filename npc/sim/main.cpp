@@ -138,7 +138,7 @@ extern "C" void pmem_write_dpi(long long waddr, long long wdata, char wmask) {
 	  pmem_write(wdata,waddr,8);
 	}
 	else{
-	  cout<<hex<<wmask<<endl<<wdata<<endl<<waddr<<endl;
+	  cout<<wmask<<hex<<endl<<wdata<<endl<<waddr<<endl;
 	  cout<<"invalid pmem write, and here goes assert0"<<endl;
 	  assert(0);
 	}
