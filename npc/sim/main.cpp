@@ -189,8 +189,7 @@ void reset(int n) {
 //----------main------------------
 
 int main(int argc, char** argv, char** env){
-  cout<<argc<<endl;
-  cout<<"argvs:"<<argv[0]<<argv[1]<<endl;
+  //cout<<"argvs:"<<argv[0]<<argv[1]<<endl;
   contextp = new VerilatedContext;
   contextp->commandArgs(argc, argv);
   top= new VTOP{contextp};
@@ -234,7 +233,7 @@ int main(int argc, char** argv, char** env){
 
   while (time<MAX_TIME) {
     ref_difftest_exec(1);
-    cout<<"cycle "<<time<<" passed\n";
+    cout<<"\ncycle "<<time<<" passed\n";
     //instruction fetch
     addr=(int)(top->io_InstAddr);
     Log("0x");

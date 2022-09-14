@@ -19,7 +19,7 @@ module Regfile(
 	  if(!rst) begin
 		  if(wen && (waddr!=5'h0)) begin
 			  regs[waddr]<=wdata;
-		      	  $display("reg write at %d with data %H", waddr,wdata);
+	//	      	  $display("reg write at %d with data %H", waddr,wdata);
 
 		  end
 	  end

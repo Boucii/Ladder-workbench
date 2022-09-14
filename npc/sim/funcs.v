@@ -20,14 +20,14 @@ module automatic funcs
 
   export "DPI-C" function Check;
   function bit Check();
-    $display("Check result: stop= %0d", stop);
+    //$display("Check result: stop= %0d", stop);
     return stop;
   endfunction
 
   reg [63:0] rdata_in;
   always @(*) begin
 	  if(men && !mwen) begin
-		$display("From verilog,raddr is: %H.", raddr);
+	//	$display("From verilog,raddr is: %H.", raddr);
         	pmem_read_dpi(raddr, rdata_in);
 	  end else begin 
        		rdata_in = 64'b0;	
