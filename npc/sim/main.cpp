@@ -102,10 +102,12 @@ void diff_check_regs(){
 	      cout<<hex<<"\nError:Difftest failed at pc=0x"<<*pc<<"	"<<dec<<"in reg["<<i<<"]\n";
 	      cout<<hex<<"cpu_gpr="<<GREEN<<cpu_gpr[i]<<RESET<<"	and ref ="<<BOLDGREEN<<ref_gpr[i]<<dec<<RESET<<endl;
 	      diff_pass=0;
+	      return;
 	  }
 	  if(ref_gpr[32]!=*pc){
 	      cout<<hex<<RED<<"pc error! pc="<<GREEN<<*pc<<RESET<<"	and ref ="<<BOLDGREEN<<ref_gpr[32]<<dec<<RESET<<endl;
 	      diff_pass=0;
+	      return;
 	  }
 	  
 	}
