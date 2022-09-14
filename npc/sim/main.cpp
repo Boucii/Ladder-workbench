@@ -256,19 +256,6 @@ int main(int argc, char** argv, char** env){
     Log("\n");
     //memory read/write
     single_cycleup();
-    /*
-    if(top->io_Men){
-      if(top->io_Mwout){//write
-	uint64_t data=top->io_MdataOut;
-	uint32_t addr=top->io_Maddr;
-	uint32_t len=top->io_Mlen;
-	pmem_write(data,addr,len);
-      }else{  //read
-	uint32_t addr=top->io_Maddr;
-	uint32_t len=top->io_Mlen;
-	top->io_MdataIn=pmem_read(addr);
-      }
-    }*/
     single_cycledown();
     addr=(int)(top->io_InstAddr);
     if(DIFFTEST_EN){

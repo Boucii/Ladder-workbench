@@ -671,8 +671,8 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
   //update pc reg
   pc:=Mux(stopflag=/=1.U,dpc,pc)
 
-  //io for blackbox
-  stopflag:=0.U
-  npc_ctl.io.stop:=stopflag
+
+
+
 
 }
