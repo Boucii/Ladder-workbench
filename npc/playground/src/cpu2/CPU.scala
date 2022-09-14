@@ -456,12 +456,7 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
   io.Men:=1.U
   io.Maddr:=src1+src2
   io.Mlen:=4.U
-  regs.io.wdata:=Mux((npc_ctl.io.rdata)(31)=/=1.U,(npc_ctl.io.rdata),Cat(0xffffffffL.U,(npc_ctl.io.rdata(31,0))))
-  printf("src1=%x\n",src1)
-  printf("src2=%x\n",src2)
-  printf("rdata=%x\n",(npc_ctl.io.rdata))
-  printf("rdata_crop=%x\n",(npc_ctl.io.rdata(31,0)))
-  printf("wdata=%x\n",regs.io.wdata)
+  regs.io.wdata:=Mux((npc_ctl.io.rdata)(31)=/=1.U,(npc_ctl.io.rdata)(31,0),Cat(0xffffffffL.U,(npc_ctl.io.rdata(31,0))))
   regs.io.waddr:=dest
   regs.io.wen:=1.U
 }.elsewhen(pt3==="b001".U && pt5==="b00000".U && pt6==="b11".U){    // lh     
