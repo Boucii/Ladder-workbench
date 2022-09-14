@@ -108,7 +108,7 @@ void diff_check_regs(){
 	}
 }
 void difftest_exec_once(){
-//	ref_difftest_exec(1);
+	ref_difftest_exec(1);
 	ref_difftest_regcpy(ref_gpr,DIFFTEST_TO_DUT);
 	diff_check_regs();
 }
@@ -232,7 +232,6 @@ int main(int argc, char** argv, char** env){
   pc=&addr;
 
   while (time<MAX_TIME) {
-    ref_difftest_exec(1);
     cout<<"\ncycle "<<time<<" passed\n";
     //instruction fetch
     addr=(int)(top->io_InstAddr);
