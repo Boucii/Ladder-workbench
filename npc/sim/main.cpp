@@ -139,7 +139,6 @@ extern "C" void pmem_read_dpi(long long raddr, long long *rdata) {
 extern "C" void pmem_write_dpi(long long waddr, long long wdata, char wmask) {
   if(mem_done==0){
 	uint8_t mask=(uint8_t)wmask;
-	cout<<"\n"<<mask<<"mask\n";
 	if(mask==0){
 
 	}else if(mask==1){
@@ -147,7 +146,9 @@ extern "C" void pmem_write_dpi(long long waddr, long long wdata, char wmask) {
 	}else if(mask==3){
 	  pmem_write(wdata,waddr,2);
 	}else if(mask==7){
-	  pmem_write(wdata,waddr,4);
+	  pmem_write(wdata,waddr,3);
+        }else if(mask==15){
+          pmem_write(wdata,waddr,4);
 	}else if(mask==255){
 	  pmem_write(wdata,waddr,8);
 	}
