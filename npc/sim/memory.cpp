@@ -28,7 +28,7 @@ uint64_t pmem_read(int addr){
   uint64_t lo6=((uint64_t)mem[base_addr+6])<<48;
   uint64_t lo7=((uint64_t)mem[base_addr+7])<<56;
 
-  std::cout<<"0x";
+ // std::cout<<"0x";
   return lo0+lo1+lo2+lo3+lo4+lo5+lo6+lo7;
 }
 int pmem_write(uint64_t content,uint64_t addr,uint32_t len){
