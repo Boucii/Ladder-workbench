@@ -255,7 +255,7 @@ int main(int argc, char** argv, char** env){
     Log(temp);
     Log("\n");
     cout<<YELLOW<<"PC=0x"<<hex<<addr<<RESET<<dec<<endl;
-    cout<<fixed << setw(8) << setfill('0')<<"0x"<<hex<<cur_inst<<dec<<"	"<<BOLDYELLOW<<temp<<RESET<<endl;
+    cout<<fixed << setw(8) <<"0x"<< setfill('0')<<hex<<cur_inst<<dec<<"	"<<BOLDYELLOW<<temp<<RESET<<endl;
     //memory read/write
     single_cycleup();
     single_cycledown();
@@ -272,7 +272,7 @@ int main(int argc, char** argv, char** env){
 		cout<<"\n\n";
 		cout<<BOLDRED<<"------------DIFF FAILED------------"<<RESET<<endl;
 	        cout<<YELLOW<<"PC=0x"<<hex<<addr<<RESET<<dec<<endl;
-                cout<<fixed << setw(8) << setfill('0')<<"0x"<<hex<<cur_inst<<dec<<"	"<<BOLDYELLOW<<temp<<RESET<<endl;
+                cout<<fixed << setw(8) <<"0x"<< setfill('0')<<hex<<cur_inst<<dec<<"	"<<BOLDYELLOW<<temp<<RESET<<endl;
 	        assert(0);
 	}
     }
