@@ -460,6 +460,7 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
   printf("src1=%x\n",src1)
   printf("src2=%x\n",src2)
   printf("rdata=%x\n",(npc_ctl.io.rdata))
+  printf("rdata_crop=%x\n",(npc_ctl.io.rdata(31,0)))
   printf("wdata=%x\n",regs.io.wdata)
   regs.io.waddr:=dest
   regs.io.wen:=1.U
