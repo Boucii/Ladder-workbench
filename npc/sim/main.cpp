@@ -48,6 +48,7 @@ uint32_t *pc=NULL;
 
 
 bool mem_done=0;
+bool diff_pass=0;
 //----------------Memory Management------------------
 extern uint64_t pmem_read(int addr);
 extern int pmem_write(uint64_t content,uint64_t addr,uint32_t len);
@@ -95,15 +96,16 @@ void init_difftest() {
 }
 
 void diff_check_regs(){
+	diff_pass=1;
 	for(int i=0;i<32;i++){
 	  if(ref_gpr[i]!=cpu_gpr[i]){
 	      cout<<hex<<"\nError:Difftest failed at pc=0x"<<*pc<<"	"<<dec<<"in reg["<<i<<"]\n";
 	      cout<<hex<<"cpu_gpr="<<GREEN<<cpu_gpr[i]<<RESET<<"	and ref ="<<BOLDGREEN<<ref_gpr[i]<<dec<<RESET<<endl;
-	      assert(0);
+	      diff_pass=0;
 	  }
 	  if(ref_gpr[32]!=*pc){
 	      cout<<hex<<RED<<"pc error! pc="<<GREEN<<*pc<<RESET<<"	and ref ="<<BOLDGREEN<<ref_gpr[32]<<dec<<RESET<<endl;
-	      assert(0);
+	      diff_pass=0;
 	  }
 	  
 	}
@@ -266,6 +268,13 @@ int main(int argc, char** argv, char** env){
     }
     if(DIFFTEST_EN){
         difftest_exec_once();
+	if(diff_pass==0){
+		cout<<"\n\n";
+		cout<<BOLDRED<<"------------DIFF FAILED------------"<<RESET<<endl;
+	        cout<<YELLOW<<"PC=0x"<<hex<<addr<<RESET<<dec<<endl;
+                cout<<fixed << setw(8) << setfill('0')<<"0x"<<hex<<cur_inst<<dec<<"	"<<BOLDYELLOW<<temp<<RESET<<endl;
+	        assert(0);
+	}
     }
     time++;
   }
