@@ -259,7 +259,6 @@ int main(int argc, char** argv, char** env){
     //memory read/write
     single_cycleup();
     single_cycledown();
-    addr=(int)(top->io_InstAddr);
     
     //check for trap
     if(Check()){
@@ -276,6 +275,7 @@ int main(int argc, char** argv, char** env){
 	        assert(0);
 	}
     }
+    addr=(int)(top->io_InstAddr);
     time++;
   }
   if(time==MAX_TIME){
