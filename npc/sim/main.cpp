@@ -277,7 +277,7 @@ int main(int argc, char** argv, char** env){
 		cout<<"\n\n";
 		cout<<BOLDRED<<"------------DIFF FAILED------------"<<RESET<<endl;
 	//        cout<<YELLOW<<"PC=0x"<<hex<<addr<<RESET<<dec<<endl;
-                cout<<fixed << setw(8) <<"0x"<< setfill('0')<<hex<<cur_inst<<dec<<"	"<<BOLDYELLOW<<temp<<RESET<<endl;
+                cout<<"0x"<<fixed << setw(8) << setfill('0')<<hex<<cur_inst<<dec<<"	"<<BOLDYELLOW<<temp<<RESET<<endl;
 	        assert(0);
 	}
     }
