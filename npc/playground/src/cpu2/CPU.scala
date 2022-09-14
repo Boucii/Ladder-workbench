@@ -486,7 +486,7 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
   io.Men:=1.U
   io.Maddr:=src1+src2
   io.Mlen:=4.U
-  regs.io.wdata:=npc_ctl.io.rdata
+  regs.io.wdata:=(npc_ctl.io.rdata)(31,0);
   regs.io.waddr:=dest
   regs.io.wen:=1.U
 }.elsewhen(pt3==="b101".U && pt5==="b00000".U && pt6==="b11".U){    // lhu    
@@ -496,7 +496,7 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
   io.Men:=1.U
   io.Maddr:=src1+src2
   io.Mlen:=2.U
-  regs.io.wdata:=npc_ctl.io.rdata
+  regs.io.wdata:=(npc_ctl.io.rdata)(15,0);
   regs.io.waddr:=dest
   regs.io.wen:=1.U
 }.elsewhen(pt3==="b100".U && pt5==="b00000".U && pt6==="b11".U){    // lbu    
@@ -506,7 +506,7 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
   io.Men:=1.U
   io.Maddr:=src1+src2
   io.Mlen:=1.U
-  regs.io.wdata:=npc_ctl.io.rdata
+  regs.io.wdata:=(npc_ctl.io.rdata)(7,0);
   regs.io.waddr:=dest
   regs.io.wen:=1.U
 }.elsewhen(pt0==="b0000000".U && pt3==="b001".U && pt5==="b00100".U && pt6==="b11".U){    // slli   
