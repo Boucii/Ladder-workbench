@@ -258,13 +258,14 @@ int main(int argc, char** argv, char** env){
     single_cycleup();
     single_cycledown();
     addr=(int)(top->io_InstAddr);
-    if(DIFFTEST_EN){
-        difftest_exec_once();
-    }
+    
     //check for trap
     if(Check()){
       cout<<"HIT GOOD TRAP"<<endl;
       break;  
+    }
+    if(DIFFTEST_EN){
+        difftest_exec_once();
     }
     time++;
   }
