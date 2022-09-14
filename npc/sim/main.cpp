@@ -245,13 +245,14 @@ int main(int argc, char** argv, char** env){
     top->io_InstIn = cur_inst;
     uint8_t *instaddr=(uint8_t *)&cur_inst;
     uint64_t addrin=(uint64_t)((uint64_t)addr)-(uint64_t)0xffffffff00000000;
-    cout<<YELLOW<<"PC=0x"<<hex<<addr<<RESET<<dec<<endl;
     if(ITRACE_EN){
         disassemble(logbuf, 50, addrin, instaddr, 4);
     }
     string temp=logbuf;
     Log(temp);
     Log("\n");
+    cout<<YELLOW<<"PC=0x"<<hex<<addr<<RESET<<dec<<endl;
+    cout<<BOLDYELLOW<<"	"<<hex<<cur_inst<<dec<<temp<<RESET<<endl;
     //memory read/write
     single_cycleup();
     single_cycledown();
