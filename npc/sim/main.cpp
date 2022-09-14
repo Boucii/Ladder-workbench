@@ -265,17 +265,17 @@ int main(int argc, char** argv, char** env){
       cout<<"HIT GOOD TRAP"<<endl;
       break;  
     }
+    addr=(int)(top->io_InstAddr);
     if(DIFFTEST_EN){
         difftest_exec_once();
 	if(diff_pass==0){
 		cout<<"\n\n";
 		cout<<BOLDRED<<"------------DIFF FAILED------------"<<RESET<<endl;
-	        cout<<YELLOW<<"PC=0x"<<hex<<addr<<RESET<<dec<<endl;
+	//        cout<<YELLOW<<"PC=0x"<<hex<<addr<<RESET<<dec<<endl;
                 cout<<fixed << setw(8) <<"0x"<< setfill('0')<<hex<<cur_inst<<dec<<"	"<<BOLDYELLOW<<temp<<RESET<<endl;
 	        assert(0);
 	}
     }
-    addr=(int)(top->io_InstAddr);
     time++;
   }
   if(time==MAX_TIME){
