@@ -253,7 +253,7 @@ int main(int argc, char** argv, char** env){
     Log(temp);
     Log("\n");
     cout<<YELLOW<<"PC=0x"<<hex<<addr<<RESET<<dec<<endl;
-    cout<<fixed << setw(8) << setfill('0')<<BOLDYELLOW<<"0x"<<hex<<cur_inst<<dec<<"	"<<temp<<RESET<<endl;
+    cout<<fixed << setw(8) << setfill('0')<<"0x"<<hex<<cur_inst<<dec<<"	"<<BOLDYELLOW<<temp<<RESET<<endl;
     //memory read/write
     single_cycleup();
     single_cycledown();
