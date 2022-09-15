@@ -131,6 +131,7 @@ void dump_gpr() {
   }
 }
 extern "C" void pmem_read_dpi(long long raddr, long long *rdata) {
+  cout<<hex<<endl<<"raddr is "<<raddr<<endl<<"rdata is "<<*rdata<<endl;
   if(mem_done==0){
   *rdata=pmem_read((int)raddr);//it should be uint i think , but lets keep it this way and change when fail
   mem_done=1;
