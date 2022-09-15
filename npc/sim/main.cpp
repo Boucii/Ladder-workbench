@@ -138,6 +138,7 @@ extern "C" void pmem_read_dpi(long long raddr, long long *rdata) {
   }
 }
 extern "C" void pmem_write_dpi(long long waddr, long long wdata, char wmask) {
+  cout<<hex<<endl<<"waddr is "<<waddr<<endl<<"wdata is "<<wdata<<endl;
   if(mem_done==0){
 	uint8_t mask=(uint8_t)wmask;
 	if(mask==0){
