@@ -620,7 +620,7 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
   regs.io.wen:=1.U
 }.elsewhen(pt5==="b01101".U && pt6==="b11".U){    // lui    
   src1:=immU
-  regs.io.wdata:=src1
+  regs.io.wdata:=Mux(src1(31)===1.U,Cat(0xffffffffL.U,src1(31,0)),src1(31,0))
   regs.io.waddr:=dest
   regs.io.wen:=1.U
 }.elsewhen(pt3==="b000".U && pt5==="b11000".U && pt6==="b11".U){    // beq    
