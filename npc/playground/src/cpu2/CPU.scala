@@ -171,16 +171,19 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
   regs.io.raddr1:=rs1
   regs.io.raddr2:=rs2
   src1:=regs.io.rdata1;src2:=regs.io.rdata2
-  
-  
   io.Men:=1.U
   io.Mwout:=1.U
   io.Maddr:=src1+dest
+  printf("\nsrc1=%x\n",src1)
+  printf("\nimmS=%x\n",immS)
+  printf("\ndest=%x\n",io.Maddr)
+
+
   io.Mlen:=4.U
   io.MdataOut:=src2
-printf("\nsrc1=%x",src1)
-printf("\nimmS=%x",immS)
-printf("\ndest=%x",io.Maddr)
+  printf("\nsrc1=%x\n",src1)
+  printf("\nimmS=%x\n",immS)
+  printf("\ndest=%x\n",io.Maddr)
 }.elsewhen(pt3==="b001".U && pt5==="b01000".U && pt6==="b11".U){    // sh     
   dest:=immS
   regs.io.raddr1:=rs1
