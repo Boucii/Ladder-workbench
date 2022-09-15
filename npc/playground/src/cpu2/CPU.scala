@@ -235,7 +235,7 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
   src1:=regs.io.rdata1
   src2:=regs.io.rdata2
   intermediate:=(src1(63,0)<<src2(4,0))(31,0)
-  regs.io.wdata:=Mux(intermediate(31)=/=1.U,intermediate,Cat(0xffffffffL.U,intermediate))
+  regs.io.wdata:=Mux(intermediate(31)=/=1.U,intermediate(31,0),Cat(0xffffffffL.U,intermediate(31,0)))
   regs.io.waddr:=dest
   regs.io.wen:=1.U
 }.elsewhen(pt0==="b0000000".U && pt3==="b010".U && pt5==="b01100".U && pt6==="b11".U){    // slt    
@@ -268,7 +268,7 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
   src1:=regs.io.rdata1
   src2:=regs.io.rdata2
   intermediate:=(src1.asSInt>>src2(4,0)).asUInt
-  regs.io.wdata:=Mux(intermediate(31)=/=1.U,intermediate,Cat(0xffffffffL.U,intermediate))
+  regs.io.wdata:=Mux(intermediate(31)=/=1.U,intermediate(31,0),Cat(0xffffffffL.U,intermediate(31,0)))
   regs.io.waddr:=dest
   regs.io.wen:=1.U
 }.elsewhen(pt0==="b0000000".U && pt3==="b101".U && pt5==="b01100".U && pt6==="b11".U){    // srl    
@@ -285,7 +285,7 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
   src1:=regs.io.rdata1
   src2:=regs.io.rdata2
   intermediate:=(src1(31,0).asUInt>>src2(4,0)).asUInt
-  regs.io.wdata:=Mux(intermediate(31)=/=1.U,intermediate,Cat(0xffffffffL.U,intermediate))
+  regs.io.wdata:=Mux(intermediate(31)=/=1.U,intermediate(31,0),Cat(0xffffffffL.U,intermediate(31,0)))
   regs.io.waddr:=dest
   regs.io.wen:=1.U
 }.elsewhen(pt0==="b0100000".U && pt3==="b000".U && pt5==="b01100".U && pt6==="b11".U){    // sub    
@@ -315,11 +315,14 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
 }.elsewhen(pt0==="b0000001".U && pt3==="b110".U && pt5==="b01110".U && pt6==="b11".U){    // remw   
   regs.io.raddr1:=rs1
   regs.io.raddr2:=rs2
+  intermediate:=src1(31,0).asSInt%src2(31,0).asSInt
+  regs.io.wdata:=Mux(intermediate(31)=/=1.U,intermediate(31,0),Cat(0xffffffffL.U,intermediate(31,0)))
   src1:=regs.io.rdata1
   src2:=regs.io.rdata2
 }.elsewhen(pt0==="b0000001".U && pt3==="b111".U && pt5==="b01110".U && pt6==="b11".U){    // remuw  
   regs.io.raddr1:=rs1
   regs.io.raddr2:=rs2
+  regs.io.wdata:=src1%src2
   src1:=regs.io.rdata1
   src2:=regs.io.rdata2
 }.elsewhen(pt0==="b0000001".U && pt3==="b111".U && pt5==="b01100".U && pt6==="b11".U){    // remu   
@@ -360,7 +363,7 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
   src1:=regs.io.rdata1
   src2:=regs.io.rdata2
   intermediate:=src1*src2
-  regs.io.wdata:=Mux(intermediate(31)=/=1.U,intermediate,Cat(0xffffffffL.U,intermediate))
+  regs.io.wdata:=Mux(intermediate(31)=/=1.U,intermediate(31,0),Cat(0xffffffffL.U,intermediate(31,0)))
   regs.io.waddr:=dest
   regs.io.wen:=1.U
 }.elsewhen(pt0==="b0000001".U && pt3==="b010".U && pt5==="b01100".U && pt6==="b11".U){    // mulhsu 
@@ -429,7 +432,7 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
   src1:=regs.io.rdata1
   src2:=immI
   intermediate:=(src1+src2)(31,0)
-  regs.io.wdata:=Mux(intermediate(31)=/=1.U,intermediate,Cat(0xffffffffL.U,intermediate))
+  regs.io.wdata:=Mux(intermediate(31)=/=1.U,intermediate(31,0),Cat(0xffffffffL.U,intermediate(31,0)))
   regs.io.waddr:=dest
   regs.io.wen:=1.U
 }.elsewhen(pt3==="b111".U && pt5==="b00100".U && pt6==="b11".U){    // andi   

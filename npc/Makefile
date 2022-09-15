@@ -54,7 +54,7 @@ wave:
 	#@echo "Hello from npc"
 	@echo $(IMAGE)
 	./build/SimGen/VTOP $(IMAGE)
-	gtkwave wave.vcd
+	#gtkwave wave.vcd
 
 debug:
 	#@echo "Hello from npc"
