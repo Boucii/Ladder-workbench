@@ -178,6 +178,7 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
   io.Maddr:=src1+dest
   io.Mlen:=4.U
   io.MdataOut:=src2
+printf("\nsrc1=%x",src1)
 printf("\nimmS=%x",immS)
 printf("\ndest=%x",io.Maddr)
 }.elsewhen(pt3==="b001".U && pt5==="b01000".U && pt6==="b11".U){    // sh     
