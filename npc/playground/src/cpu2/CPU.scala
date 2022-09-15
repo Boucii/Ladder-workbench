@@ -315,7 +315,7 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
 }.elsewhen(pt0==="b0000001".U && pt3==="b110".U && pt5==="b01110".U && pt6==="b11".U){    // remw   
   regs.io.raddr1:=rs1
   regs.io.raddr2:=rs2
-  intermediate:=src1(31,0).asSInt%src2(31,0).asSInt
+  intermediate:=(src1(31,0).asSInt%src2(31,0).asSInt).asUInt
   regs.io.wdata:=Mux(intermediate(31)=/=1.U,intermediate(31,0),Cat(0xffffffffL.U,intermediate(31,0)))
   src1:=regs.io.rdata1
   src2:=regs.io.rdata2
