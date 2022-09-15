@@ -174,7 +174,7 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
   src1:=regs.io.rdata1;src2:=regs.io.rdata2
   io.Men:=1.U
   io.Mwout:=1.U
-  io.Maddr:=src1.asUInt+dest.asUInt
+  io.Maddr:=(src1.asUInt+dest.asUInt)(31,0)
   printf("\nsrc1=%x\n",src1)
   printf("\nimmS=%x\n",immS)
   printf("\ndest=%x\n",io.Maddr)
