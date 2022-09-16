@@ -49,6 +49,10 @@ uint32_t *pc=NULL;
 
 bool mem_done=0;
 bool diff_pass=0;
+
+#define RTC_PORT_BASE 0x48
+#define SERIAL_PORT_BASE 0x3f8
+
 //----------------Memory Management------------------
 extern uint64_t pmem_read(int addr);
 extern int pmem_write(uint64_t content,uint64_t addr,uint32_t len);
@@ -133,13 +137,19 @@ void dump_gpr() {
 extern "C" void pmem_read_dpi(long long raddr, long long *rdata) {
   //cout<<BOLDCYAN<<hex<<endl<<"raddr is "<<raddr<<endl<<"rdata is "<<*rdata<<RESET<<endl;
   if(mem_done==0){
-  *rdata=pmem_read((int)raddr);//it should be uint i think , but lets keep it this way and change when fail
-  mem_done=1;
+	if(raddr==RTC_PORT_BASE){
+	    return get_time();
+	}
+  	*rdata=pmem_read((int)raddr);//it should be uint i think , but lets keep it this way and change when fail
+  	mem_done=1;
   }
 }
 extern "C" void pmem_write_dpi(long long waddr, long long wdata, char wmask) {
   //cout<<BOLDCYAN<<hex<<endl<<"waddr is "<<waddr<<endl<<"wdata is "<<wdata<<RESET<<endl;
   if(mem_done==0){
+	  if(waddr==SERIAL_PORT_BASE){
+	  	cout<<wdata;
+	  }
 	uint8_t mask=(uint8_t)wmask;
 	if(mask==0){
 
