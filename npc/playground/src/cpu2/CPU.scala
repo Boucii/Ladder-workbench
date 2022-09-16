@@ -142,7 +142,7 @@ class TOP extends Module{
   src2:=0.U
   dest:=rd//default is rd,todo and change
 
-  printf("\nimmS=%x\n",immS)
+  //printf("\nimmS=%x\n",immS)
   //printf("\n\nimmj =%d \n\n\n",immJ);
 
   //itermidiate
