@@ -226,7 +226,6 @@ int main(int argc, char** argv, char** env){
   top->trace(tfp, 0); //
   tfp->open("wave.vcd"); //设置输出的文件wave.vcd
 
-  //set_gpr_ptr(r);
 
   int time=0;
   LogInit();
@@ -246,13 +245,14 @@ int main(int argc, char** argv, char** env){
   cout<<"\nstart simulating\n";
   dumpwave();
 
-  //pc=&((uint32_t)(top->io_InstAddr));
 
   uint32_t addr=0;
   pc=&addr;
 
   while (time<MAX_TIME) {
-    cout<<"\ncycle "<<time<<" passed\n";
+    if(ITRACE_EN){
+        cout<<"\ncycle "<<time<<" passed\n";
+    }
     //instruction fetch
     addr=(int)(top->io_InstAddr);
     Log("0x");
@@ -271,8 +271,10 @@ int main(int argc, char** argv, char** env){
     string temp=logbuf;
     Log(temp);
     Log("\n");
-    cout<<YELLOW<<"PC=0x"<<hex<<addr<<RESET<<dec<<endl;
-    cout<<fixed << setw(8) <<"0x"<< setfill('0')<<hex<<cur_inst<<dec<<"	"<<BOLDYELLOW<<temp<<RESET<<endl;
+    if(ITRACE_EN){
+        cout<<YELLOW<<"PC=0x"<<hex<<addr<<RESET<<dec<<endl;                                                   
+        cout<<fixed << setw(8) <<"0x"<< setfill('0')<<hex<<cur_inst<<dec<<"	"<<BOLDYELLOW<<temp<<RESET<<endl; 
+    }
     //memory read/write
     single_cycleup();
     single_cycledown();
