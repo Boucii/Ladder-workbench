@@ -55,7 +55,7 @@ word_t paddr_read(paddr_t addr, int len) {
   */
   if (likely(in_pmem(addr))){
   word_t temp= pmem_read(addr, len);
-  printf("from nemu mem ,paddr=%x\n,read=%lx\n",addr,temp);
+  //printf("from nemu mem ,paddr=%x\n,read=%lx\n",addr,temp);
   return temp;
   }
   IFDEF(CONFIG_DEVICE, return mmio_read(addr, len));
@@ -67,7 +67,7 @@ void paddr_write(paddr_t addr, int len, word_t data) {
 # if defined(CONFIG_MTRACE)
   log_write("Mem write at%x , length %d bytes, %lx\n", addr,len,data );
 #endif
-  if (likely(in_pmem(addr))) { printf("from nemu write,addr=%x,\ndata=%lx\n",addr,data);pmem_write(addr, len, data); return; }
+  if (likely(in_pmem(addr))) { /*printf("from nemu write,addr=%x,\ndata=%lx\n",addr,data);*/pmem_write(addr, len, data); return; }
   IFDEF(CONFIG_DEVICE, mmio_write(addr, len, data); return);
   out_of_bound(addr);
 }

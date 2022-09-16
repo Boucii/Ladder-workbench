@@ -131,14 +131,14 @@ void dump_gpr() {
   }
 }
 extern "C" void pmem_read_dpi(long long raddr, long long *rdata) {
-  cout<<BOLDCYAN<<hex<<endl<<"raddr is "<<raddr<<endl<<"rdata is "<<*rdata<<RESET<<endl;
+  //cout<<BOLDCYAN<<hex<<endl<<"raddr is "<<raddr<<endl<<"rdata is "<<*rdata<<RESET<<endl;
   if(mem_done==0){
   *rdata=pmem_read((int)raddr);//it should be uint i think , but lets keep it this way and change when fail
   mem_done=1;
   }
 }
 extern "C" void pmem_write_dpi(long long waddr, long long wdata, char wmask) {
-  cout<<BOLDCYAN<<hex<<endl<<"waddr is "<<waddr<<endl<<"wdata is "<<wdata<<RESET<<endl;
+  //cout<<BOLDCYAN<<hex<<endl<<"waddr is "<<waddr<<endl<<"wdata is "<<wdata<<RESET<<endl;
   if(mem_done==0){
 	uint8_t mask=(uint8_t)wmask;
 	if(mask==0){
