@@ -164,7 +164,7 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
   src1:=regs.io.rdata1;src2:=regs.io.rdata2
   io.Men:=1.U
   io.Mwout:=1.U
-  io.Maddr:=src1+dest
+  io.Maddr:=(src1.asUInt+dest.asUInt)(31,0)
   io.Mlen:=8.U
   io.MdataOut:=src2
 }.elsewhen(pt3==="b010".U && pt5==="b01000".U && pt6==="b11".U){    // sw     
@@ -175,16 +175,8 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
   io.Men:=1.U
   io.Mwout:=1.U
   io.Maddr:=(src1.asUInt+dest.asUInt)(31,0)
-  printf("\nsrc1=%x\n",src1)
-  printf("\nimmS=%x\n",immS)
-  printf("\ndest=%x\n",io.Maddr)
-
-
   io.Mlen:=4.U
   io.MdataOut:=src2
-  printf("\nsrc1=%x\n",src1)
-  printf("\nimmS=%x\n",immS)
-  printf("\ndest=%x\n",io.Maddr)
 }.elsewhen(pt3==="b001".U && pt5==="b01000".U && pt6==="b11".U){    // sh     
   dest:=immS
   regs.io.raddr1:=rs1
@@ -192,7 +184,7 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
   src1:=regs.io.rdata1;src2:=regs.io.rdata2
   io.Men:=1.U
   io.Mwout:=1.U
-  io.Maddr:=src1+dest
+  io.Maddr:=(src1.asUInt+dest.asUInt)(31,0)
   io.Mlen:=2.U
   io.MdataOut:=src2
 }.elsewhen(pt3==="b000".U && pt5==="b01000".U && pt6==="b11".U){    // sb     
@@ -202,7 +194,7 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
   src1:=regs.io.rdata1;src2:=regs.io.rdata2
   io.Men:=1.U
   io.Mwout:=1.U
-  io.Maddr:=src1+dest
+  io.Maddr:=(src1.asUInt+dest.asUInt)(31,0)
   io.Mlen:=1.U
   io.MdataOut:=src2
 }.elsewhen(pt0==="b0000000".U && pt3==="b000".U && pt5==="b01100".U && pt6==="b11".U){    // add    
