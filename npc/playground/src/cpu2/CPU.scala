@@ -302,7 +302,7 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
   regs.io.raddr2:=rs2
   src1:=regs.io.rdata1
   src2:=regs.io.rdata2
-  regs.io.wdata:=Mux((src1-src2)(31)=/=1.U,(src1-src2),Cat(0xffffffffL.U,(src1-src2)))
+  regs.io.wdata:=Mux((src1-src2)(31)=/=1.U,(src1-src2)(31,0),Cat(0xffffffffL.U,(src1-src2)(31,0)))
   regs.io.waddr:=dest
   regs.io.wen:=1.U
 }.elsewhen(pt0==="b0000000".U && pt3==="b100".U && pt5==="b01100".U && pt6==="b11".U){    // xor    
@@ -386,7 +386,7 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
   regs.io.raddr2:=rs2
   src1:=regs.io.rdata1
   src2:=regs.io.rdata2
-  regs.io.wdata:=Mux((src1*src2)(31)=/=1.U,(src1*src2),Cat(0xffffffffL.U,(src1*src2)))
+  regs.io.wdata:=Mux((src1*src2)(31)=/=1.U,(src1*src2)(31,0),Cat(0xffffffffL.U,(src1*src2)(31,0)))
   regs.io.waddr:=dest
   regs.io.wen:=1.U
   /*
