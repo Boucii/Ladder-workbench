@@ -141,7 +141,7 @@ extern "C" void pmem_read_dpi(long long raddr, long long *rdata) {
   if(mem_done==0){
 	if(raddr==RTC_PORT_BASE){
   		gettimeofday(&timeus,NULL);
-  		rdata=timeus.tv_sec*1000000+timeus.tv_usec;
+  		*rdata=timeus.tv_sec*1000000+timeus.tv_usec;
 	}
   	*rdata=pmem_read((int)raddr);//it should be uint i think , but lets keep it this way and change when fail
   	mem_done=1;
