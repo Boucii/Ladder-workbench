@@ -152,7 +152,7 @@ extern "C" void pmem_write_dpi(long long waddr, long long wdata, char wmask) {
   if(mem_done==0){
 	  if(waddr==SERIAL_PORT_BASE){
 		 // assert(0);
-	  	cout<<BOLDGREEN<<wdata<<RESET;
+	  	cout<<BOLDGREEN<<(char)wdata<<RESET;
 		return;
 	  }
 	uint8_t mask=(uint8_t)wmask;
