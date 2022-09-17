@@ -16,7 +16,7 @@
 #include "VTOP__Dpi.h"
 
 #define DIFFTEST_EN 0
-#define ITRACE_EN 1
+#define ITRACE_EN 0
 #define MAX_TIME 100000
 #define RESET_VECTOR 0x80000000
 
@@ -170,7 +170,7 @@ extern "C" void pmem_write_dpi(long long waddr, long long wdata, char wmask) {
 	  pmem_write(wdata,waddr,8);
 	}
 	else{
-	  cout<<mask<<hex<<endl<<wdata<<endl<<waddr<<endl;
+	  //cout<<mask<<hex<<endl<<wdata<<endl<<waddr<<endl;
 	  cout<<"invalid pmem write, and here goes assert0"<<endl;
 	  assert(0);
 	}
@@ -247,7 +247,9 @@ int main(int argc, char** argv, char** env){
   if(DIFFTEST_EN){
       init_difftest();
   }
-  cout<<"\nstart simulating\n";
+  if(ITRACE_EN){
+      cout<<"\nstart simulating\n";
+  }
   dumpwave();
 
 
