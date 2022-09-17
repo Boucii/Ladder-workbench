@@ -47,7 +47,7 @@ uint64_t *cpu_gpr = NULL;
 uint64_t ref_gpr[33];
 uint32_t *pc=NULL;
 
-struct timeval time;
+struct timeval timeus;
 
 bool mem_done=0;
 bool diff_pass=0;
@@ -140,8 +140,8 @@ extern "C" void pmem_read_dpi(long long raddr, long long *rdata) {
   //cout<<BOLDCYAN<<hex<<endl<<"raddr is "<<raddr<<endl<<"rdata is "<<*rdata<<RESET<<endl;
   if(mem_done==0){
 	if(raddr==RTC_PORT_BASE){
-  		gettimeofday(&time,NULL);
-  		rdata=time.tv_sec*1000000+time.tv_usec;
+  		gettimeofday(&timeus,NULL);
+  		rdata=timeus.tv_sec*1000000+timeus.tv_usec;
 	}
   	*rdata=pmem_read((int)raddr);//it should be uint i think , but lets keep it this way and change when fail
   	mem_done=1;
