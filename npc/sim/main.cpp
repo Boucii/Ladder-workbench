@@ -141,7 +141,13 @@ extern "C" void pmem_read_dpi(long long raddr, long long *rdata) {
   if(mem_done==0){
 	if(raddr==RTC_PORT_BASE){
   		gettimeofday(&timeus,NULL);
-  		*rdata=timeus.tv_sec*1000000+timeus.tv_usec;
+  		*rdata=(uint32_t)(timeus.tv_sec*1000000+timeus.tv_usec);
+		mem_done=1;
+		return;
+	}
+	if(raddr==RTC_PORT_BASE+4){
+  		gettimeofday(&timeus,NULL);
+  		*rdata=(uint32_t)((timeus.tv_sec*1000000+timeus.tv_usec)>>32);
 		mem_done=1;
 		return;
 	}
