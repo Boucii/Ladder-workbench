@@ -563,6 +563,7 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
   regs.io.waddr:=dest
   regs.io.wen:=1.U
 }.elsewhen(pt0==="b0000000".U && pt3==="b101".U && pt5==="b00100".U && pt6==="b11".U){    // srli   
+  printf("srli is here\n")
   regs.io.raddr1:=rs1
   src1:=regs.io.rdata1
   src2:=immI

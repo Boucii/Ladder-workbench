@@ -290,7 +290,7 @@ int main(int argc, char** argv, char** env){
     Log("\n");
     if(ITRACE_EN){
         cout<<YELLOW<<"PC=0x"<<hex<<addr<<RESET<<dec<<endl;                                                   
-        cout<<fixed << setw(8) <<"0x"<< setfill('0')<<hex<<cur_inst<<dec<<"	"<<BOLDYELLOW<<temp<<RESET<<endl; 
+        cout<<"0x"<<fixed << setw(8) << setfill('0')<<hex<<cur_inst<<dec<<"	"<<BOLDYELLOW<<temp<<RESET<<endl; 
     }
     //memory read/write
     single_cycleup();
