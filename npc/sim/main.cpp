@@ -155,7 +155,7 @@ extern "C" void pmem_write_dpi(long long waddr, long long wdata, char wmask) {
 		char a=(char)wdata;
 	  	//cout<<BOLDGREEN<<(char)wdata<<RESET;
 	  	cout<<BOLDGREEN<<a<<RESET;
-		Log("write printf,wdata=%c",a);
+		Log("write printf,wdata="+a);
 		return;
 	  }
 	uint8_t mask=(uint8_t)wmask;
