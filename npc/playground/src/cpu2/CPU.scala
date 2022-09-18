@@ -230,7 +230,7 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
   regs.io.wdata:=(src1(63,0)<<src2(4,0))
   regs.io.waddr:=dest(18,0)
   regs.io.wen:=1.U
-}.elsewhen(pt0==="b0000000".U && pt3==="b001".U && pt5==="b01110".U && pt6==="b11".U){    // sllw   
+}.elsewhen(pt0(6,1)==="b000000".U && pt3==="b001".U && pt5==="b01110".U && pt6==="b11".U){    // sllw   
   regs.io.raddr1:=rs1
   regs.io.raddr2:=rs2
   src1:=regs.io.rdata1
@@ -517,15 +517,14 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
   regs.io.wdata:=(npc_ctl.io.rdata)(7,0);
   regs.io.waddr:=dest
   regs.io.wen:=1.U
-}.elsewhen(pt0==="b0000000".U && pt3==="b001".U && pt5==="b00100".U && pt6==="b11".U){    // slli   
-  printf("slli here/n")
+}.elsewhen(pt0(6,1)==="b000000".U && pt3==="b001".U && pt5==="b00100".U && pt6==="b11".U){    // slli   
   regs.io.raddr1:=rs1
   src1:=regs.io.rdata1
   src2:=immI
   regs.io.wdata:=(src1(63,0)<<src2(4,0))
   regs.io.waddr:=dest
   regs.io.wen:=1.U
-}.elsewhen(pt0==="b0000000".U && pt3==="b001".U && pt5==="b00110".U && pt6==="b11".U){    // slliw  
+}.elsewhen(pt0(6,1)==="b000000".U && pt3==="b001".U && pt5==="b00110".U && pt6==="b11".U){    // slliw  
   regs.io.raddr1:=rs1
   src1:=regs.io.rdata1
   src2:=immI
@@ -547,14 +546,14 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
   regs.io.wdata:=Mux(src1>=src2,0.U,1.U)
   regs.io.waddr:=dest
   regs.io.wen:=1.U
-}.elsewhen(pt0==="b0100000".U && pt3==="b101".U && pt5==="b00100".U && pt6==="b11".U){    // srai   
+}.elsewhen(pt0(6,1)==="b010000".U && pt3==="b101".U && pt5==="b00100".U && pt6==="b11".U){    // srai   
   regs.io.raddr1:=rs1
   src1:=regs.io.rdata1
   src2:=immI
   regs.io.wdata:=(src1(63,0).asSInt>>src2(4,0)).asUInt
   regs.io.waddr:=dest
   regs.io.wen:=1.U
-}.elsewhen(pt0==="b0100000".U && pt3==="b101".U && pt5==="b00110".U && pt6==="b11".U){    // sraiw  
+}.elsewhen(pt0(6,1)==="b010000".U && pt3==="b101".U && pt5==="b00110".U && pt6==="b11".U){    // sraiw  
   regs.io.raddr1:=rs1
   src1:=regs.io.rdata1
   src2:=immI
@@ -562,15 +561,14 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
   regs.io.wdata:=Mux(intermediate(31)===1.U,Cat(0xffffffffL.U,intermediate(31,0)),intermediate(31,0))
   regs.io.waddr:=dest
   regs.io.wen:=1.U
-}.elsewhen(pt0==="b0000000".U && pt3==="b101".U && pt5==="b00100".U && pt6==="b11".U){    // srli   
-  printf("srli is here\n")
+}.elsewhen(pt0(6,1)==="b000000".U && pt3==="b101".U && pt5==="b00100".U && pt6==="b11".U){    // srli   
   regs.io.raddr1:=rs1
   src1:=regs.io.rdata1
   src2:=immI
   regs.io.wdata:=(src1(63,0).asUInt>>src2(4,0)).asUInt
   regs.io.waddr:=dest
   regs.io.wen:=1.U
-}.elsewhen(pt0==="b0000000".U && pt3==="b101".U && pt5==="b00110".U && pt6==="b11".U){    // srliw  
+}.elsewhen(pt0(6,1)==="b000000".U && pt3==="b101".U && pt5==="b00110".U && pt6==="b11".U){    // srliw  
   regs.io.raddr1:=rs1
   src1:=regs.io.rdata1
   src2:=immI
