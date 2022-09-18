@@ -223,7 +223,7 @@ int printf(const char *fmt, ...) {
   int res=vsprintf(buf1,fmt,ap);
   va_end(ap);
   putstr(buf1);
-  free(buf1);
+  //free(buf1);
   return res;
 
 }
