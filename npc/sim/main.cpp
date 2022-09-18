@@ -16,7 +16,7 @@
 #include "VTOP__Dpi.h"
 
 #define DIFFTEST_EN 0
-#define ITRACE_EN 0
+#define ITRACE_EN 1
 #define MAX_TIME 10000000
 #define RESET_VECTOR 0x80000000
 
