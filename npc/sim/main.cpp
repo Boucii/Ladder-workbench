@@ -149,8 +149,11 @@ extern "C" void pmem_read_dpi(long long raddr, long long *rdata) {
 }
 extern "C" void pmem_write_dpi(long long waddr, long long wdata, char wmask) {
   //cout<<BOLDCYAN<<hex<<endl<<"waddr is "<<waddr<<endl<<"wdata is "<<wdata<<RESET<<endl;
+  static int timein=0;
   if(mem_done==0){
 	  if(waddr==SERIAL_PORT_BASE){
+                timein++;
+		cout<<"timein"<<timein<<endl;
 		 // assert(0);
 		char a=(char)wdata;
 	  	//cout<<BOLDGREEN<<(char)wdata<<RESET;
