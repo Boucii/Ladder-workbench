@@ -18,10 +18,6 @@ static word_t pmem_read(paddr_t addr, int len) {
 }
 
 static void pmem_write(paddr_t addr, int len, word_t data) {
-	if(addr==0x3f8){
-	    printf("from nemu,ioe write, content:%lx\n",data);
-	    return;
-	}
   host_write(guest_to_host(addr), len, data);
 }
 
@@ -73,5 +69,9 @@ void paddr_write(paddr_t addr, int len, word_t data) {
 #endif
   if (likely(in_pmem(addr))) { /*printf("from nemu write,addr=%x,\ndata=%lx\n",addr,data);*/pmem_write(addr, len, data); return; }
   IFDEF(CONFIG_DEVICE, mmio_write(addr, len, data); return);
+  	if(addr==0x3f8){
+  	    printf("from nemu,ioe write, content:%lx\n",data);
+  	    return;
+  	}else
   out_of_bound(addr);
 }
