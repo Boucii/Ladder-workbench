@@ -137,7 +137,7 @@ void dump_gpr() {
   }
 }
 extern "C" void pmem_read_dpi(long long raddr, long long *rdata) {
-  cout<<BOLDCYAN<<hex<<endl<<"raddr is "<<raddr<<endl<<"rdata is "<<*rdata<<RESET<<endl;
+ // cout<<BOLDCYAN<<hex<<endl<<"raddr is "<<raddr<<endl<<"rdata is "<<*rdata<<RESET<<endl;
   if(mem_done==0){
 	if(raddr==RTC_PORT_BASE){
   		gettimeofday(&timeus,NULL);
