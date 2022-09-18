@@ -15,8 +15,8 @@
 //#include <svdpi.h>
 #include "VTOP__Dpi.h"
 
-#define DIFFTEST_EN 1
-#define ITRACE_EN 1
+#define DIFFTEST_EN 0
+#define ITRACE_EN 0
 #define MAX_TIME 100000
 #define RESET_VECTOR 0x80000000
 
@@ -153,12 +153,9 @@ extern "C" void pmem_write_dpi(long long waddr, long long wdata, char wmask) {
   if(mem_done==0){
 	  if(waddr==SERIAL_PORT_BASE){
                 timein++;
-		cout<<"timein"<<timein<<endl;
-		 // assert(0);
 		char a=(char)wdata;
-	  	//cout<<BOLDGREEN<<(char)wdata<<RESET;
 	  	cout<<BOLDGREEN<<a<<RESET;
-		Log("write printf,wdata="+a);
+	        mem_done=1;
 		return;
 	  }
 	uint8_t mask=(uint8_t)wmask;
