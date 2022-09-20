@@ -47,10 +47,13 @@ LDFLAGS += -ldl
 LDFLAGS += $(shell llvm-config-14 --ldflags) 
 LDFLAGS += $(shell llvm-config-14 --libs all)
 LDFLAGS +=-fsanitize=address
+
+VERILATORFLAGS += -O3 --x-assign fast --x-initial fast --noassert
+
 sim:
 	$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
 #	@echo "Write this Makefile by yourself."
-	verilator --cc --exe --build --trace -CFLAGS "$(CXXFLAGS)" -LDFLAGS "$(LDFLAGS)" -Isim/ $(VSRCS) $(CSRCS)  --Mdir $(BUILD_DIR)/SimGen 
+	verilator --cc --exe --build --trace -CFLAGS "$(CXXFLAGS)" -LDFLAGS "$(LDFLAGS)" -Isim/ $(VSRCS) $(CSRCS)  --Mdir $(BUILD_DIR)/SimGen  $(VERILATORFLAGS)
 wave:
 	#@echo "Hello from npc"
 	@echo $(IMAGE)
