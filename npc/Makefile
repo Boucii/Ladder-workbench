@@ -37,6 +37,7 @@ genwave:
 
 CXXFLAGS += $(shell llvm-config-14 --cxxflags) 
 CXXFLAGS += -g
+CXXFLAGS += -O3
 
 CXXFLAGS += -L$(NEMU_HOME)/build/
 CXXFLAGS += -lriscv64-nemu-interpreter-so
