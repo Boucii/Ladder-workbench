@@ -266,7 +266,8 @@ int main(int argc, char** argv, char** env){
   uint32_t addr=0;
   pc=&addr;
 
-  while (time<MAX_TIME) {
+  //while (time<MAX_TIME) {
+  while (true) {
     if(ITRACE_EN){
         cout<<"\ncycle "<<time<<" passed\n";
     }
