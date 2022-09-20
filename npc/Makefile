@@ -48,7 +48,7 @@ LDFLAGS += $(shell llvm-config-14 --ldflags)
 LDFLAGS += $(shell llvm-config-14 --libs all)
 LDFLAGS +=-fsanitize=address
 
-VERILATORFLAGS +=--threads 5 -O3 --x-assign fast --x-initial fast --noassert
+VERILATORFLAGS +=--threads 2 -O3 --x-assign fast --x-initial fast --noassert
 
 sim:
 	$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
