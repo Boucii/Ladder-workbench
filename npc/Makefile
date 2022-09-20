@@ -53,7 +53,8 @@ VERILATORFLAGS += -O3 --x-assign fast --x-initial fast --noassert
 sim:
 	$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
 #	@echo "Write this Makefile by yourself."
-	verilator --cc --exe --build --trace -CFLAGS "$(CXXFLAGS)" -LDFLAGS "$(LDFLAGS)" -Isim/ $(VSRCS) $(CSRCS)  --Mdir $(BUILD_DIR)/SimGen  $(VERILATORFLAGS)
+	#verilator --cc --exe --build --trace -CFLAGS "$(CXXFLAGS)" -LDFLAGS "$(LDFLAGS)" -Isim/ $(VSRCS) $(CSRCS)  --Mdir $(BUILD_DIR)/SimGen  $(VERILATORFLAGS)
+	verilator $(VERILATORFLAGS) --cc --exe --build --trace -CFLAGS "$(CXXFLAGS)" -LDFLAGS "$(LDFLAGS)" -Isim/ $(VSRCS) $(CSRCS)  --Mdir $(BUILD_DIR)/SimGen
 wave:
 	#@echo "Hello from npc"
 	@echo $(IMAGE)
