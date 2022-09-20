@@ -148,6 +148,8 @@ class TOP extends Module{
   //itermidiate
   val intermediate=Wire(UInt(32.W))
   intermediate:=0.U
+  val intermediate64=Wire(UInt(64.W))
+  intermediate64:=0.U
 
   //initiallization
   io.Mwout:=0.U//rename :todo
@@ -394,9 +396,8 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
   regs.io.raddr2:=rs2
   src1:=regs.io.rdata1
   src2:=regs.io.rdata2
-  //intermediate(63,0):=((Cat(src1(63),src1)/Cat(src2(63),src2))(63,0))(63,0)
-  intermediate:=((Cat(src1(63),src1)/Cat(src2(63),src2))(63,0))(63,0)
-  regs.io.wdata:=intermediate(31,0)
+  intermediate64(63,0):=((Cat(src1(63),src1)/Cat(src2(63),src2))(63,0))(63,0)
+  regs.io.wdata:=intermediate64(31,0)
   regs.io.waddr:=dest
   regs.io.wen:=1.U
 }.elsewhen(pt0==="b0000001".U && pt3==="b101".U && pt5==="b01100".U && pt6==="b11".U){    // divu   
@@ -404,8 +405,8 @@ when(pt3==="b011".U && pt5==="b01000".U && pt6==="b11".U){    // sd
   regs.io.raddr2:=rs2
   src1:=regs.io.rdata1
   src2:=regs.io.rdata2
-  intermediate:=(Cat(src1(63),src1)/Cat(src2(63),src2))(63,0)
-  regs.io.wdata:=intermediate(63,0)
+  intermediate64:=(Cat(src1(63),src1)/Cat(src2(63),src2))(63,0)
+  regs.io.wdata:=intermediate64(63,0)
   regs.io.waddr:=dest
   regs.io.wen:=1.U
 }.elsewhen(pt0==="b0000001".U && pt3==="b101".U && pt5==="b01110".U && pt6==="b11".U){    // divuw  
