@@ -55,6 +55,7 @@ void sim_t::diff_set_regs(void* diff_context) {
     state->XPR.write(i, (sword_t)ctx->gpr[i]);
   }
   state->pc = ctx->pc;
+  //printf("from spike:mcause=%lx\n",state->mcause);
 }
 
 void sim_t::diff_memcpy(reg_t dest, void* src, size_t n) {
@@ -80,6 +81,7 @@ void difftest_regcpy(void* dut, bool direction) {
   } else {
     s->diff_get_regs(dut);
   }
+  printf("from spike:mcause=%lx\n",state->mcause);
 }
 
 void difftest_exec(uint64_t n) {

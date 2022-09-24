@@ -5,9 +5,12 @@
 static Context* (*user_handler)(Event, Context*) = NULL;
 
 Context* __am_irq_handle(Context *c) {
+  printf("1cteinit and handler is %d\n",user_handler==NULL);
   if (user_handler) {
+  printf("cteinit and handler is %d\n",user_handler==NULL);
     Event ev = {0};
     switch (c->mcause) {
+      case -1: ev.event=EVENT_YIELD;break;
       default: ev.event = EVENT_ERROR; break;
     }
 
@@ -27,6 +30,7 @@ bool cte_init(Context*(*handler)(Event, Context*)) {
   // register event handler
   user_handler = handler;
 
+  printf("0cteinit and handler is %d\n",user_handler==NULL);
   return true;
 }
 
@@ -36,6 +40,7 @@ Context *kcontext(Area kstack, void (*entry)(void *), void *arg) {
 
 void yield() {
   asm volatile("li a7, -1; ecall");
+  //asm volatile("li a7, 11; ecall");
 }
 
 bool ienabled() {

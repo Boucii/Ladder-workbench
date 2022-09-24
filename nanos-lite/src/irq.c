@@ -2,7 +2,9 @@
 
 static Context* do_event(Event e, Context* c) {
   switch (e.event) {
+    case EVENT_YIELD: printf("Oh MAN!!It IS B??\n");break;
     default: panic("Unhandled event ID = %d", e.event);
+
   }
 
   return c;
@@ -10,5 +12,6 @@ static Context* do_event(Event e, Context* c) {
 
 void init_irq(void) {
   Log("Initializing interrupt/exception handler...");
+  //printf("do!!!!%d",do_event==NULL);
   cte_init(do_event);
 }

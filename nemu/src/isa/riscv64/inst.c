@@ -62,6 +62,16 @@ static int decode_exec(Decode *s) {
   word_t dest = 0, src1 = 0, src2 = 0;
   s->dnpc = s->snpc;
 
+int csr_trans(int csr_addr){
+	int res=0;
+  switch(csr_addr){
+    case 0x305: res=0;break;//mtvec
+    case 0x341: res=1;break;//mepc
+    case 0x342: res=3;break;//mcause
+    case 0x300: res=2;break;//mstatus
+  }
+  return res;
+}
 #define INSTPAT_INST(s) ((s)->isa.inst.val)
 #define INSTPAT_MATCH(s, name, type, ... /* body */ ) { \
   decode_operand(s, &dest, &src1, &src2, concat(TYPE_, type)); \
@@ -144,6 +154,19 @@ static int decode_exec(Decode *s) {
   INSTPAT("0000001 ????? ????? 100 ????? 01110 11", divw,    R, R(dest) = (int32_t)(src2)==0?(int64_t)(-1):(int64_t)(int32_t)((int32_t)src1 / (int32_t)src2));
   INSTPAT("0000001 ????? ????? 000 ????? 01110 11", mulw   , R, R(dest) = SEXT(BITS(src1, 31, 0) * BITS(src2, 31, 0), 32));
   INSTPAT("0000001 ????? ????? 000 ????? 01100 11", mul    , R, R(dest) =  src1*src2);
+
+
+  INSTPAT("??????? ????? ????? 001 ????? 11100 11", csrrw  , I, uint64_t t=cpu.csr[csr_trans(src2)]; cpu.csr[csr_trans(src2)] = src1;R(dest)=t);
+  INSTPAT("??????? ????? ????? 010 ????? 11100 11", csrrs  , I, uint64_t t=cpu.csr[csr_trans(src2)]; cpu.csr[csr_trans(src2)] = t|src1; R(dest)=t;//);
+  printf("t=0x%lxand dest is=%lx,and rdest=%lx\n",t,dest,cpu.gpr[dest]););
+  INSTPAT("??????? ????? ????? 010 ????? 11100 11", csrrc  , I, uint64_t t=cpu.csr[csr_trans(src2)]; cpu.csr[csr_trans(src2)] = t&src1; R(dest)=t);
+  //INSTPAT("??????? ????? ????? 010 ????? 11100 11", csrrwi  , I, uint64_t R(dest)=cpu.csr[src2];);
+  //INSTPAT("??????? ????? ????? 010 ????? 11100 11", csrrsi  , I, uint64_t t=cpu.csr[src2]; cpu.csr[src2] = src1; R(dest)=t);
+  //INSTPAT("??????? ????? ????? 010 ????? 11100 11", csrrci  , I, uint64_t t=cpu.csr[src2]; cpu.csr[src2] = src1; R(dest)=t);
+
+  INSTPAT("0011000 00010 00000 000 00000 11100 11", mret  , R, s->dnpc=cpu.csr[mepc]+4);
+  INSTPAT("0000000 00000 00000 000 00000 11100 11", ecall  , I, s->dnpc=isa_raise_intr(cpu.gpr[17],cpu.pc));
+
   INSTPAT("??????? ????? ????? ??? ????? ????? ??", inv    , N, INV(s->pc));
   INSTPAT_END();
 

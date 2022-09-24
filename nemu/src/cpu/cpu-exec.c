@@ -18,7 +18,7 @@ extern void ftrace_write(paddr_t, paddr_t, bool);
 extern void ftrace_display();
 extern void func_display();
 
-CPU_state cpu = {};
+CPU_state cpu = {.csr[mstatus]=0xa00001800};
 uint64_t g_nr_guest_inst = 0;
 static uint64_t g_timer = 0; // unit: us
 static bool g_print_step = false;
