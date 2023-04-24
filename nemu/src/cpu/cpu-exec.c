@@ -106,6 +106,12 @@ static void statistic() {
 void assert_fail_msg() {
   isa_reg_display();
   statistic();
+#ifdef CONFIG_FTRACE
+	      ftrace_display();
+#endif
+#ifdef CONFIG_ITRACE
+	      print_buf();
+#endif
 }
 
 /* Simulate how the CPU works. */

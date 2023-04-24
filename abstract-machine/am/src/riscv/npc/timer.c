@@ -1,5 +1,5 @@
 #include <am.h>
-#define RTC_ADDR 0x48
+#define RTC_ADDR 0xa0000048
 
 static uint64_t boot_time = 0;
 static inline uint32_t inl(uintptr_t addr) { return *(volatile uint32_t *)addr; }

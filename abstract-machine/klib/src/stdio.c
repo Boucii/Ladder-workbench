@@ -395,7 +395,8 @@ int sprintf(char *buf, const char *fmt, ...)
 }
 
 int printf(const char *fmt, ...) {
-  char buf1[65536];
+  //char buf1[8192];
+  char buf1[2048];
   memset(buf1,0,sizeof(buf1));
   va_list ap;
   va_start(ap,fmt);

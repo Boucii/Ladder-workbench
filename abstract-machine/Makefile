@@ -52,6 +52,7 @@ $(shell mkdir -p $(DST_DIR))
 
 ### Compilation targets (a binary image or archive)
 IMAGE_REL = build/$(NAME)-$(ARCH)
+#IMAGE_REL = build/$(NAME)-nemu
 IMAGE     = $(abspath $(IMAGE_REL))
 ARCHIVE   = $(WORK_DIR)/build/$(NAME)-$(ARCH).a
 
@@ -88,7 +89,8 @@ CFLAGS   += -O2 -MMD -Wall -Werror $(INCFLAGS) \
             -DARCH_H=\"arch/$(ARCH).h\" \
             -fno-asynchronous-unwind-tables -fno-builtin -fno-stack-protector \
             -Wno-main -U_FORTIFY_SOURCE
-CXXFLAGS +=  $(CFLAGS) -ffreestanding -fno-rtti -fno-exceptions
+#CXXFLAGS +=  $(CFLAGS) -ffreestanding -fno-rtti -fno-exceptions
+CXXFLAGS +=  $(CFLAGS) -ffreestanding -fno-rtti -fno-exceptions -o3
 ASFLAGS  += -MMD $(INCFLAGS)
 
 ## 4. Arch-Specific Configurations

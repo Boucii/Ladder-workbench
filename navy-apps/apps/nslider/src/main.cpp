@@ -58,6 +58,8 @@ int main() {
 
     if (e.type == SDL_KEYDOWN) {
       switch(e.key.keysym.sym) {
+        case SDLK_DOWN: printf("qqq\n"); next(rep); rep = 0; g = 0; break;
+	      /*
         case SDLK_0: rep = rep * 10 + 0; break;
         case SDLK_1: rep = rep * 10 + 1; break;
         case SDLK_2: rep = rep * 10 + 2; break;
@@ -79,6 +81,7 @@ int main() {
             rep = 0; g = 0;
           }
           break;
+	  */
       }
     }
   }

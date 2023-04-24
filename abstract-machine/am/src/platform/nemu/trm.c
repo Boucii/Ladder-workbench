@@ -1,5 +1,6 @@
 #include <am.h>
 #include <nemu.h>
+#include <stdio.h>
 
 extern char _heap_start;
 int main(const char *args);
@@ -22,6 +23,7 @@ void halt(int code) {
 }
 
 void _trm_init() {
+  //printf("trm mainargs=%s\n",mainargs);
   int ret = main(mainargs);
   halt(ret);
 }

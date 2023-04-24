@@ -117,16 +117,101 @@ void *memmove(void *dst, const void *src, size_t n) {
     return dst;
 }
 
-void *memcpy(void *out, const void *in, size_t n) {
+void *memcpy(void* dst,const void* src, size_t size) {
+    size_t i, j;
+    size_t count = size / 8;
+    unsigned long long* dst_8 = (unsigned long long*) dst;
+    unsigned long long* src_8 = (unsigned long long*) src;
+    char* dst_c = (char*) dst_8;
+    char* src_c = (char*) src_8;
+    for (i = 0; i < count; i++) {
+        dst_8[i] = src_8[i];
+    }
+    for (j = i * 8; j < size; j++) {
+        dst_c[j] = src_c[j];
+    }
+	return dst;
+}
+
+/*
+void* memcpy(void* out, const void* in, size_t n) {
+	bool align_to_64=((long)in&(0x000000000000003f))==0 &&((long)out&(0x000000000000003f))==0;
+	bool align_to_32=((long)in&(0x000000000000001f))==0 &&((long)out&(0x000000000000001f))==0;
+	bool align_to_16=((long)in&(0x000000000000000f))==0 &&((long)out&(0x000000000000000f))==0;
+	if(align_to_64){
+    	uintptr_t a = (uintptr_t) out;
+    	uintptr_t b = (uintptr_t) in;
+    	uint64_t* c = (uint64_t*) a;
+    	uint64_t* d = (uint64_t*) b;
+    	size_t i = 0;
+    	for (; (i + 8) <= n; i += 8) {
+    	    c[i>>3] = d[i>>3];
+    	}
+    	for (; i < n; i++) {
+    	    ((char*)out)[i] = ((const char*)in)[i];
+    	}
+    	return out;
+	}
+	if(align_to_32){
+		uintptr_t a = (uintptr_t) out;
+		uintptr_t b = (uintptr_t) in;
+		uint32_t* c = (uint32_t*) a;
+		uint32_t* d = (uint32_t*) b;
+		size_t i = 0;
+		for (; (i + 4) <= n; i += 4) {
+		    c[i>>2] = d[i>>2];
+		}
+		for (; i < n; i++) {
+		    ((char*)out)[i] = ((const char*)in)[i];
+		}
+		return out;
+	}
+	if(align_to_16){
+		uintptr_t a = (uintptr_t) out;
+		uintptr_t b = (uintptr_t) in;
+		uint16_t* c = (uint16_t*) a;
+		uint16_t* d = (uint16_t*) b;
+		size_t i = 0;
+		for (; (i + 2) <= n; i += 2) {
+		    c[i>>1] = d[i>>1];
+		}
+		for (; i < n; i++) {
+		    ((char*)out)[i] = ((const char*)in)[i];
+		}
+		return out;
+	}
+    char *a=(char*)out;
+    char *b=(char*)in;
+	for(int i=0;i<n;i++){
+        a[i]=b[i];
+    }
+		return out;
+}
+*/
+/*
+void *memcpy11(void *out, const void *in, size_t n) {
     //assert(in+n<out)
     char *a=(char*)out;
     char *b=(char*)in;
-    for(int i=0;i<n;i++){
+	
+	
+	for(int i=0;i<n;i++){
         a[i]=b[i];
     }
+
+	uint64_t *c=(uint64_t*)out;
+	uint64_t *d=(uint64_t*)in;
+	int i=0;
+    for(i=0;((i>>3)+8)<n;i++){
+        c[i]=d[i];
+    }
+	for(;i<n;i++){
+		a[i]=b[i];
+	}
+
     return out;
 }
-
+*/
 int memcmp(const void *s1, const void *s2, size_t n) {
         char *a=(char*)s1;
         char *b=(char*)s2;

@@ -1,31 +1,24 @@
-Chisel Project Template
-=======================
+# RISC-V Ladder
 
-Another version of the [Chisel template](https://github.com/ucb-bar/chisel-template) supporting mill.
-mill is another Scala/Java build tool without obscure DSL like SBT. It is much faster than SBT.
+好风凭借力,送我上青云
 
-Contents at a glance:
 
-* `.gitignore` - helps Git ignore junk like generated files, build products, and temporary files.
-* `build.sc` - instructs mill to build the Chisel project
-* `Makefile` - rules to call mill
-* `playground/src/GCD.scala` - GCD source file
-* `playground/src/DecoupledGCD.scala` - another GCD source file
-* `playground/src/Elaborate.scala` - wrapper file to call chisel command with the GCD module
-* `playground/test/src/GCDSpec.scala` - GCD tester
 
-Feel free to rename or delete files under `playground/` or use them as a reference/template.
+RISC-V Ladder is an dual-issued, 10 staged, out-of-order riscv64 core in chisel programming lanuage.
 
-## Getting Started
+![image-20230424133510727](./Ladder.assets/image-20230424133510727.png)
 
-First, install mill by referring to the documentation [here](https://com-lihaoyi.github.io/mill).
+Sbt is used to build the chisel files. Verilator is used to run simulations.
 
-To run all tests in this design (recommended for test-driven development):
-```bash
-make test
+the basic file structure is as following:
+
+```
+-csrc //verilator csrs
+-genrtl //chisel generated verilog files
+-project //sbt configs
+-src //chisel source code
+-verilogtestbench //some testbenches
+-vsrc //vsrcs for dpi-c function
 ```
 
-To generate Verilog:
-```bash
-make verilog
-```
+RISC-V Ladder is finished under  [YSYX project]([一生一芯计划 (oscc.cc)](https://ysyx.oscc.cc/)).

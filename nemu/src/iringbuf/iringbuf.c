@@ -17,4 +17,10 @@ void print_buf(){
 	log_write("     %s\n",iringbuf[i]);
   }
   log_write("---->%s\n",iringbuf[i]);
+  for(int i=0;i<ibufptr-1;i++){
+	printf("     %s\n",iringbuf[i]);
+  }
+  printf("---->%s\n",iringbuf[i]);
+
 }
+//this file is not functioning! goto log.c

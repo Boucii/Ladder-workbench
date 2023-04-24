@@ -3,6 +3,7 @@ include $(AM_HOME)/scripts/isa/riscv64.mk
 AM_SRCS := riscv/npc/start.S \
            riscv/npc/trm.c \
            riscv/npc/ioe.c \
+           riscv/npc/gpu.c \
            riscv/npc/timer.c \
            riscv/npc/input.c \
            riscv/npc/cte.c \
@@ -23,9 +24,12 @@ image: $(IMAGE).elf
 
 run: image
 	@echo $(IMAGE)
-	@echo "hello from ab"
+	echo $(mainargs)
 	export IMAGE=$(IMAGE)
 	$(MAKE) -C $(NPC_HOME) IMAGE=$(IMAGE).bin wave 
+
+free: image
+	$(MAKE) -C $(NPC_HOME) IMAGE=/home/qin/Documents/nanos-lite-riscv64-npc.bin wave 
 
 gdb: image
 	export IMAGE=$(IMAGE)

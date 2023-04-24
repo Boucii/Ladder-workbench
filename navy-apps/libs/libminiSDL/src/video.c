@@ -3,16 +3,116 @@
 #include <assert.h>
 #include <string.h>
 #include <stdlib.h>
+#include <stdio.h>
 
 void SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_Rect *dstrect) {
   assert(dst && src);
   assert(dst->format->BitsPerPixel == src->format->BitsPerPixel);
+    int Ws = src->w;
+    int Hs = src->h;
+    int Wd = dst->w;
+    int Hd = dst->h;
+    int ws, hs, xs, ys;
+    if (srcrect == NULL) {
+        ws = Ws;
+        hs = Hs;
+        xs = 0;
+        ys = 0;
+    } else {
+        ws = srcrect->w;
+        hs = srcrect->h;
+        xs = srcrect->x;
+        ys = srcrect->y;
+    }
+    int wd, hd, xd, yd;
+    if (dstrect == NULL) {
+        wd = Wd;
+        hd = Hd;
+        xd = 0;
+        yd = 0;
+    } else {
+        wd = dstrect->w;
+        hd = dstrect->h;
+        xd = dstrect->x;
+        yd = dstrect->y;
+    }
+
+    int width = dst->format->BytesPerPixel;
+    for (int i = 0; i < hs; i++) {
+        memcpy((void *)dst->pixels + ((yd + i) * Wd + xd) * width,
+               (void *)src->pixels + ((ys + i) * Ws + xs) * width, ws * width);
+    }
 }
 
 void SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, uint32_t color) {
+	int canW=dst->w;
+	int canH=dst->h;
+	int w,h,x,y;//absolute
+	if(!dstrect){
+		w=canW;
+		h=canW;
+		x=0;
+		y=0;
+
+	}else{
+		w=dstrect->w;
+		h=dstrect->h;
+		x=dstrect->x;
+		y=dstrect->y;
+	}
+
+    	if (x + w > canW)
+            w = canW - x;
+        if (y + h > canH)
+            h = canH - y;
+	if(dst->format->palette&&dst->format->BitsPerPixel==8){
+    		
+		uint32_t colors[w*h];
+		for(int i=0;i<w*h;i++){
+			colors[i*w+h]=color;
+		}
+		NDL_DrawRect(colors,x,y,w,h);
+
+
+	}else{
+        for (int i = 0; i < h; i++) {
+               for (int j = 0; j < w; j++) {
+                   if (y + i >= h || x + j >= w)
+                       continue;
+                   ((uint32_t *)(dst->pixels))[(y + i) * canW + x + j] = color;
+               }
+           }
+	}
+
+	//SDL_UpdateRect(dst,x,y,w,h);
 }
 
 void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h) {
+	if(x==0&&y==0&&(w==0&&h==0)){
+	  w=*(&s->w);
+	  h=*(&s->h);
+	}
+	NDL_OpenCanvas(&s->w,&s->h);
+	if(s->format->palette&&s->format->BitsPerPixel==8){
+		uint32_t *actual_color=malloc(w*h*4);
+ 		memset(actual_color,0,w*h*4);
+	        for(int i=0;i<h;i++){
+			for(int j=0;j<w;j++){
+				uint32_t a=(s->format->palette->colors[((uint8_t*)s->pixels)[i*w+j]]).a;
+				uint32_t r=(s->format->palette->colors[((uint8_t*)s->pixels)[i*w+j]]).r;
+				uint32_t g=(s->format->palette->colors[((uint8_t*)s->pixels)[i*w+j]]).g;
+				uint32_t b=(s->format->palette->colors[((uint8_t*)s->pixels)[i*w+j]]).b;
+				//uint32_t color=a<<24+r<<16+g<<8+b;
+				uint32_t color=(a<<24 | r<<16 | g<<8 |b);
+				//uint32_t color=r<<16+b;
+				actual_color[i*w+j]=color;
+			}
+		}
+		NDL_DrawRect((uint32_t*)actual_color,x,y,w,h);
+		free(actual_color);
+	}else{
+            NDL_DrawRect((uint32_t*)s->pixels,x,y,w,h);
+	}
 }
 
 // APIs below are already implemented.

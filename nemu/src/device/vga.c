@@ -27,6 +27,7 @@ static SDL_Renderer *renderer = NULL;
 static SDL_Texture *texture = NULL;
 
 static void init_screen() {
+  printf("W=%d,H=%d\n",SCREEN_W,SCREEN_H);
   SDL_Window *window = NULL;
   char title[128];
   sprintf(title, "%s-NEMU", str(__GUEST_ISA__));

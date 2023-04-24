@@ -1,4 +1,3 @@
-
 #define concat_temp(x, y) x ## y
 #define concat(x, y) concat_temp(x, y)
 #define MAP(c, f) c(f)
@@ -24,17 +23,24 @@ __am_asm_trap:
 
   MAP(REGS, PUSH)
 
+/*
   mv t0, sp
   addi t0, t0, CONTEXT_SIZE
   sd t0, OFFSET_SP(sp)
+*/
 
   csrr t0, mcause
   csrr t1, mstatus
   csrr t2, mepc
 
+  addi t2,t2,4
+
   sd t0, OFFSET_CAUSE(sp)
   sd t1, OFFSET_STATUS(sp)
   sd t2, OFFSET_EPC(sp)
+
+  li a0, (1 << 17)
+  or t1, t1, a0
 
   mv a0, sp
   jal __am_irq_handle

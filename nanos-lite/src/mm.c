@@ -17,8 +17,12 @@ void free_page(void *p) {
 }
 
 /* The brk() system call handler. */
-int mm_brk(uintptr_t brk) {
-  return 0;
+int mm_brk(uintptr_t brk) {//should check mem limit ,but - naH
+	return 0;
+	extern uintptr_t _end;
+	printf("from brlbrk!brk=%lx, end=%lx\n",brk,_end);
+	_end=brk;
+        return 0;
 }
 
 void init_mm() {

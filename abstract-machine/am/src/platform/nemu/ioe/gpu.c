@@ -1,10 +1,12 @@
 #include <am.h>
 #include <nemu.h>
+#include <stdio.h>
 
 #define SYNC_ADDR (VGACTL_ADDR + 4)
 #define W   inw(VGACTL_ADDR+2)
 #define H   inw(VGACTL_ADDR) 
 void __am_gpu_init() {
+		printf("W=%d H=%d\n",W,H);
 	/*
   int i;
   int w = W;

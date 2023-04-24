@@ -7,6 +7,8 @@ void init_irq(void);
 void init_fs(void);
 void init_proc(void);
 
+//static Context* (*user_handler)(Event, Context*);
+//static  Context* (*do_event)(Event e, Context* c);
 int main() {
   extern const char logo[];
   printf("%s", logo);
@@ -20,11 +22,16 @@ int main() {
   init_ramdisk();
 
 #ifdef HAS_CTE
+ // printf("00do event is??%d",do_event==NULL);
   init_irq();
+  //printf("do event is??%d",do_event==NULL);
+  //printf("qcteinit and handler is %d\n",user_handler==NULL);
 #endif
 
+  printf("fsinit\n");
   init_fs();
 
+  printf("procinit\n");
   init_proc();
 
   Log("Finish initialization");

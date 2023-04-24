@@ -81,7 +81,7 @@ void difftest_regcpy(void* dut, bool direction) {
   } else {
     s->diff_get_regs(dut);
   }
-  printf("from spike:mcause=%lx\n",state->mcause);
+  //printf("from spike:mcause=%lx\n,mtvec=%lx\n,mstatus=%lx,mepc=%lx\n",state->mcause,state->mtvec,state->mstatus,state->mepc);
 }
 
 void difftest_exec(uint64_t n) {

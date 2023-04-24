@@ -5,7 +5,6 @@ word_t isa_raise_intr(word_t NO, vaddr_t epc) {
    * Then return the address of the interrupt/exception vector.
    */
 	//cpu.csr[mepc]=cpu.pc;
-	printf("intr raised,mcause=%d,NO=%ld\n",mcause,NO);
 	cpu.csr[mepc]=epc;
 	cpu.csr[mcause]=NO;
         paddr_t enter = cpu.csr[mtvec];

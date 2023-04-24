@@ -18,14 +18,21 @@ void hello_fun(void *arg) {
     yield();
   }
 }
-
+void naive_uload(PCB *pcb, const char *filename);
 void init_proc() {
   switch_boot_pcb();
 
   Log("Initializing processes...");
 
   // load program here
-
+  //naive_uload(NULL,"/bin/nterm");
+  //naive_uload(NULL,NULL);
+  //naive_uload(NULL,"/bin/hello");
+  //naive_uload(NULL,"/bin/file-test");
+  //naive_uload(NULL,"/bin/bird");
+  //naive_uload(NULL,"/bin/bmp-test");
+  naive_uload(NULL,"/bin/pal");
+  //naive_uload(NULL,"/bin/event-test");
 }
 
 Context* schedule(Context *prev) {
