@@ -5,9 +5,13 @@ This repository is the workbench for the “One Student, One Chip” project and
 # Guide
 
 To check the **RISC-V architectural emulator**, go to `nemu/`.
+
 To check the **bare-metal runtime environment**, go to `abstract-machine/` and `am-kernels/`.
+
 To check the **processor core**, go to `npc/`.
+
 To check the **simple OS**, go to `nanos-lite/`.
+
 To check the **software running on the OS**, go to `navy-apps/`.
 
 ## Layout
