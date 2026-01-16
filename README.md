@@ -1,13 +1,12 @@
 # ysyx Project Workspace
 
-This repository is the workbench for “One Student, One Chip” project: NEMU, Navy-apps, AbstractMachine, multiple NPC variants, and supporting tools/labs.
+This repository is the workbench for “One Student, One Chip” project, and workbench for Ladder RISC-V processor core.
 
 ## Layout
 ```
 .
 ├── abstract-machine/   # bare-metal runtime environment
-├── am-kernels/         # runtime kernels and benchmarks
-├── chisel/             # Chisel exercises and examples
+├── am-kernels/         # bare-metal runtime programs and benchmarks
 ├── fceux-am/           # NES emulator port
 ├── nanos-lite/         # Nanos-lite OS
 ├── nanos-lite22/       # Nanos-lite 2022 variant
@@ -21,6 +20,7 @@ This repository is the workbench for “One Student, One Chip” project: NEMU, 
 ├── ysyx-workbench/     # Nested copy of this repo
 ├── init.sh             # Subproject init script
 └── Makefile            # Root make entry
+├── chisel/             # Chisel exercises and examples
 ```
 
 one student one chip homepage: https://ysyx.oscc.cc
