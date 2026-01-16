@@ -1,9 +1,26 @@
-# "一生一芯"工程项目
+# ysyx Project Workspace
 
-这是"一生一芯"的工程项目. 通过运行
-```bash
-bash init.sh subproject-name
+This repository is the workbench for “One Student, One Chip” project: NEMU, Navy-apps, AbstractMachine, multiple NPC variants, and supporting tools/labs.
+
+## Layout
 ```
-进行初始化, 具体请参考[实验讲义][lecture note].
+.
+├── abstract-machine/   # bare-metal runtime environment
+├── am-kernels/         # runtime kernels and benchmarks
+├── chisel/             # Chisel exercises and examples
+├── fceux-am/           # NES emulator port
+├── nanos-lite/         # Nanos-lite OS
+├── nanos-lite22/       # Nanos-lite 2022 variant
+├── navy-apps/          # User-space apps and libs
+├── nemu/               # NEMU RISC-V emulator
+├── npc/                # NPC (Ladder) CPU project
+├── npc-top/            # NPC top-level variant
+├── npc-singlecyc/      # NPC single-cycle implementation
+├── nvboard/            # FPGA I/O board support
+├── veriloatortest/     # Verilator samples
+├── ysyx-workbench/     # Nested copy of this repo
+├── init.sh             # Subproject init script
+└── Makefile            # Root make entry
+```
 
-[lecture note]: https://docs.ysyx.org/schedule.html
+one student one chip homepage: https://ysyx.oscc.cc
