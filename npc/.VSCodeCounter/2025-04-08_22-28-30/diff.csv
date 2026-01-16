@@ -1,0 +1,109 @@
+"filename", "language", "Markdown", "Verilog", "Scala", "Makefile", "Properties", "C++", "YAML", "JSON", "comment", "blank", "total"
+"d:\StudyDocuments\OOOCoreDesign\sbttest\chisel-template - ladder_be\genrtl\ALU.v", "Verilog", 0, -349, 0, 0, 0, 0, 0, 0, -1, -1, -351
+"d:\StudyDocuments\OOOCoreDesign\sbttest\chisel-template - ladder_be\genrtl\Arch_RegFile.v", "Verilog", 0, -4259, 0, 0, 0, 0, 0, 0, 0, -1, -4260
+"d:\StudyDocuments\OOOCoreDesign\sbttest\chisel-template - ladder_be\genrtl\BPU.v", "Verilog", 0, -56061, 0, 0, 0, 0, 0, 0, -1, -1, -56063
+"d:\StudyDocuments\OOOCoreDesign\sbttest\chisel-template - ladder_be\genrtl\BRU.v", "Verilog", 0, -315, 0, 0, 0, 0, 0, 0, -1, -1, -317
+"d:\StudyDocuments\OOOCoreDesign\sbttest\chisel-template - ladder_be\genrtl\Back_End_With_Decode.anno.json", "JSON", 0, 0, 0, 0, 0, 0, 0, -17589, 0, 0, -17589
+"d:\StudyDocuments\OOOCoreDesign\sbttest\chisel-template - ladder_be\genrtl\Back_End_With_Decode.v", "Verilog", 0, -2594, 0, 0, 0, 0, 0, 0, 0, -1, -2595
+"d:\StudyDocuments\OOOCoreDesign\sbttest\chisel-template - ladder_be\genrtl\Branch_Presolve.v", "Verilog", 0, -61, 0, 0, 0, 0, 0, 0, 0, -1, -62
+"d:\StudyDocuments\OOOCoreDesign\sbttest\chisel-template - ladder_be\genrtl\Busy_Table.v", "Verilog", 0, -565, 0, 0, 0, 0, 0, 0, -1, -1, -567
+"d:\StudyDocuments\OOOCoreDesign\sbttest\chisel-template - ladder_be\genrtl\CSR.v", "Verilog", 0, -239, 0, 0, 0, 0, 0, 0, -1, -1, -241
+"d:\StudyDocuments\OOOCoreDesign\sbttest\chisel-template - ladder_be\genrtl\CSR_BF.v", "Verilog", 0, -197, 0, 0, 0, 0, 0, 0, -1, -1, -199
+"d:\StudyDocuments\OOOCoreDesign\sbttest\chisel-template - ladder_be\genrtl\DIV.v", "Verilog", 0, -255, 0, 0, 0, 0, 0, 0, -1, -1, -257
+"d:\StudyDocuments\OOOCoreDesign\sbttest\chisel-template - ladder_be\genrtl\Decoder.v", "Verilog", 0, -1744, 0, 0, 0, 0, 0, 0, -1, -1, -1746
+"d:\StudyDocuments\OOOCoreDesign\sbttest\chisel-template - ladder_be\genrtl\Dispatch.v", "Verilog", 0, -635, 0, 0, 0, 0, 0, 0, -1, -1, -637
+"d:\StudyDocuments\OOOCoreDesign\sbttest\chisel-template - ladder_be\genrtl\Divider.v", "Verilog", 0, -173, 0, 0, 0, 0, 0, 0, -1, -1, -175
+"d:\StudyDocuments\OOOCoreDesign\sbttest\chisel-template - ladder_be\genrtl\Execute.v", "Verilog", 0, -1263, 0, 0, 0, 0, 0, 0, 0, -1, -1264
+"d:\StudyDocuments\OOOCoreDesign\sbttest\chisel-template - ladder_be\genrtl\Fetch_Queue.v", "Verilog", 0, -102, 0, 0, 0, 0, 0, 0, 0, -1, -103
+"d:\StudyDocuments\OOOCoreDesign\sbttest\chisel-template - ladder_be\genrtl\Fetch_Res.v", "Verilog", 0, -30, 0, 0, 0, 0, 0, 0, 0, -1, -31
+"d:\StudyDocuments\OOOCoreDesign\sbttest\chisel-template - ladder_be\genrtl\Front_End.anno.json", "JSON", 0, 0, 0, 0, 0, 0, 0, -32, 0, 0, -32
+"d:\StudyDocuments\OOOCoreDesign\sbttest\chisel-template - ladder_be\genrtl\Front_End.v", "Verilog", 0, -374, 0, 0, 0, 0, 0, 0, 0, -1, -375
+"d:\StudyDocuments\OOOCoreDesign\sbttest\chisel-template - ladder_be\genrtl\Full_Adder.v", "Verilog", 0, -10, 0, 0, 0, 0, 0, 0, 0, -1, -11
+"d:\StudyDocuments\OOOCoreDesign\sbttest\chisel-template - ladder_be\genrtl\IF1_IF2.v", "Verilog", 0, -120, 0, 0, 0, 0, 0, 0, -1, -1, -122
+"d:\StudyDocuments\OOOCoreDesign\sbttest\chisel-template - ladder_be\genrtl\IF2_IF3.v", "Verilog", 0, -121, 0, 0, 0, 0, 0, 0, -1, -1, -123
+"d:\StudyDocuments\OOOCoreDesign\sbttest\chisel-template - ladder_be\genrtl\Interrupt_Mask.v", "Verilog", 0, -79, 0, 0, 0, 0, 0, 0, -1, -1, -81
+"d:\StudyDocuments\OOOCoreDesign\sbttest\chisel-template - ladder_be\genrtl\LSU.v", "Verilog", 0, -302, 0, 0, 0, 0, 0, 0, -1, -1, -304
+"d:\StudyDocuments\OOOCoreDesign\sbttest\chisel-template - ladder_be\genrtl\Ladder.anno.json", "JSON", 0, 0, 0, 0, 0, 0, 0, -17707, 0, 0, -17707
+"d:\StudyDocuments\OOOCoreDesign\sbttest\chisel-template - ladder_be\genrtl\Ladder.v", "Verilog", 0, -200, 0, 0, 0, 0, 0, 0, 0, -1, -201
+"d:\StudyDocuments\OOOCoreDesign\sbttest\chisel-template - ladder_be\genrtl\MUL.v", "Verilog", 0, -268, 0, 0, 0, 0, 0, 0, -1, -1, -270
+"d:\StudyDocuments\OOOCoreDesign\sbttest\chisel-template - ladder_be\genrtl\Multiplier.v", "Verilog", 0, -238, 0, 0, 0, 0, 0, 0, -1, -1, -240
+"d:\StudyDocuments\OOOCoreDesign\sbttest\chisel-template - ladder_be\genrtl\PC_Gen.v", "Verilog", 0, -85, 0, 0, 0, 0, 0, 0, -1, -1, -87
+"d:\StudyDocuments\OOOCoreDesign\sbttest\chisel-template - ladder_be\genrtl\Partial_Products_Gen.v", "Verilog", 0, -958, 0, 0, 0, 0, 0, 0, 0, -1, -959
+"d:\StudyDocuments\OOOCoreDesign\sbttest\chisel-template - ladder_be\genrtl\Queue.v", "Verilog", 0, -353, 0, 0, 0, 0, 0, 0, -1, -1, -355
+"d:\StudyDocuments\OOOCoreDesign\sbttest\chisel-template - ladder_be\genrtl\RegFile.v", "Verilog", 0, -3149, 0, 0, 0, 0, 0, 0, -1, -1, -3151
+"d:\StudyDocuments\OOOCoreDesign\sbttest\chisel-template - ladder_be\genrtl\Rename.v", "Verilog", 0, -1017, 0, 0, 0, 0, 0, 0, -1, -1, -1019
+"d:\StudyDocuments\OOOCoreDesign\sbttest\chisel-template - ladder_be\genrtl\Rename_Table.v", "Verilog", 0, -1676, 0, 0, 0, 0, 0, 0, -1, -1, -1678
+"d:\StudyDocuments\OOOCoreDesign\sbttest\chisel-template - ladder_be\genrtl\Reorder_Buffer.v", "Verilog", 0, -25665, 0, 0, 0, 0, 0, 0, -1, -1, -25667
+"d:\StudyDocuments\OOOCoreDesign\sbttest\chisel-template - ladder_be\genrtl\Reservation_Station.v", "Verilog", 0, -21036, 0, 0, 0, 0, 0, 0, -1, -1, -21038
+"d:\StudyDocuments\OOOCoreDesign\sbttest\chisel-template - ladder_be\genrtl\Reservation_Station_Slot.v", "Verilog", 0, -564, 0, 0, 0, 0, 0, 0, -1, -1, -566
+"d:\StudyDocuments\OOOCoreDesign\sbttest\chisel-template - ladder_be\genrtl\Wallace_Tree.v", "Verilog", 0, -6091, 0, 0, 0, 0, 0, 0, 0, -1, -6092
+"d:\StudyDocuments\OOOCoreDesign\sbttest\chisel-template - ladder_be\genrtl\Wallace_Tree_Cell.v", "Verilog", 0, -334, 0, 0, 0, 0, 0, 0, 0, -1, -335
+"d:\StudyDocuments\OOOCoreDesign\sbttest\chisel-template - ladder_be\genrtl\front_end_control.v", "Verilog", 0, -25, 0, 0, 0, 0, 0, 0, 0, -1, -26
+"d:\StudyDocuments\OOOCoreDesign\ysyx-workbench\ysyx-workbench\npc\.github\workflows\template-cleanup.yml", "YAML", 0, 0, 0, 0, 0, 0, 38, 0, 7, 11, 56
+"d:\StudyDocuments\OOOCoreDesign\ysyx-workbench\ysyx-workbench\npc\.github\workflows\test.yml", "YAML", 0, 0, 0, 0, 0, 0, 25, 0, 0, 3, 28
+"d:\StudyDocuments\OOOCoreDesign\ysyx-workbench\ysyx-workbench\npc\Makefile", "Makefile", 0, 0, 0, 40, 0, 0, 0, 0, 8, 14, 62
+"d:\StudyDocuments\OOOCoreDesign\ysyx-workbench\ysyx-workbench\npc\README.md", "Markdown", 15, 0, 0, 0, 0, 0, 0, 0, 0, 9, 24
+"d:\StudyDocuments\OOOCoreDesign\ysyx-workbench\ysyx-workbench\npc\build.sbt", "Scala", 0, 0, 20, 0, 0, 0, 0, 0, 1, 5, 26
+"d:\StudyDocuments\OOOCoreDesign\ysyx-workbench\ysyx-workbench\npc\build.sc", "Scala", 0, 0, 28, 0, 0, 0, 0, 0, 2, 2, 32
+"d:\StudyDocuments\OOOCoreDesign\ysyx-workbench\ysyx-workbench\npc\csrc\LadderMain.cpp", "C++", 0, 0, 0, 0, 0, 536, 0, 0, 49, 45, 630
+"d:\StudyDocuments\OOOCoreDesign\ysyx-workbench\ysyx-workbench\npc\csrc\devices.cpp", "C++", 0, 0, 0, 0, 0, 93, 0, 0, 17, 19, 129
+"d:\StudyDocuments\OOOCoreDesign\ysyx-workbench\ysyx-workbench\npc\csrc\devices.h", "C++", 0, 0, 0, 0, 0, 5, 0, 0, 0, 1, 6
+"d:\StudyDocuments\OOOCoreDesign\ysyx-workbench\ysyx-workbench\npc\csrc\disasm.cc", "C++", 0, 0, 0, 0, 0, 82, 0, 0, 41, 14, 137
+"d:\StudyDocuments\OOOCoreDesign\ysyx-workbench\ysyx-workbench\npc\csrc\log.cpp", "C++", 0, 0, 0, 0, 0, 9, 0, 0, 0, 3, 12
+"d:\StudyDocuments\OOOCoreDesign\ysyx-workbench\ysyx-workbench\npc\csrc\log.h", "C++", 0, 0, 0, 0, 0, 11, 0, 0, 0, 1, 12
+"d:\StudyDocuments\OOOCoreDesign\ysyx-workbench\ysyx-workbench\npc\csrc\memory.cpp", "C++", 0, 0, 0, 0, 0, 89, 0, 0, 21, 18, 128
+"d:\StudyDocuments\OOOCoreDesign\ysyx-workbench\ysyx-workbench\npc\csrc\memory.h", "C++", 0, 0, 0, 0, 0, 9, 0, 0, 0, 1, 10
+"d:\StudyDocuments\OOOCoreDesign\ysyx-workbench\ysyx-workbench\npc\genrtl\Ladder.anno.json", "JSON", 0, 0, 0, 0, 0, 0, 0, 17516, 0, 0, 17516
+"d:\StudyDocuments\OOOCoreDesign\ysyx-workbench\ysyx-workbench\npc\genrtl\ysyx_22041413.v", "Verilog", 0, 72226, 0, 0, 0, 0, 0, 0, 29, 1, 72256
+"d:\StudyDocuments\OOOCoreDesign\ysyx-workbench\ysyx-workbench\npc\project\build.properties", "Properties", 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 2
+"d:\StudyDocuments\OOOCoreDesign\ysyx-workbench\ysyx-workbench\npc\project\plugins.sbt", "Scala", 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 2
+"d:\StudyDocuments\OOOCoreDesign\ysyx-workbench\ysyx-workbench\npc\src\test\scala\ladder\CPU_top.scala", "Scala", 0, 0, 41, 0, 0, 0, 0, 0, 5, 8, 54
+"d:\StudyDocuments\OOOCoreDesign\ysyx-workbench\ysyx-workbench\npc\src\test\scala\ladder\back_end\arch_regfile.scala", "Scala", 0, 0, 23, 0, 0, 0, 0, 0, 0, 4, 27
+"d:\StudyDocuments\OOOCoreDesign\ysyx-workbench\ysyx-workbench\npc\src\test\scala\ladder\back_end\commit\rob.scala", "Scala", 0, 0, 180, 0, 0, 0, 0, 0, 54, 33, 267
+"d:\StudyDocuments\OOOCoreDesign\ysyx-workbench\ysyx-workbench\npc\src\test\scala\ladder\back_end\csr.scala", "Scala", 0, 0, 95, 0, 0, 0, 0, 0, 9, 11, 115
+"d:\StudyDocuments\OOOCoreDesign\ysyx-workbench\ysyx-workbench\npc\src\test\scala\ladder\back_end\decoder.scala", "Scala", 0, 0, 116, 0, 0, 0, 0, 0, 17, 11, 144
+"d:\StudyDocuments\OOOCoreDesign\ysyx-workbench\ysyx-workbench\npc\src\test\scala\ladder\back_end\dispatch\dispatch.scala", "Scala", 0, 0, 41, 0, 0, 0, 0, 0, 18, 8, 67
+"d:\StudyDocuments\OOOCoreDesign\ysyx-workbench\ysyx-workbench\npc\src\test\scala\ladder\back_end\execute\execute.scala", "Scala", 0, 0, 133, 0, 0, 0, 0, 0, 31, 35, 199
+"d:\StudyDocuments\OOOCoreDesign\ysyx-workbench\ysyx-workbench\npc\src\test\scala\ladder\back_end\execute\execute_unit.scala", "Scala", 0, 0, 467, 0, 0, 0, 0, 0, 177, 84, 728
+"d:\StudyDocuments\OOOCoreDesign\ysyx-workbench\ysyx-workbench\npc\src\test\scala\ladder\back_end\execute\mul_div\booth.scala", "Scala", 0, 0, 58, 0, 0, 0, 0, 0, 1, 6, 65
+"d:\StudyDocuments\OOOCoreDesign\ysyx-workbench\ysyx-workbench\npc\src\test\scala\ladder\back_end\execute\mul_div\div.scala", "Scala", 0, 0, 105, 0, 0, 0, 0, 0, 2, 18, 125
+"d:\StudyDocuments\OOOCoreDesign\ysyx-workbench\ysyx-workbench\npc\src\test\scala\ladder\back_end\execute\mul_div\mul.scala", "Scala", 0, 0, 73, 0, 0, 0, 0, 0, 9, 13, 95
+"d:\StudyDocuments\OOOCoreDesign\ysyx-workbench\ysyx-workbench\npc\src\test\scala\ladder\back_end\execute\mul_div\wallace_tree.scala", "Scala", 0, 0, 129, 0, 0, 0, 0, 0, 11, 23, 163
+"d:\StudyDocuments\OOOCoreDesign\ysyx-workbench\ysyx-workbench\npc\src\test\scala\ladder\back_end\interrupt_mask.scala", "Scala", 0, 0, 31, 0, 0, 0, 0, 0, 4, 4, 39
+"d:\StudyDocuments\OOOCoreDesign\ysyx-workbench\ysyx-workbench\npc\src\test\scala\ladder\back_end\issue\reservation_station.scala", "Scala", 0, 0, 100, 0, 0, 0, 0, 0, 72, 26, 198
+"d:\StudyDocuments\OOOCoreDesign\ysyx-workbench\ysyx-workbench\npc\src\test\scala\ladder\back_end\issue\reservation_station_slot.scala", "Scala", 0, 0, 121, 0, 0, 0, 0, 0, 7, 27, 155
+"d:\StudyDocuments\OOOCoreDesign\ysyx-workbench\ysyx-workbench\npc\src\test\scala\ladder\back_end\regfile.scala", "Scala", 0, 0, 54, 0, 0, 0, 0, 0, 2, 12, 68
+"d:\StudyDocuments\OOOCoreDesign\ysyx-workbench\ysyx-workbench\npc\src\test\scala\ladder\back_end\rename\busy_table.scala", "Scala", 0, 0, 71, 0, 0, 0, 0, 0, 44, 20, 135
+"d:\StudyDocuments\OOOCoreDesign\ysyx-workbench\ysyx-workbench\npc\src\test\scala\ladder\back_end\rename\free_list.scala", "Scala", 0, 0, 92, 0, 0, 0, 0, 0, 27, 159, 278
+"d:\StudyDocuments\OOOCoreDesign\ysyx-workbench\ysyx-workbench\npc\src\test\scala\ladder\back_end\rename\rename.scala", "Scala", 0, 0, 62, 0, 0, 0, 0, 0, 19, 100, 181
+"d:\StudyDocuments\OOOCoreDesign\ysyx-workbench\ysyx-workbench\npc\src\test\scala\ladder\back_end\rename\rename_table.scala", "Scala", 0, 0, 62, 0, 0, 0, 0, 0, 9, 12, 83
+"d:\StudyDocuments\OOOCoreDesign\ysyx-workbench\ysyx-workbench\npc\src\test\scala\ladder\backend_with_decode.scala", "Scala", 0, 0, 131, 0, 0, 0, 0, 0, 26, 25, 182
+"d:\StudyDocuments\OOOCoreDesign\ysyx-workbench\ysyx-workbench\npc\src\test\scala\ladder\cache\AxiLite.scala", "Scala", 0, 0, 46, 0, 0, 0, 0, 0, 2, 14, 62
+"d:\StudyDocuments\OOOCoreDesign\ysyx-workbench\ysyx-workbench\npc\src\test\scala\ladder\cache\S011HD1P_dpi.scala", "Scala", 0, 0, 18, 0, 0, 0, 0, 0, 0, 3, 21
+"d:\StudyDocuments\OOOCoreDesign\ysyx-workbench\ysyx-workbench\npc\src\test\scala\ladder\cache\axi_arbiter.scala", "Scala", 0, 0, 79, 0, 0, 0, 0, 0, 42, 5, 126
+"d:\StudyDocuments\OOOCoreDesign\ysyx-workbench\ysyx-workbench\npc\src\test\scala\ladder\cache\data_array.scala", "Scala", 0, 0, 58, 0, 0, 0, 0, 0, 1, 6, 65
+"d:\StudyDocuments\OOOCoreDesign\ysyx-workbench\ysyx-workbench\npc\src\test\scala\ladder\cache\dcache.scala", "Scala", 0, 0, 239, 0, 0, 0, 0, 0, 36, 17, 292
+"d:\StudyDocuments\OOOCoreDesign\ysyx-workbench\ysyx-workbench\npc\src\test\scala\ladder\cache\icache.scala", "Scala", 0, 0, 104, 0, 0, 0, 0, 0, 25, 7, 136
+"d:\StudyDocuments\OOOCoreDesign\ysyx-workbench\ysyx-workbench\npc\src\test\scala\ladder\consts.scala", "Scala", 0, 0, 94, 0, 0, 0, 0, 0, 25, 11, 130
+"d:\StudyDocuments\OOOCoreDesign\ysyx-workbench\ysyx-workbench\npc\src\test\scala\ladder\defs.scala", "Scala", 0, 0, 125, 0, 0, 0, 0, 0, 86, 26, 237
+"d:\StudyDocuments\OOOCoreDesign\ysyx-workbench\ysyx-workbench\npc\src\test\scala\ladder\dpic-axi-ver.scala", "Scala", 0, 0, 65, 0, 0, 0, 0, 0, 1, 6, 72
+"d:\StudyDocuments\OOOCoreDesign\ysyx-workbench\ysyx-workbench\npc\src\test\scala\ladder\dpic.scala", "Scala", 0, 0, 56, 0, 0, 0, 0, 0, 1, 5, 62
+"d:\StudyDocuments\OOOCoreDesign\ysyx-workbench\ysyx-workbench\npc\src\test\scala\ladder\front_end\branch_predictor.scala", "Scala", 0, 0, 91, 0, 0, 0, 0, 0, 28, 10, 129
+"d:\StudyDocuments\OOOCoreDesign\ysyx-workbench\ysyx-workbench\npc\src\test\scala\ladder\front_end\branch_presolve.scala", "Scala", 0, 0, 47, 0, 0, 0, 0, 0, 8, 3, 58
+"d:\StudyDocuments\OOOCoreDesign\ysyx-workbench\ysyx-workbench\npc\src\test\scala\ladder\front_end\fetch_queue.scala", "Scala", 0, 0, 27, 0, 0, 0, 0, 0, 0, 4, 31
+"d:\StudyDocuments\OOOCoreDesign\ysyx-workbench\ysyx-workbench\npc\src\test\scala\ladder\front_end\fetchres.scala", "Scala", 0, 0, 39, 0, 0, 0, 0, 0, 12, 6, 57
+"d:\StudyDocuments\OOOCoreDesign\ysyx-workbench\ysyx-workbench\npc\src\test\scala\ladder\front_end\front_end.scala", "Scala", 0, 0, 66, 0, 0, 0, 0, 0, 12, 19, 97
+"d:\StudyDocuments\OOOCoreDesign\ysyx-workbench\ysyx-workbench\npc\src\test\scala\ladder\front_end\front_end_control.scala", "Scala", 0, 0, 29, 0, 0, 0, 0, 0, 3, 6, 38
+"d:\StudyDocuments\OOOCoreDesign\ysyx-workbench\ysyx-workbench\npc\src\test\scala\ladder\front_end\if1_if2.scala", "Scala", 0, 0, 31, 0, 0, 0, 0, 0, 1, 7, 39
+"d:\StudyDocuments\OOOCoreDesign\ysyx-workbench\ysyx-workbench\npc\src\test\scala\ladder\front_end\if2_if3.scala", "Scala", 0, 0, 31, 0, 0, 0, 0, 0, 0, 6, 37
+"d:\StudyDocuments\OOOCoreDesign\ysyx-workbench\ysyx-workbench\npc\src\test\scala\ladder\front_end\pc_gen.scala", "Scala", 0, 0, 37, 0, 0, 0, 0, 0, 8, 8, 53
+"d:\StudyDocuments\OOOCoreDesign\ysyx-workbench\ysyx-workbench\npc\src\test\scala\ladder\insts.scala", "Scala", 0, 0, 156, 0, 0, 0, 0, 0, 9, 9, 174
+"d:\StudyDocuments\OOOCoreDesign\ysyx-workbench\ysyx-workbench\npc\src\test\scala\ladder\ladder.scala", "Scala", 0, 0, 17, 0, 0, 0, 0, 0, 53, 4, 74
+"d:\StudyDocuments\OOOCoreDesign\ysyx-workbench\ysyx-workbench\npc\src\test\scala\ladder\muldiv_test.scala", "Scala", 0, 0, 36, 0, 0, 0, 0, 0, 7, 11, 54
+"d:\StudyDocuments\OOOCoreDesign\ysyx-workbench\ysyx-workbench\npc\src\test\scala\ladder\soc_top.scala", "Scala", 0, 0, 91, 0, 0, 0, 0, 0, 40, 17, 148
+"d:\StudyDocuments\OOOCoreDesign\ysyx-workbench\ysyx-workbench\npc\verilogtestbench\front_end_tb.v", "Verilog", 0, 100, 0, 0, 0, 0, 0, 0, 4, 14, 118
+"d:\StudyDocuments\OOOCoreDesign\ysyx-workbench\ysyx-workbench\npc\verilogtestbench\tb.v", "Verilog", 0, 92, 0, 0, 0, 0, 0, 0, 25, 18, 135
+"d:\StudyDocuments\OOOCoreDesign\ysyx-workbench\ysyx-workbench\npc\verilogtestbench\top_tb.v", "Verilog", 0, 70, 0, 0, 0, 0, 0, 0, 2, 13, 85
+"d:\StudyDocuments\OOOCoreDesign\ysyx-workbench\ysyx-workbench\npc\vsrc\S011HD1P_X32Y2D128_BW.v", "Verilog", 0, 25, 0, 0, 0, 0, 0, 0, 0, 4, 29
+"d:\StudyDocuments\OOOCoreDesign\ysyx-workbench\ysyx-workbench\npc\vsrc\dpi-funcs_axi_ver.v", "Verilog", 0, 175, 0, 0, 0, 0, 0, 0, 16, 14, 205
+"Total", "-", 15, -58819, 3816, 40, 1, 834, 63, -17812, 1142, 1024, -69696
