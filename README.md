@@ -2,6 +2,15 @@
 
 This repository is the workbench for “One Student, One Chip” project, and workbench for Ladder RISC-V processor core.
 
+# Guide
+
+This repository 
+to check the RISC-V architectural emulator, go to nemu/
+to check the bare-metal runtime environment, go to abstract-machine/ and am-kernels/
+to check the Processor core, go to npc/
+to check the simple OS, go to nanos-lite/
+to check the softwares running on the OS, go to navy-apps/ 
+
 ## Layout
 ```
 .
@@ -17,7 +26,6 @@ This repository is the workbench for “One Student, One Chip” project, and wo
 ├── npc-singlecyc/      # NPC single-cycle implementation
 ├── nvboard/            # FPGA I/O board support
 ├── veriloatortest/     # Verilator samples
-├── ysyx-workbench/     # Nested copy of this repo
 ├── init.sh             # Subproject init script
 └── Makefile            # Root make entry
 ├── chisel/             # Chisel exercises and examples
